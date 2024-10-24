@@ -4,6 +4,7 @@ import Filter from 'src/app/shared/models/filter';
 import { ProductsService } from '../products/products.service';
 import { FILTERS } from 'src/assets/constants/filters';
 import { Product } from 'src/app/shared/models/product';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import { Product } from 'src/app/shared/models/product';
 export class FiltersService {
   private filters!:Filter;
   private selectedFilters: Partial<Filter> = {};
+  private filterSubject = new BehaviorSubject<any>(this.selectedFilters);
 
   constructor() {
     this.filters=FILTERS;
@@ -37,28 +39,42 @@ export class FiltersService {
 
   setSelectedFilter(selectedFilters: Partial<Filter>): void {
     this.selectedFilters=selectedFilters;
+    this.filterSubject.next(this.selectedFilters);
     console.log(this.selectedFilters);
     this.updateFilter();
   }
 
-  updateProductsForFilters(products: Product[]): Product[]{
-    if(this.selectedFilters==null){
-      return products;
-    }
-    // let filteredProducts: Product[] = [];
-    // if (!this.selectedFilters || !this.selectedFilters['brands']) {
-    //   return products;
-    // }
-    // const selectedBrands = new Set(this.selectedFilters['brands'].map(brand => brand.toLowerCase()));
-    // for (let product of products) {
-    //   if (selectedBrands.has(product.brand.toLowerCase())) {
-    //     filteredProducts.push(product);
-    //   }
-    // }
-    return products;
+  getFiltersUpdates() {
+    return this.filterSubject.asObservable();
   }
 
-  clearSelectedFilters(){
+  updateProductsForFilters(products: Product[]): Product[]{
+    if(this.isEmptyFilter()){
+      return products;
+    }
+    let filteredProducts: Product[] = [];
+    for(let product of products){
+      if((this.selectedFilters['brands']?.includes(product.brand) || this.selectedFilters['brands']?.length==0) &&
+        (this.selectedFilters['processor']?.includes(product.processor) || this.selectedFilters['processor']?.length==0) && 
+        (this.selectedFilters['battery']?.includes(product.battery) || this.selectedFilters['battery']?.length==0) && 
+        (this.selectedFilters['connectivity']?.includes(product.connectivity) || this.selectedFilters['connectivity']?.length==0)
+      ){
+        filteredProducts.push(product);
+      }
+    }
+    return filteredProducts;
+  }
+
+  isEmptyFilter(): boolean{
+    for (const singleFilter of Object.keys(this.selectedFilters) as (keyof Filter)[]) {
+      if (this.selectedFilters[singleFilter]?.length !== 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  clearSelectedFilters(): void{
     this.selectedFilters={};
   }
 }

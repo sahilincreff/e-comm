@@ -13,8 +13,14 @@ export class ProductsService {
   private productsApiUrl='assets/constants/products.json';
   private products: Product[]=[];
   private filteredProducts: Product[]=[];
+  private productsSubject = new BehaviorSubject<Product[]>([]);
 
-  constructor(private http:HttpClient, private filterService: FiltersService) {}
+  constructor(private http:HttpClient, private filterService: FiltersService) {
+    this.filterService.getFiltersUpdates().subscribe(() => {
+      this.filteredProducts = this.filterService.updateProductsForFilters(this.products);
+      this.productsSubject.next(this.filteredProducts);
+    });
+  }
 
   fetchProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.productsApiUrl);
@@ -22,13 +28,13 @@ export class ProductsService {
 
   setProducts(products: Product[]): void {
     this.products = products;
-    this.filteredProducts=this.filterService.updateProductsForFilters(this.products);
+    this.filteredProducts = this.filterService.updateProductsForFilters(this.products);
+    this.productsSubject.next(this.filteredProducts);
   }
 
-  getProducts(): Product[]{
-    return this.products;
+  getProducts(): Observable<Product[]> {
+    return this.productsSubject.asObservable();
   }
-
 
   // getProducts(): Observable:<any>
 
@@ -52,5 +58,9 @@ export class ProductsService {
 
   getProductDetails(productId: string | null){
     return this.products.filter((product)=>product.productId===productId)
+  }
+
+  getFilteredProducts(){
+    return this.filteredProducts;
   }
 }

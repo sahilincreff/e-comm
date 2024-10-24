@@ -22,19 +22,19 @@ export class ProductsListComponent {
     this.productService.fetchProducts().subscribe(
       (data) => {
         this.productService.setProducts(data);
-        this.products=this.productService.getProducts();
-        this.filteredProducts=this.filterService.updateProductsForFilters(this.products);
-        console.log(this.products);
       },
       (error) => {
         console.error('Error fetching products:', error);
       }
     );
+
+    this.productService.getProducts().subscribe(filteredProducts => {
+      this.filteredProducts = filteredProducts;
+      console.log(this.filteredProducts); 
+    });
   }
 
-  filterProducts(){
-    // this.filterProducts=this.filterService.getFilteredProducts();
-  }
+  
 
   openProductDetails(productId: string){
     this.router.navigate(['/product', productId]);

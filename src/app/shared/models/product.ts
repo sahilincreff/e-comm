@@ -10,4 +10,7 @@ export interface Product {
     };
     usp: string[]
     rating: number;
+    processor: string;
+    connectivity: string;
+    battery: number
 }

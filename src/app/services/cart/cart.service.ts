@@ -9,71 +9,76 @@ import { LocalStorageService } from '../localStorage/local-storage.service';
   providedIn: 'root'
 })
 export class CartService {
-  cartItems: Cart={}
+  cartItems: Cart = {};
 
   constructor(private productService: ProductsService, private localStorageService: LocalStorageService) {
     const cartItemsString = this.localStorageService.getCartItems();
-    if(cartItemsString){
-      try{
+    if (cartItemsString) {
+      try {
         this.cartItems = JSON.parse(cartItemsString);
-      }catch(error){
+      } catch (error) {
         console.error("Error parsing cart items from local storage:", error);
         this.cartItems = {};
       }
-    }else{
-      this.cartItems={};
+    } else {
+      this.cartItems = {};
     }
   }
 
-  productInCart(productId: string){
-    return this.cartItems[productId]  ? true : false;
+  productInCart(productId: string): boolean {
+    return this.cartItems[productId] ? true : false;
   }
 
-  updateCart(){
+  updateCart(): void {
     this.localStorageService.updateCart(this.cartItems);
   }
 
-  addProductToCart(productId: string){
-    let products: Product[]=[];
-    products=this.productService.getProducts();
-    products.map((singleProduct: Product)=>{
-      if(singleProduct.productId===productId){
-        let tempObj: cartItem={...singleProduct, quantity: 1};
-        this.cartItems[productId]=tempObj;
-      }
-    })
-    this.updateCart();
+  addProductToCart(productId: string): void {
+    // Subscribe to get the products
+    this.productService.getProducts().subscribe(products => {
+      products.forEach((singleProduct: Product) => {
+        if (singleProduct.productId === productId) {
+          const tempObj: cartItem = { ...singleProduct, quantity: 1 };
+          this.cartItems[productId] = tempObj;
+        }
+      });
+      this.updateCart();
+    });
   }
 
-  removeItemFromCart(productId: string){
+  removeItemFromCart(productId: string): void {
     delete this.cartItems[productId];
     this.updateCart();
   }
 
-  increaseQuantity(productId: string, quantity: number=1){
-    this.cartItems[productId].quantity+=quantity;
-    this.updateCart();
-  }
-
-  decreaseQuantity(productId: string, quantity: number=1){
-    if(this.cartItems[productId].quantity-quantity<=0){
-      this.removeItemFromCart(productId);
-    }else{
-      this.cartItems[productId].quantity-=quantity;
+  increaseQuantity(productId: string, quantity: number = 1): void {
+    if (this.cartItems[productId]) {
+      this.cartItems[productId].quantity += quantity;
+      this.updateCart();
     }
-    this.updateCart();
   }
 
-  getCartItems(){
+  decreaseQuantity(productId: string, quantity: number = 1): void {
+    if (this.cartItems[productId]) {
+      if (this.cartItems[productId].quantity - quantity <= 0) {
+        this.removeItemFromCart(productId);
+      } else {
+        this.cartItems[productId].quantity -= quantity;
+      }
+      this.updateCart();
+    }
+  }
+
+  getCartItems(): Cart {
     return this.cartItems;
   }
 
-  getItemQuantityInCart(productId: string){
-    return this.cartItems[productId].quantity;
+  getItemQuantityInCart(productId: string): number {
+    return this.cartItems[productId]?.quantity || 0;
   }
 
-  clearCart(){
-    this.cartItems={}
+  clearCart(): void {
+    this.cartItems = {};
+    this.updateCart();
   }
-
 }

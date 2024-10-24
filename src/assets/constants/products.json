@@ -10,7 +10,10 @@
             "sellingPrice": 23999.0
         },
         "usp": ["camera", "display"],
-        "rating": 3.18
+        "rating": 3.18,
+        "processor": "MediaTek",
+        "connectivity": "5G",
+        "battery":"5000"
     },
     {
         "productId": "305347",
@@ -23,7 +26,10 @@
             "sellingPrice": 23999.0
         },
         "usp": ["camera", "display"],
-        "rating": 2.83
+        "rating": 2.83,
+        "processor": "MediaTek",
+        "connectivity": "5G",
+        "battery":"5000"
     },
     {
         "productId": "305281",
@@ -36,7 +42,10 @@
             "sellingPrice": 20499.0
         },
         "usp": ["performance", "storage"],
-        "rating": 5.0
+        "rating": 5.0,
+        "processor": "MediaTek",
+        "connectivity": "5G",
+        "battery":"6000"
     },
     {
         "productId": "303491",
@@ -49,7 +58,10 @@
             "sellingPrice": 15999.0
         },
         "usp": ["display"],
-        "rating": 2.71
+        "rating": 2.71,
+        "processor": "MediaTek",
+        "connectivity": "5G",
+        "battery":"5000"
     },
     {
         "productId": "304902",
@@ -62,10 +74,13 @@
             "sellingPrice": 6999.0
         },
         "usp": ["budget"],
-        "rating": 1.0
+        "rating": 1.0,
+        "processor": "MediaTek",
+        "connectivity": "4G",
+        "battery":"6000"
     },
     {
-        "productId": "305350",
+        "productId": "3053502",
         "brand": "Nothing",
         "name": "Nothing Phone 2a 5G (8GB RAM, 128GB, White)",
         "description": "<ul><li>Display: 6.7 inches (17.02 cm), AMOLED, 120 Hz Refresh Rate</li><li>Memory: 8GB RAM, 128GB ROM</li><li>Processor: MediaTek Dimensity 7200 Pro, Octa Core, 2.8 GHz</li><li>Camera: 50 MP + 50 MP Dual Rear & 32 MP Front Camera</li><li>Battery: 5000 mAh with 45W Fast Charging</li><li>USP: IP54 Water & Dust Resistant, 360 Degree Antenna, Hybrid Co-Existence 2.0</li></ul>",
@@ -75,10 +90,13 @@
             "sellingPrice": 23999.0
         },
         "usp": ["camera", "display"],
-        "rating": 3.18
+        "rating": 3.18,
+        "processor": "MediaTek",
+        "connectivity": "5G",
+        "battery":"5000"
     },
     {
-        "productId": "305347",
+        "productId": "3053472",
         "brand": "Nothing",
         "name": "Nothing Phone 2a 5G (8GB RAM, 128GB, Black)",
         "description": "<ul><li>Display: 6.7 inches (17.02 cm), AMOLED, 120 Hz Refresh Rate</li><li>Memory: 8GB RAM, 128GB ROM</li><li>Processor: MediaTek Dimensity 7200 Pro, Octa Core, 2.8 GHz</li><li>Camera: 50 MP + 50 MP Dual Rear & 32 MP Front Camera</li><li>Battery: 5000 mAh with 45W Fast Charging</li><li>USP: IP54 Water & Dust Resistant, 360 Degree Antenna, Hybrid Co-Existence 2.0</li></ul>",
@@ -88,10 +106,13 @@
             "sellingPrice": 23999.0
         },
         "usp": ["camera", "display"],
-        "rating": 2.83
+        "rating": 2.83,
+        "processor": "MediaTek",
+        "connectivity": "5G",
+        "battery":"5000"
     },
     {
-        "productId": "305281",
+        "productId": "3052812",
         "brand": "Realme",
         "name": "realme 12+ 5G (8GB RAM, 256GB, Pioneer Green)",
         "description": "<ul><li>Display: 6.67 inches (16.94 cm), FHD+, 120 Hz Refresh Rate</li><li>Memory: 8GB RAM, 256GB ROM, Memory Card (Hybrid) up to 2TB</li><li>Processor: MediaTek Dimensity 7050, Octa Core, 2.6 GHz</li><li>Camera: 50 MP + 8 MP + 2 MP Triple Rear & 16 MP Front Camera</li><li>Battery: 5000 mAh with 67W SUPERVOOC Fast Charging</li><li>USP: Vapour Chamber Cooling System, Luxury Watch Design, Rainwater Smart Touch</li></ul>",
@@ -101,10 +122,12 @@
             "sellingPrice": 20499.0
         },
         "usp": ["performance", "storage"],
-        "rating": 5.0
+        "rating": 5.0,
+        "connectivity": "5G",
+        "battery":"5000"
     },
     {
-        "productId": "303491",
+        "productId": "3034912",
         "brand": "Redmi",
         "name": "Redmi Note 13 5G (6GB RAM, 128GB, Prism Gold)",
         "description": "<ul><li>Display: 6.67 inches (16.94 cm), AMOLED Display, 120Hz Refresh Rate</li><li>Memory: 6GB RAM, 128GB ROM</li><li>Processor: Mediatek Dimensity 6080, Octa Core, 2.4 GHz</li><li>Camera: 108 MP + 8 MP + 2 MP Triple Rear & 16 MP Front Camera</li><li>Battery: 5000 mAh with 33W USB Type-C 2.0 Fast Charging</li><li>USP: Android 13, Corning Gorilla Glass</li></ul>",
@@ -114,10 +137,13 @@
             "sellingPrice": 15999.0
         },
         "usp": ["display"],
-        "rating": 2.71
+        "rating": 2.71,
+        "processor": "MediaTek",
+        "connectivity": "5G",
+        "battery":"6000"
     },
     {
-        "productId": "304902",
+        "productId": "3049022",
         "brand": "Redmi",
         "name": "Redmi A3 (3GB RAM, 64GB, Lake Blue)",
         "description": "<ul><li>Display: 6.71 inches (17.01 cm), HD+, 90 Hz Refresh Rate</li><li>Memory: 3GB RAM, 64GB ROM, MicroSD Card (Dedicated) up to 1TB</li><li>Processor: MediaTek Helio G36, Octa Core, 2.2 GHz</li><li>Camera: 8 MP AI Dual Rear & 5 MP Front Camera</li><li>Battery: 5000 mAh</li><li>USP: Premium Halo Design, Corning Gorilla Glass 3, Secure Side Fingerprint</li></ul>",
@@ -127,6 +153,25 @@
             "sellingPrice": 6999.0
         },
         "usp": ["budget"],
-        "rating": 1.0
+        "rating": 1.0,
+        "processor": "MediaTek",
+        "connectivity": "4G",
+        "battery":"5000"
+    },
+    {
+        "productId": "3049022",
+        "brand": "Poco",
+        "name": "Poco X3 (6GB RAM, 64GB, Blue)",
+        "description": "<ul><li>Display: 6.71 inches (17.01 cm), HD+, 90 Hz Refresh Rate</li><li>Memory: 3GB RAM, 64GB ROM, MicroSD Card (Dedicated) up to 1TB</li><li>Processor: MediaTek Helio G36, Octa Core, 2.2 GHz</li><li>Camera: 8 MP AI Dual Rear & 5 MP Front Camera</li><li>Battery: 5000 mAh</li><li>USP: Premium Halo Design, Corning Gorilla Glass 3, Secure Side Fingerprint</li></ul>",
+        "images": ["https://5.imimg.com/data5/SELLER/Default/2022/5/HQ/HG/IA/138319557/poco-x3-6gb-128gb-mobile-phone.jpg"],
+        "price": {
+            "mrp": 18999.0,
+            "sellingPrice": 6999.0
+        },
+        "usp": ["budget"],
+        "rating": 1.0,
+        "processor": "Snapdragon",
+        "connectivity": "4G",
+        "battery":"6000"
     }
 ]
