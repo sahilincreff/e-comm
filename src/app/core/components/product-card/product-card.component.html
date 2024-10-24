@@ -1,0 +1,12 @@
+<div (mouseover)="handleProductCardHover()" class="productCard card" style="width: 18rem;">
+    <div class="productCardTopPanel">
+        <img [src]="product.images[0]" class="productImage"/>
+        <div class="produtCardDiscount">50% OFF</div>
+    </div>
+    <div class="card-body">
+        <h5 class="font-weight-bold">{{product.brand}}</h5>
+        <h4 class="card-title">{{product.name}}</h4>
+        <h4 class="bold">₹ {{product.price.sellingPrice}} <del> {{product.price.mrp}}</del></h4>
+        <app-add-to-cart [productId]="product.productId"></app-add-to-cart>
+    </div>
+</div>

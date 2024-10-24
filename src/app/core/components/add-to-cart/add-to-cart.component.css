@@ -1,0 +1,32 @@
+.addToCartContainer{
+    border-radius: 0px 50px;
+}
+
+.addToCartBtn{
+    border: none;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+    background-color: black;
+    color: white;
+}
+
+.quantityInCart{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cartIcon{
+    height: 25px;
+    width: 25px;
+}
+
+.incrementDecrementBtn{
+    border: none;
+    width: 35%;
+    padding: 10px;
+    background-color: black;
+    color: white;
+}

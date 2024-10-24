@@ -1,0 +1,26 @@
+.productCard{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.productCardTopPanel{
+    position: relative;
+}
+
+.productImage{
+    height: 100%;
+    width: 100%;
+}
+
+.produtCardDiscount{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: white;
+    border-radius: 50px;
+    padding: 0px 10px 0px 10px;
+    font-weight: 600;
+    font-size: 15px;
+}

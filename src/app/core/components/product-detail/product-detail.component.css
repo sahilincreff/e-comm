@@ -1,0 +1,23 @@
+.productCarouselContainer{
+    height: 100%;
+    width: 100%;
+}
+
+.productDetails{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.productInfo{
+    padding: 5px;
+}
+
+.addToCartContainer{
+    width: 50%;
+}
+
+@media screen and (max-width: 350px) {
+    .productDetails{
+        grid-template-columns: 1fr ;
+    }
+}

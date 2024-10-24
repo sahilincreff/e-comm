@@ -1,0 +1,21 @@
+<div class="loginContainer">
+    <h2>Welcome to Increff!</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
+        <div>
+          <label class="form-label form" for="email">Email:</label>
+          <input class="form-control" id="email" formControlName="email" type="email" />
+          <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+            <small *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</small>
+            <small *ngIf="loginForm.get('email')?.errors?.['email']">Invalid email format.</small>
+          </div>
+        </div>
+        <div>
+          <label class="form-label form" for="password">Password:</label>
+          <input class="form-control" id="password" formControlName="password" type="password" />
+          <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            <small *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.</small>
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>      
+</div>

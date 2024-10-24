@@ -1,0 +1,19 @@
+.cartItemContainer{
+    display: flex;
+}
+
+.cartItemImg{
+   height: 200px;
+}
+
+.cartItemHeader{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+
+.removeItemBtn{
+    border: none;
+    background: none;
+    color: red;
+}

@@ -1,0 +1,78 @@
+<div class="filtersContainer">
+  <div class="filtersHeader">
+    <h3>Filters</h3>
+    <button class="clearFiltersBtn" (click)="handleClearFilter()">Clear Filters</button>
+    <hr>
+  </div>
+  <div>
+    <div>
+      <h4>Brands</h4>
+      <div class="filterOptionsContainer">
+        <div *ngFor="let brand of filters.brands">
+          <label>
+            <input
+              type="checkbox"
+              (change)="onCheckboxChange('brands', brand)" />
+            {{ brand }}
+          </label>
+        </div>
+      </div>
+
+      <hr>
+    
+      <h4>Processors</h4>
+      <div class="filterOptionsContainer">
+        <div *ngFor="let processor of filters.processor">
+          <label>
+            <input
+              type="checkbox"
+              (change)="onCheckboxChange('processor', processor)" />
+            {{ processor }}
+          </label>
+        </div>
+      </div>
+
+      <hr>
+    
+      <h4>Price Ranges</h4>
+      <div class="filterOptionsContainer">
+        <div *ngFor="let price of filters.price">
+          <label>
+            <input
+              type="checkbox"
+              (change)="onCheckboxChange('price', price)" />
+              ₹ {{ price }}
+          </label>
+        </div>
+      </div>
+
+      <hr>
+    
+      <h4>Connectivity</h4>
+      <div class="filterOptionsContainer">
+        <div *ngFor="let connectivity of filters.connectivity">
+          <label>
+            <input
+              type="checkbox"
+              (change)="onCheckboxChange('connectivity', connectivity)" />
+            {{connectivity}}
+          </label>
+        </div>
+      </div>
+
+      <hr>
+    
+      <h4>Battery</h4>
+      <div class="filterOptionsContainer">
+        <div *ngFor="let battery of filters.battery">
+          <label>
+            <input
+              type="checkbox"
+              (change)="onCheckboxChange('battery', battery)" />
+            {{battery}} mAh
+          </label>
+        </div>
+      </div>
+    </div>    
+  </div>
+</div>

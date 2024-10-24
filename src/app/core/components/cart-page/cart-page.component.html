@@ -1,0 +1,18 @@
+<div class="cartPageContainer">
+    <div>
+        <div class="cartPageHeader">
+            <h2>{{cartItemsList.length}} products in Cart</h2>
+            <button class="clearCartBtn" (click)="clearCart()">Clear Cart</button>
+        </div>
+        <div *ngFor="let cartItem of cartItemsList">
+            <app-cart-item [product]="cartItem"></app-cart-item>
+            <hr>
+        </div>
+    </div>
+    <div>
+        <table>
+            <div *ngFor="let cartItem of cartItemsList">{{cartItem.name}} X {{cartItem.quantity}}</div>
+        </table>
+        <h1>Total = {{calculateTotalCartPrice()}}</h1>
+    </div>
+</div>

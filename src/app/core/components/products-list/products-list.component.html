@@ -1,0 +1,7 @@
+<div>
+    <div class="productListContainer">
+        <div *ngFor="let product of filteredProducts">
+            <app-product-card (click)="openProductDetails(product.productId)" [product]="product"></app-product-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="cartItemContainer" *ngIf="productPresentInCart()">
+    <div>
+        <img class="cartItemImg" [src]="product.images[0]" />
+    </div>
+    <div>
+        <div class="cartItemHeader">
+            <h3>{{product.brand}}</h3><button class="removeItemBtn" (click)="handleItemRemove()">Remove From Cart</button>
+        </div>
+        <h3>{{product.name}}</h3>
+        <h3>{{product.price.sellingPrice * product.quantity}}</h3>
+        <app-add-to-cart [productId]="product.productId"></app-add-to-cart>
+    </div>
+</div>

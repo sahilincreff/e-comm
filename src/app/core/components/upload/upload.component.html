@@ -1,0 +1,30 @@
+<div class="uploadPageContainer">
+    <div class="downloadContainer">
+        <a class="btn btn-primary" href="assets/csv/sample.csv" download="sample.csv">Download Sample CSV</a>
+        <a class="btn btn-primary" href="assets/csv/template.csv" download="template.csv">Download CSV Template</a>
+    </div>
+    <div class="uploadContainer">
+        <input type="file" accept=".csv" (change)="handleFileChange($event)"/>
+    </div>
+    <div>
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                <th scope="col">ProductId</th>
+                <th scope="col">Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of csvData">
+                <td>{{data.productId}}</td>
+                <td>{{data.quantity}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- <pre>{{ csvData }}</pre> -->
+    <div class="actionBtns d-flex">
+        <button class="btn btn-primary">Checkout</button>
+        <button class="btn btn-primary">Merge with Current Items in Cart</button>
+    </div>
+</div>
