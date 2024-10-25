@@ -34,8 +34,6 @@ export class ProductsListComponent {
     });
   }
 
-  
-
   openProductDetails(productId: string){
     this.router.navigate(['/product', productId]);
   }

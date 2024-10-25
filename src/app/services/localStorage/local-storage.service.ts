@@ -13,11 +13,11 @@ export class LocalStorageService {
   getCurrentUserCart(): Cart | null {
     const currentUser: User | null = this.authService.getCurrentUser();
     if (!currentUser) {
-      return null; // No user logged in
+      return null;
     }
     const storedCart = localStorage.getItem('cart');
     const cartData = storedCart ? JSON.parse(storedCart) : {};
-    return cartData[currentUser.userId] || null; // Return the user's cart
+    return cartData[currentUser.userId] || null; 
   }
 
   updateCart(cartItems: Cart) {

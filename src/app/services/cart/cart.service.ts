@@ -14,7 +14,10 @@ export class CartService {
   private cartItemsSubject = new BehaviorSubject<Cart>(this.cartItems);
 
   constructor(private productService: ProductsService, private localStorageService: LocalStorageService) {
-    const cartItemsString = this.localStorageService.getCartItems();
+    const cartItems = this.localStorageService.getCartItems();
+    if(cartItems){
+      this.cartItems=cartItems;
+    }
     // if (cartItemsString && cartItemsString!='null') {
     //   try {
     //     this.cartItems = JSON.parse(cartItemsString);
@@ -38,21 +41,21 @@ export class CartService {
   addProductToCart(productId: string): void {
     this.productService.getProducts().subscribe(products => {
       const product = products.find(singleProduct => singleProduct.productId === productId);
-      if (product) {
+      if(product){
         const tempObj: cartItem = { ...product, quantity: 1 };
         this.cartItems[productId] = tempObj;
         this.updateCart();
-      } else {
+      }else{
         console.error(`Product with ID ${productId} not found.`);
       }
     });
   }
 
   removeItemFromCart(productId: string): void {
-    if (this.cartItems[productId]) {
+    if(this.cartItems[productId]){
       delete this.cartItems[productId];
       this.updateCart();
-    } else {
+    }else{
       console.warn(`Product with ID ${productId} is not in the cart.`);
     }
   }
