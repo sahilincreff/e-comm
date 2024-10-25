@@ -54,10 +54,11 @@ export class FiltersService {
     }
     let filteredProducts: Product[] = [];
     for(let product of products){
-      if((this.selectedFilters['brands']?.includes(product.brand) || this.selectedFilters['brands']?.length==0) &&
-        (this.selectedFilters['processor']?.includes(product.processor) || this.selectedFilters['processor']?.length==0) && 
-        (this.selectedFilters['battery']?.includes(product.battery) || this.selectedFilters['battery']?.length==0) && 
-        (this.selectedFilters['connectivity']?.includes(product.connectivity) || this.selectedFilters['connectivity']?.length==0)
+      if((this.selectedFilters['brands']?.includes(product.brand) || (this.selectedFilters['brands']?.length==0) || (!this.selectedFilters['brands'])) &&
+        (this.selectedFilters['processor']?.includes(product.processor) || (this.selectedFilters['processor']?.length==0) || (!this.selectedFilters['processor'])) && 
+        (this.selectedFilters['battery']?.includes(product.battery) || (this.selectedFilters['battery']?.length==0 || !this.selectedFilters['battery'])) && 
+        (this.selectedFilters['connectivity']?.includes(product.connectivity) || (this.selectedFilters['connectivity']?.length==0 || !this.selectedFilters['connectivity']))
+        // (Math.max(this.selectedFilters['price']))
       ){
         filteredProducts.push(product);
       }

@@ -1,7 +1,7 @@
 .productListContainer{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 10px;
+    gap: 15px;
 }
 
 @media screen and (max-width: 700px) {
@@ -10,7 +10,7 @@
     }
   }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 430px) {
     .productListContainer{
         grid-template-columns: 1fr 1fr;
     }

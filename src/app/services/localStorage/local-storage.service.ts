@@ -8,28 +8,38 @@ import User from 'src/app/shared/models/user';
   providedIn: 'root'
 })
 export class LocalStorageService {
+  constructor(private authService: AuthService) {}
 
-  constructor(private authService: AuthService) {
-    
+  getCurrentUserCart(): Cart | null {
+    const currentUser: User | null = this.authService.getCurrentUser();
+    if (!currentUser) {
+      return null; // No user logged in
+    }
+    const storedCart = localStorage.getItem('cart');
+    const cartData = storedCart ? JSON.parse(storedCart) : {};
+    return cartData[currentUser.userId] || null; // Return the user's cart
   }
 
-  getCurrentUserCart(){
-    
-  }
-
-  updateCart(cartItems: Cart){
-    // let currentUserId: User=this.authService.getCurrentUser();
-    console.log(cartItems);
-    localStorage.setItem('cart', JSON.stringify(cartItems));
-  }
-
-  getCartItems(){
-    return localStorage.getItem('cart');
-  }
-
-  isUserLoggedIn(): boolean{
-    const userData=localStorage.getItem('user');
-    return userData ? true : false;
+  updateCart(cartItems: Cart) {
+    const currentUser: User | null = this.authService.getCurrentUser();
+    if (!currentUser) {
+      console.error('No user is currently logged in.');
+      return;
+    }
+    const storedCart = localStorage.getItem('cart');
+    const preStoredCart: { [key: string]: Cart } = storedCart ? JSON.parse(storedCart) : {};  
+    preStoredCart[currentUser.userId] = cartItems;
+    localStorage.setItem('cart', JSON.stringify(preStoredCart));
   }
   
+
+  getCartItems(): Cart | null {
+    const cart = localStorage.getItem('cart');
+    return cart ? JSON.parse(cart) : null; 
+  }
+
+  currentLoggedInUser(): User | null {
+    const userStr = localStorage.getItem('currentUser');
+    return userStr ? JSON.parse(userStr) : null;
+  }
 }

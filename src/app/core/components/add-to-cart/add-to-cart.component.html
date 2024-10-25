@@ -1,5 +1,5 @@
 <div (click)="handleProductQuantityClick($event)" class="addToCartContainer">
-    <button class="addToCartBtn" (click)="addProductToCart()" *ngIf="productPresentInCart()==false || itemQuantityInCart()==0">
+    <button class="addToCartBtn rounded-pill" (click)="addProductToCart()" *ngIf="productPresentInCart()==false || itemQuantityInCart()==0">
         Add To Cart
     </button>
     <div *ngIf="productPresentInCart() && itemQuantityInCart()!=0">

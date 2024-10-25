@@ -1,4 +1,23 @@
+.downloadContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
 .actionBtns{
     justify-content: center;
     gap: 20px;
+}
+
+.csvDataRow{
+    display: flex;
+    gap: 5px;
+    padding: 5px;
+}
+
+.uploadContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

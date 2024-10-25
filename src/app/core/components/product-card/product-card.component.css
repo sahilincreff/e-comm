@@ -3,10 +3,13 @@
     align-items: center;
     justify-content: center;
     border: none;
+    
 }
 
 .productCardTopPanel{
     position: relative;
+    background: #E5E8F1;
+    border-radius: 15px 15px 0px 0px;
 }
 
 .productImage{

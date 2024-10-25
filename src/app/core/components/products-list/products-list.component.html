@@ -1,7 +1,10 @@
 <div>
-    <div class="productListContainer">
+    <div *ngIf="filteredProducts.length" class="productListContainer">
         <div *ngFor="let product of filteredProducts">
             <app-product-card (click)="openProductDetails(product.productId)" [product]="product"></app-product-card>
         </div>
+    </div>
+    <div *ngIf="filteredProducts.length==0">
+        No Product to Display with this combination.
     </div>
 </div>

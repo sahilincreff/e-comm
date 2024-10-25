@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart/cart.service';
-import User from '../../../shared/models/user'
+import User from '../../../shared/models/user';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -8,23 +8,24 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
-  currentUser: User | null=null;
-  userLoggedIn: boolean=true;
+export class HeaderComponent implements OnInit {
+  currentUser: User | null = null;
+  userLoggedIn: boolean = false;
 
-  constructor(private cartService: CartService, private authService:AuthService){
-    this.currentUser=this.authService.getCurrentUser();
-    if(this.currentUser){
-      this.userLoggedIn=true;
-    }
+  constructor(private cartService: CartService, private authService: AuthService) {}
+
+  ngOnInit() {
+    this.currentUser = this.authService.getCurrentUser();
+    this.userLoggedIn = !!this.currentUser; 
   }
 
-  getCartItemsCount(){
-    return Object.keys(this.cartService.getCartItems()).length;
+  getCartItemsCount() {
+    const cartItems = this.cartService.getCartItems();
+    return cartItems ? Object.keys(cartItems).length : 0; 
   }
 
-  handleLogout(){
+  handleLogout() {
     this.authService.logout();
+    this.userLoggedIn = false;
   }
-
 }

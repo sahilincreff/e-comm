@@ -63,4 +63,14 @@ export class ProductsService {
   getFilteredProducts(){
     return this.filteredProducts;
   }
+
+  getProductDetailsFromId(productIds: string[]): Product[]{
+    let products: Product[]=[];
+    for(let product  of this.products){
+      if(productIds.includes(product.productId)){
+        products.push(product);
+      }
+    }
+    return products;
+  }
 }

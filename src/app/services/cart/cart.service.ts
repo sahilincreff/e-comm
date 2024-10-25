@@ -4,57 +4,65 @@ import { Product } from 'src/app/shared/models/product';
 import { ProductsService } from '../products/products.service';
 import { Cart } from 'src/app/shared/models/cart';
 import { LocalStorageService } from '../localStorage/local-storage.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  cartItems: Cart = {};
+  private cartItems: Cart = {};
+  private cartItemsSubject = new BehaviorSubject<Cart>(this.cartItems);
 
   constructor(private productService: ProductsService, private localStorageService: LocalStorageService) {
     const cartItemsString = this.localStorageService.getCartItems();
-    if (cartItemsString) {
-      try {
-        this.cartItems = JSON.parse(cartItemsString);
-      } catch (error) {
-        console.error("Error parsing cart items from local storage:", error);
-        this.cartItems = {};
-      }
-    } else {
-      this.cartItems = {};
-    }
+    // if (cartItemsString && cartItemsString!='null') {
+    //   try {
+    //     this.cartItems = JSON.parse(cartItemsString);
+    //   } catch (error) {
+    //     console.error("Error parsing cart items from local storage:", error);
+    //     this.cartItems = {};
+    //   }
+    // }
+    this.cartItemsSubject.next(this.cartItems);
   }
 
   productInCart(productId: string): boolean {
-    return this.cartItems[productId] ? true : false;
+    return !!this.cartItems[productId];
   }
 
   updateCart(): void {
     this.localStorageService.updateCart(this.cartItems);
+    this.cartItemsSubject.next(this.cartItems);
   }
 
   addProductToCart(productId: string): void {
-    // Subscribe to get the products
     this.productService.getProducts().subscribe(products => {
-      products.forEach((singleProduct: Product) => {
-        if (singleProduct.productId === productId) {
-          const tempObj: cartItem = { ...singleProduct, quantity: 1 };
-          this.cartItems[productId] = tempObj;
-        }
-      });
-      this.updateCart();
+      const product = products.find(singleProduct => singleProduct.productId === productId);
+      if (product) {
+        const tempObj: cartItem = { ...product, quantity: 1 };
+        this.cartItems[productId] = tempObj;
+        this.updateCart();
+      } else {
+        console.error(`Product with ID ${productId} not found.`);
+      }
     });
   }
 
   removeItemFromCart(productId: string): void {
-    delete this.cartItems[productId];
-    this.updateCart();
+    if (this.cartItems[productId]) {
+      delete this.cartItems[productId];
+      this.updateCart();
+    } else {
+      console.warn(`Product with ID ${productId} is not in the cart.`);
+    }
   }
 
   increaseQuantity(productId: string, quantity: number = 1): void {
     if (this.cartItems[productId]) {
       this.cartItems[productId].quantity += quantity;
       this.updateCart();
+    } else {
+      console.warn(`Product with ID ${productId} is not in the cart.`);
     }
   }
 
@@ -64,8 +72,10 @@ export class CartService {
         this.removeItemFromCart(productId);
       } else {
         this.cartItems[productId].quantity -= quantity;
+        this.updateCart();
       }
-      this.updateCart();
+    } else {
+      console.warn(`Product with ID ${productId} is not in the cart.`);
     }
   }
 
@@ -80,5 +90,17 @@ export class CartService {
   clearCart(): void {
     this.cartItems = {};
     this.updateCart();
+  }
+
+  getCartItemsObservable() {
+    return this.cartItemsSubject.asObservable();
+  }
+
+  mergeWithCurrentCart(productList: Product[]){
+    
+  }
+
+  replaceWithCurrentCart(ProductList: Product[]){
+
   }
 }

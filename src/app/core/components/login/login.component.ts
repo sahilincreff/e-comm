@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, FormControl, ReactiveFormsModule, FormsModule, FormArray} from '@angular/forms';
+import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,27 +9,27 @@ import { FormGroup, FormBuilder, Validators, FormControl, ReactiveFormsModule, F
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  loginForm!:FormGroup;
+  loginForm: FormGroup;
 
-  constructor(private formBuilder:FormBuilder, private authService: AuthService, private router: Router){
-    this.loginForm=this.formBuilder.group({
-      email:new FormControl('',[Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.min(6), Validators.max(15)])
-    })
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]]
+    });
   }
 
-  handleSubmit(){
+  handleSubmit() {
     if(this.loginForm.valid){
-      const {email, password}=this.loginForm.value;
-      const user=this.authService.validateUser(email, password);
-      if(user){
-        console.log(user);
-        this.authService.setCurrentUser(user);
-        this.router.navigate(['/']);
-      }else{
-        console.log('wrong password');
-      }
+      const { email, password } = this.loginForm.value;
+      this.authService.validateUser(email, password).subscribe(user => {
+        if(user){
+          console.log(user);
+          this.authService.setCurrentUser(user);
+          this.router.navigate(['/']);
+        } else {
+          console.log('Wrong email or password');
+        }
+      });
     }
   }
-
 }

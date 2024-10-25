@@ -6,25 +6,13 @@
     <div class="uploadContainer">
         <input type="file" accept=".csv" (change)="handleFileChange($event)"/>
     </div>
-    <div>
-        <table class="table table-sm">
-            <thead>
-                <tr>
-                <th scope="col">ProductId</th>
-                <th scope="col">Quantity</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let data of csvData">
-                <td>{{data.productId}}</td>
-                <td>{{data.quantity}}</td>
-                </tr>
-            </tbody>
-        </table>
+    <div *ngIf="productDetails.length" class="csvDataContainer">
+        <div class="csvDataRow" *ngFor="let data of productDetails">
+            <div>{{data.productId}}</div>
+        </div>
     </div>
-    <!-- <pre>{{ csvData }}</pre> -->
     <div class="actionBtns d-flex">
-        <button class="btn btn-primary">Checkout</button>
-        <button class="btn btn-primary">Merge with Current Items in Cart</button>
+        <button (click)="replaceWithCartItems()" class="btn btn-primary">Checkout</button>
+        <button (click)="mergeWithCartItems()" class="btn btn-primary">Merge with Current Items in Cart</button>
     </div>
 </div>

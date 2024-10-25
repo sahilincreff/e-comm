@@ -1,4 +1,4 @@
-<div class="cartPageContainer">
+<div *ngIf="cartItemsList.length" class="cartPageContainer">
     <div>
         <div class="cartPageHeader">
             <h2>{{cartItemsList.length}} products in Cart</h2>
@@ -9,10 +9,14 @@
             <hr>
         </div>
     </div>
-    <div>
-        <table>
-            <div *ngFor="let cartItem of cartItemsList">{{cartItem.name}} X {{cartItem.quantity}}</div>
-        </table>
+    <div class="cartSummaryContainer">
+        <h1>Summary</h1>
+        <ul>
+            <li *ngFor="let cartItem of cartItemsList">{{cartItem.name}} X {{cartItem.quantity}}</li>
+        </ul>
         <h1>Total = {{calculateTotalCartPrice()}}</h1>
     </div>
+</div>
+<div *ngIf="cartItemsList.length==0">
+    <img src="assets/images/emptyCart.jpg" />
 </div>
