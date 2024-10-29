@@ -15,13 +15,15 @@ export class FiltersService {
   private filterSubject = new BehaviorSubject<any>(this.selectedFilters);
 
   constructor() {
-    this.filters=FILTERS;
-    const prevSelectedFilters=sessionStorage.getItem('filters');
-    // this.selectedFilters=JSON.parse(prevSelectedFilters);
-    console.log(prevSelectedFilters);
+    this.filters = FILTERS;
+    const prevSelectedFilters = sessionStorage.getItem('filters');
+    if (prevSelectedFilters) {
+      this.selectedFilters = JSON.parse(prevSelectedFilters);
+      this.filterSubject.next(this.selectedFilters); 
+    }
   }
 
-  updateFilter(){
+  updateFilter() {
     sessionStorage.setItem('filters', JSON.stringify(this.selectedFilters));
   }
 
@@ -40,7 +42,6 @@ export class FiltersService {
   setSelectedFilter(selectedFilters: Partial<Filter>): void {
     this.selectedFilters=selectedFilters;
     this.filterSubject.next(this.selectedFilters);
-    console.log(this.selectedFilters);
     this.updateFilter();
   }
 
@@ -58,7 +59,7 @@ export class FiltersService {
         (this.selectedFilters['processor']?.includes(product.processor) || (this.selectedFilters['processor']?.length==0) || (!this.selectedFilters['processor'])) && 
         (this.selectedFilters['battery']?.includes(product.battery) || (this.selectedFilters['battery']?.length==0 || !this.selectedFilters['battery'])) && 
         (this.selectedFilters['connectivity']?.includes(product.connectivity) || (this.selectedFilters['connectivity']?.length==0 || !this.selectedFilters['connectivity']))
-        // (Math.max(this.selectedFilters['price']))
+        // (product.price.sellingPrice<=Math.max(this.selectedFilters?['price']) || (this.selectedFilters['price']?.length==0 || !this.selectedFilters['price']))
       ){
         filteredProducts.push(product);
       }
@@ -75,7 +76,8 @@ export class FiltersService {
     return true;
   }
 
-  clearSelectedFilters(): void{
-    this.selectedFilters={};
+  clearSelectedFilters(): void {
+    this.selectedFilters = {};
+    sessionStorage.removeItem('filters');
   }
 }

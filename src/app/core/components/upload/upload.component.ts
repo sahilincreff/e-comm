@@ -17,22 +17,20 @@ export class UploadComponent {
     
   }
 
-  handleFileChange(event: any){
-    const file=event.target.files[0];
-    if(file){
-        Papa.parse(file, {
-          complete: (results:any)=>{
-            this.csvData=results.data;
-            this.productIds=this.csvData.reduce((ids, curr)=>{
-              ids.push(curr.productId);
-              return ids;
-            },[])
-            this.productDetails=this.productService.getProductDetailsFromId(this.productIds);
-            console.log(this.csvData);
-          },
-          header: true,
-          skipEmptyLines: true,
-        });
+  handleFileChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      Papa.parse(file, {
+        complete: (results: any) => {
+          this.csvData = results.data;
+          this.productIds = this.csvData
+            .filter((row: any) => row.productId)
+            .map((row: any) => row.productId);
+          this.productDetails = this.productService.getProductDetailsFromId(this.productIds);
+        },
+        header: true,
+        skipEmptyLines: true,
+      });
     }
   }
 

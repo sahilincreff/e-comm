@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { cartItem } from 'src/app/shared/models/cartItem';
 import { Cart } from 'src/app/shared/models/cart';
@@ -8,28 +8,24 @@ import { Cart } from 'src/app/shared/models/cart';
   templateUrl: './cart-page.component.html',
   styleUrls: ['./cart-page.component.css']
 })
-export class CartPageComponent {
-  cartItems: Cart={}
-  cartItemsList: cartItem[]=[];
+export class CartPageComponent implements OnInit {
+  cartItems: Cart = {};
+  cartItemsList: cartItem[] = [];
 
-  constructor(private cartService:CartService){
-    this.cartItems=this.cartService.getCartItems();
-    Object.keys(this.cartItems).map((singleItem)=>{
-      this.cartItemsList.push(this.cartItems[singleItem]);
-    })
+  constructor(private cartService: CartService) {}
+
+  ngOnInit() {
+    this.cartItems = this.cartService.getCartItems();
+    this.cartItemsList = Object.values(this.cartItems);
   }
 
-  calculateTotalCartPrice(){
-    let currentTotal=0;
-    Object.keys(this.cartItems).map((item)=>{
-      const product=this.cartItems[item];
-      currentTotal+=((product.price.sellingPrice)*product.quantity);
-    })
-    return currentTotal;
+  calculateTotalCartPrice(): number {
+    return Object.values(this.cartItems).reduce((total, product) => {
+      return total + (product.price.sellingPrice * product.quantity);
+    }, 0);
   }
 
-  clearCart(){
+  clearCart(): void {
     this.cartService.clearCart();
   }
-
 }

@@ -30,7 +30,6 @@ export class ProductsListComponent {
 
     this.productService.getProducts().subscribe(filteredProducts => {
       this.filteredProducts = filteredProducts;
-      console.log(this.filteredProducts); 
     });
   }
 

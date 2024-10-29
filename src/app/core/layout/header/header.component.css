@@ -65,6 +65,7 @@ svg{
     align-items: center;
     justify-content: center;
     gap: 10px;
+    cursor: pointer;
 }
 
 .userIcon{
@@ -78,6 +79,7 @@ svg{
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
     svg{
         height: 15px;
         width: 15px;
@@ -96,4 +98,10 @@ svg{
     align-items: center;
     justify-content: center;
     border-radius: 15px;
+}
+
+.loggedInUserContainer{
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }

@@ -23,7 +23,6 @@ export class LoginComponent {
       const { email, password } = this.loginForm.value;
       this.authService.validateUser(email, password).subscribe(user => {
         if(user){
-          console.log(user);
           this.authService.setCurrentUser(user);
           this.router.navigate(['/']);
         } else {

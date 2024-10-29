@@ -9,6 +9,7 @@
     <div *ngIf="productDetails.length" class="csvDataContainer">
         <div class="csvDataRow" *ngFor="let data of productDetails">
             <div>{{data.productId}}</div>
+            <div>{{data.name}}</div>
         </div>
     </div>
     <div class="actionBtns d-flex">

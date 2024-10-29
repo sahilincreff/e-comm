@@ -71,6 +71,7 @@ export class ProductsService {
         products.push(product);
       }
     }
+    console.log(products);
     return products;
   }
 }

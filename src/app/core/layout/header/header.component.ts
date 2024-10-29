@@ -1,31 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CartService } from 'src/app/services/cart/cart.service';
 import User from '../../../shared/models/user';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   currentUser: User | null = null;
   userLoggedIn: boolean = false;
+  private currentUserSubscription!: Subscription;
 
   constructor(private cartService: CartService, private authService: AuthService) {}
 
-  ngOnInit() {
-    this.currentUser = this.authService.getCurrentUser();
-    this.userLoggedIn = !!this.currentUser; 
+  ngOnInit(): void {
+    this.currentUserSubscription = this.authService.currentUser$.subscribe(user => {
+      this.currentUser = user;
+      this.userLoggedIn = !!this.currentUser;
+    });
   }
 
-  getCartItemsCount() {
+  ngOnDestroy(): void {
+    this.currentUserSubscription.unsubscribe();
+  }
+
+  getCartItemsCount(): number {
     const cartItems = this.cartService.getCartItems();
-    return cartItems ? Object.keys(cartItems).length : 0; 
+    return Object.keys(cartItems).length;
   }
 
-  handleLogout() {
+  handleLogout(): void { 
     this.authService.logout();
-    this.userLoggedIn = false;
+    this.userLoggedIn = false; 
+    this.cartService.clearCart();
   }
 }

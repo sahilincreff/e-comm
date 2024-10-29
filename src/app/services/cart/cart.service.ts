@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { cartItem } from 'src/app/shared/models/cartItem';
 import { Product } from 'src/app/shared/models/product';
 import { ProductsService } from '../products/products.service';
 import { Cart } from 'src/app/shared/models/cart';
 import { LocalStorageService } from '../localStorage/local-storage.service';
-import { BehaviorSubject } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,49 +14,58 @@ export class CartService {
   private cartItems: Cart = {};
   private cartItemsSubject = new BehaviorSubject<Cart>(this.cartItems);
 
-  constructor(private productService: ProductsService, private localStorageService: LocalStorageService) {
-    const cartItems = this.localStorageService.getCartItems();
-    if(cartItems){
-      this.cartItems=cartItems;
+  constructor(
+    private productService: ProductsService,
+    private localStorageService: LocalStorageService,
+    private authService: AuthService
+  ) {
+    this.authService.currentUser$.subscribe(() => {
+      this.loadCartItems(); 
+    });
+  }
+
+  private loadCartItems(): void {
+    const currentUser = this.authService.getCurrentUser();
+    console.log('currentUser', currentUser);
+    if (currentUser) {
+      const cartItems = this.localStorageService.getCurrentUserCart();
+      if (cartItems) {
+        this.cartItems = cartItems;
+      }
     }
-    // if (cartItemsString && cartItemsString!='null') {
-    //   try {
-    //     this.cartItems = JSON.parse(cartItemsString);
-    //   } catch (error) {
-    //     console.error("Error parsing cart items from local storage:", error);
-    //     this.cartItems = {};
-    //   }
-    // }
-    this.cartItemsSubject.next(this.cartItems);
+    this.cartItemsSubject.next(this.cartItems); 
   }
 
-  productInCart(productId: string): boolean {
-    return !!this.cartItems[productId];
-  }
-
-  updateCart(): void {
-    this.localStorageService.updateCart(this.cartItems);
-    this.cartItemsSubject.next(this.cartItems);
+  private updateCart(): void {
+    const currentUser = this.authService.getCurrentUser();
+    if (currentUser) {
+      this.localStorageService.updateCart(this.cartItems);
+      this.cartItemsSubject.next(this.cartItems);
+    }
   }
 
   addProductToCart(productId: string): void {
     this.productService.getProducts().subscribe(products => {
       const product = products.find(singleProduct => singleProduct.productId === productId);
-      if(product){
+      if (product) {
         const tempObj: cartItem = { ...product, quantity: 1 };
-        this.cartItems[productId] = tempObj;
+        if (this.cartItems[productId]) {
+          this.cartItems[productId].quantity += 1;
+        } else {
+          this.cartItems[productId] = tempObj; 
+        }
         this.updateCart();
-      }else{
+      } else {
         console.error(`Product with ID ${productId} not found.`);
       }
     });
   }
 
   removeItemFromCart(productId: string): void {
-    if(this.cartItems[productId]){
+    if (this.cartItems[productId]) {
       delete this.cartItems[productId];
       this.updateCart();
-    }else{
+    } else {
       console.warn(`Product with ID ${productId} is not in the cart.`);
     }
   }
@@ -87,7 +97,7 @@ export class CartService {
   }
 
   getItemQuantityInCart(productId: string): number {
-    return this.cartItems[productId]?.quantity || 0;
+    return this.cartItems[productId]?.quantity || 0; 
   }
 
   clearCart(): void {
@@ -96,14 +106,18 @@ export class CartService {
   }
 
   getCartItemsObservable() {
-    return this.cartItemsSubject.asObservable();
+    return this.cartItemsSubject.asObservable(); 
+  }
+
+  productInCart(productId: string): boolean {
+    return !!this.cartItems[productId];
   }
 
   mergeWithCurrentCart(productList: Product[]){
-    
+
   }
 
-  replaceWithCurrentCart(ProductList: Product[]){
+  replaceWithCurrentCart(productList: Product[]){
 
   }
 }

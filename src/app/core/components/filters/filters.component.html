@@ -27,7 +27,7 @@
           <label>
             <input
               type="checkbox"
-              [checked]="isChecked('brands', processor)"
+              [checked]="isChecked('processor', processor)"
               (change)="onCheckboxChange('processor', processor)" />
             {{ processor }}
           </label>
@@ -42,7 +42,7 @@
           <label>
             <input
               type="checkbox"
-              [checked]="isChecked('brands', price)"
+              [checked]="isChecked('price', price)"
               (change)="onCheckboxChange('price', price)" />
               ₹ {{ price }}
           </label>
@@ -57,7 +57,7 @@
           <label>
             <input
               type="checkbox"
-              [checked]="isChecked('brands', connectivity)"
+              [checked]="isChecked('connectivity', connectivity)"
               (change)="onCheckboxChange('connectivity', connectivity)" />
             {{connectivity}}
           </label>
@@ -72,7 +72,7 @@
           <label>
             <input
               type="checkbox"
-              [checked]="isChecked('brands', battery)"
+              [checked]="isChecked('battery', battery)"
               (change)="onCheckboxChange('battery', battery)" />
             {{battery}} mAh
           </label>
