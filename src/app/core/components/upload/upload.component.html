@@ -7,10 +7,36 @@
         <input type="file" accept=".csv" (change)="handleFileChange($event)"/>
     </div>
     <div *ngIf="productDetails.length" class="csvDataContainer">
-        <div class="csvDataRow" *ngFor="let data of productDetails">
-            <div>{{data.productId}}</div>
-            <div>{{data.name}}</div>
-        </div>
+        <div class="container">
+            <div class="row">
+              <div class="col-12">
+                  <table class="table table-image">
+                    <thead>
+                      <tr>
+                        <th scope="col">S. No.</th>
+                        <th scope="col">Product Id</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Item</th>
+                        <th scope="col">Brand</th>
+                        <th scope="col">Quantity</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let data of productDetails; let i=index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{data.productId}}</td>
+                        <td class="w-25">
+                            <img [src]="data.images[0]" class="img-fluid img-thumbnail" alt="Sheep">
+                        </td>
+                        <td>{{data.name}}</td>
+                        <td>{{data.brand}}</td>
+                        <td>2</td>
+                      </tr>
+                    </tbody>
+                  </table>   
+              </div>
+            </div>
+          </div>
     </div>
     <div class="actionBtns d-flex">
         <button (click)="replaceWithCartItems()" class="btn btn-primary">Checkout</button>
