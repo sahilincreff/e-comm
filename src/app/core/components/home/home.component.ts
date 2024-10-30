@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  isOpen = false;
 
+  toggleSidebar(){
+    this.isOpen=!this.isOpen;
+  }
 }
+
