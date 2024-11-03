@@ -1,11 +1,11 @@
 <div class="productDetailsContainer">
     <div class="productDetails">
-        <app-carousel class="productCarouselContainer"></app-carousel>
+        <app-carousel class="productCarouselContainer" [slideImages]="product.images"></app-carousel>
         <div class="productInfo">
             <h3 class="brand">{{product.brand}}</h3>
             <h4 class="productName">{{product.name}}</h4>
             <h3>
-                ₹ {{product.price.sellingPrice}}<del> {{product.price.mrp}}</del>
+                ₹{{product.price.sellingPrice}}<del> {{product.price.mrp}}</del>
             </h3>
             <p [innerHTML]="product.description"></p>
             <div class="addToCartContainer">

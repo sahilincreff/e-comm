@@ -26,7 +26,6 @@ export class CartService {
 
   private loadCartItems(): void {
     const currentUser = this.authService.getCurrentUser();
-    console.log('currentUser', currentUser);
     if (currentUser) {
       const cartItems = this.localStorageService.getCurrentUserCart();
       if (cartItems) {

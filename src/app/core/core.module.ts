@@ -12,12 +12,10 @@ import { Page404Component } from './components/page404/page404.component';
 import { LoginComponent } from './components/login/login.component';
 import { FiltersComponent } from './components/filters/filters.component';
 import { HomeComponent } from './components/home/home.component';
-import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
   
-    ModalComponent
   ],
   imports: [
     CommonModule

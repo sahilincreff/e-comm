@@ -20,4 +20,17 @@
     .productDetails{
         grid-template-columns: 1fr ;
     }
+
+    .addToCartContainer{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: white; /* Example background */
+        padding: 10px; /* Example padding */
+        text-align: center; /* Center text */
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
+        border-radius: 30px 30px;
+        width: 100%;
+    }
 }

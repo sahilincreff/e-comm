@@ -18,6 +18,7 @@ import { Page404Component } from './core/components/page404/page404.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './core/components/home/home.component';
 import { UploadComponent } from './core/components/upload/upload.component';
+import { ModalComponent } from './core/components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UploadComponent } from './core/components/upload/upload.component';
     Page404Component,
     HomeComponent,
     ProductsListComponent,
-    UploadComponent
+    UploadComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

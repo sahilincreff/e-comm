@@ -1,45 +1,57 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnDestroy, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.css']
 })
-export class CarouselComponent {
-  // @Input() slideImages!: string[];
-  slideImages=['https://media.croma.com/image/upload/v1710251223/Croma%20Assets/Communication/Mobiles/Images/305350_0_e6efve.png',
-    'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1710482971/Croma%20Assets/Communication/Mobiles/Images/305350_2_yyhgr9.png',
-    'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1709735939/Croma%20Assets/Communication/Mobiles/Images/305350_16_vkscqy.png?tr=w-640']
+export class CarouselComponent implements OnDestroy, OnChanges {
+  @Input() slideImages: string[] = [];
 
-  selectedSlide=0;
-  currImage=this.slideImages[this.selectedSlide];
-  showMoreImages=true;
-  showNavigations=true;
+  selectedSlide = 0;
+  currImage = '';
+  showMoreImages = true;
+  imageChangeInterval: any;
 
-  onNext(){
-    this.selectedSlide++;
-    if(this.selectedSlide>=this.slideImages.length){
-      this.selectedSlide=0;
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['slideImages'] && this.slideImages.length > 0) {
+      this.selectedSlide = 0; // Reset to first image if new images are received
+      this.currImage = this.slideImages[this.selectedSlide]; // Set current image to the first one
+      this.startImageChange(); // Start changing images if needed
     }
-    this.currImage=this.slideImages[this.selectedSlide];
   }
 
-  onPrev(){
-    this.selectedSlide--;
-    if(this.selectedSlide<0){
-      this.selectedSlide=this.slideImages.length-1;
+  onNext() {
+    this.selectedSlide = (this.selectedSlide + 1) % this.slideImages.length;
+    this.currImage = this.slideImages[this.selectedSlide];
+  }
+
+  onPrev() {
+    this.selectedSlide = (this.selectedSlide - 1 + this.slideImages.length) % this.slideImages.length;
+    this.currImage = this.slideImages[this.selectedSlide];
+  }
+
+  startImageChange() {
+    if (!this.imageChangeInterval) {
+      this.imageChangeInterval = setInterval(() => {
+        this.onNext();
+      }, 2000);
     }
-    this.currImage=this.slideImages[this.selectedSlide];
   }
 
-  handleHover(){
-    setInterval(()=>{
-      this.selectedSlide++;
-    }, 2000)
+  stopImageChange() {
+    if (this.imageChangeInterval) {
+      clearInterval(this.imageChangeInterval);
+      this.imageChangeInterval = null;
+    }
   }
 
-  selectSlide(index: number){
-    this.selectedSlide=index;
-    this.currImage=this.slideImages[index];
+  selectSlide(index: number) {
+    this.selectedSlide = index;
+    this.currImage = this.slideImages[index];
+  }
+
+  ngOnDestroy() {
+    this.stopImageChange();
   }
 }

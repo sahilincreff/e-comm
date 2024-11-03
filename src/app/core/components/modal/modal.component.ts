@@ -6,16 +6,15 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent {
-  @Input() title: string = 'Confirmation';
   @Input() message: string = 'Are you sure?';
-  @Output() confirm = new EventEmitter<void>();
-  @Output() cancel = new EventEmitter<void>();
-
-  onConfirm() {
-    this.confirm.emit();
+  @Output() confirmed = new EventEmitter<boolean>();
+  
+  confirm() {
+    this.confirmed.emit(true);
+    this.close();
   }
 
-  onCancel() {
-    this.cancel.emit();
+  close() {
+    this.confirmed.emit(false);
   }
 }

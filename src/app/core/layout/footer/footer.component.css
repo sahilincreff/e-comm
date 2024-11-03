@@ -1,4 +1,8 @@
-.footerContainer{
-    display: flex;
-    justify-content: space-around;
+.footer{
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f9fa; 
+    text-align: center;
+    padding: 10px 0;
 }

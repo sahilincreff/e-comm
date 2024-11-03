@@ -14,6 +14,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userLoggedIn: boolean = false;
   private currentUserSubscription!: Subscription;
 
+  isModalVisible = false;
+
+  showModal() {
+    this.isModalVisible = true;
+  }
+
+  handleConfirmation(confirmed: boolean) {
+    if (confirmed) {
+      this.handleLogout();
+    }
+    this.isModalVisible = false;
+  }
+
   constructor(private cartService: CartService, private authService: AuthService) {}
 
   ngOnInit(): void {

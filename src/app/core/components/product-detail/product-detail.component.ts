@@ -18,11 +18,18 @@ export class ProductDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.router.paramMap.subscribe((params)=>{
-      this.productId=params.get('id');
-      this.product=this.productService.getProductDetails(this.productId)[0];
-    })
-
+    this.router.paramMap.subscribe(params => {
+      this.productId = params.get('id');
+      if (this.productId) {
+        this.productService.getProductDetails(this.productId).subscribe(productDetails => {
+          if (productDetails.length > 0) {
+            this.product = productDetails[0];
+          } else {
+            console.error('Product not found');
+          }
+        });
+      }
+    });
   }
 
   isValidProduct(){
