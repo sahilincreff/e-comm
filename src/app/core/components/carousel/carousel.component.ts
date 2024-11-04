@@ -35,7 +35,7 @@ export class CarouselComponent implements OnDestroy, OnChanges {
     if (!this.imageChangeInterval) {
       this.imageChangeInterval = setInterval(() => {
         this.onNext();
-      }, 2000);
+      }, 3000);
     }
   }
 

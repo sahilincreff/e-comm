@@ -20,7 +20,7 @@
         "rating": 3.18,
         "processor": "MediaTek",
         "connectivity": "5G",
-        "battery":"5000"
+        "battery":5000
     },
     {
         "productId": "305347",
@@ -41,7 +41,7 @@
         "rating": 2.83,
         "processor": "MediaTek",
         "connectivity": "5G",
-        "battery":"5000"
+        "battery":5000
     },
     {
         "productId": "305281",
@@ -57,7 +57,7 @@
         "rating": 5.0,
         "processor": "MediaTek",
         "connectivity": "5G",
-        "battery":"6000"
+        "battery":6000
     },
     {
         "productId": "303491",
@@ -73,7 +73,7 @@
         "rating": 2.71,
         "processor": "MediaTek",
         "connectivity": "5G",
-        "battery":"5000"
+        "battery":5000
     },
     {
         "productId": "304902",
@@ -89,7 +89,7 @@
         "rating": 1.0,
         "processor": "MediaTek",
         "connectivity": "4G",
-        "battery":"6000"
+        "battery":6000
     },
     {
         "productId": "3053502",
@@ -105,7 +105,7 @@
         "rating": 3.18,
         "processor": "MediaTek",
         "connectivity": "5G",
-        "battery":"5000"
+        "battery":5000
     },
     {
         "productId": "3053472",
@@ -121,7 +121,7 @@
         "rating": 2.83,
         "processor": "MediaTek",
         "connectivity": "5G",
-        "battery":"5000"
+        "battery":5000
     },
     {
         "productId": "3052812",
@@ -136,7 +136,7 @@
         "usp": ["performance", "storage"],
         "rating": 5.0,
         "connectivity": "5G",
-        "battery":"5000"
+        "battery":5000
     },
     {
         "productId": "3034912",
@@ -152,7 +152,7 @@
         "rating": 2.71,
         "processor": "MediaTek",
         "connectivity": "5G",
-        "battery":"6000"
+        "battery":6000
     },
     {
         "productId": "3049022",
@@ -168,7 +168,7 @@
         "rating": 1.0,
         "processor": "MediaTek",
         "connectivity": "4G",
-        "battery":"5000"
+        "battery":5000
     },
     {
         "productId": "3049022",
@@ -184,6 +184,6 @@
         "rating": 1.0,
         "processor": "Snapdragon",
         "connectivity": "4G",
-        "battery":"6000"
+        "battery":6000
     }
 ]

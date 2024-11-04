@@ -59,7 +59,7 @@ export class FiltersService {
         (this.selectedFilters['processor']?.includes(product.processor) || (this.selectedFilters['processor']?.length==0) || (!this.selectedFilters['processor'])) && 
         (this.selectedFilters['battery']?.includes(product.battery) || (this.selectedFilters['battery']?.length==0 || !this.selectedFilters['battery'])) && 
         (this.selectedFilters['connectivity']?.includes(product.connectivity) || (this.selectedFilters['connectivity']?.length==0 || !this.selectedFilters['connectivity']))
-        // (product.price.sellingPrice<=Math.max(this.selectedFilters?['price']) || (this.selectedFilters['price']?.length==0 || !this.selectedFilters['price']))
+        // (product.price.sellingPrice<=Math.max(this.selectedFilters.price) || (this.selectedFilters['price']?.length==0 || !this.selectedFilters['price']))
       ){
         filteredProducts.push(product);
       }

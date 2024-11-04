@@ -3,7 +3,7 @@
         <a class="btn btn-secondary" href="assets/csv/sample.csv" download="sample.csv">Download Sample CSV</a>
         <a class="btn btn-secondary" href="assets/csv/template.csv" download="template.csv">Download CSV Template</a>
     </div>
-    <div class="uploadContainer">
+    <div class="uploadContainer mt-5">
         <input class=" btn-primary" type="file" accept=".csv" (change)="handleFileChange($event)"/>
     </div>
     <div *ngIf="productDetails.length" class="csvDataContainer">

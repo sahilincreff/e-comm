@@ -7,7 +7,7 @@
   
   .navigation-buttons {
     position: absolute;
-    top: 50%;
+    top: 40%;
     width: 100%;
     display: flex;
     justify-content: space-between; 
@@ -23,7 +23,7 @@
   }
   
   .currentSelectedImage {
-    max-width: 100%; 
+    max-width: 75%; 
     height: auto;
   }
   

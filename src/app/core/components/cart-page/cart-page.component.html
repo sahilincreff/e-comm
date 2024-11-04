@@ -35,13 +35,13 @@
             </table>
             </div>
         <h1>Total = {{calculateTotalCartPrice()}}</h1>
-        <a routerLink="/checkout" class="btn btn-primary">
+        <a routerLink="/checkout" (click)="clearCart()" class="btn btn-primary">
             Proceed To Checkout
         </a>
     </div>
 </div>
 <div *ngIf="cartItemsList.length==0">
-    <img src="assets/images/emptyCart.jpg" />
+    <img class="w-100" src="assets/images/emptyCart.jpg" />
 </div>
 
 

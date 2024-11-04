@@ -1,7 +1,6 @@
 <div class="modal-overlay" (click)="close()">
   <div class="modal-content" (click)="$event.stopPropagation()">
-    <h2>Confirmation</h2>
-    <p>{{ message }}</p>
+    <h4>{{ message }}</h4>
     <div class="confirmationBtns">
       <button class="btn btn-primary" (click)="confirm()">Yes</button>
       <button class="btn btn-secondary" (click)="close()">No</button>
