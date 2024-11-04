@@ -29,6 +29,7 @@ export class UploadComponent {
       Papa.parse(file, {
         complete: (results: any) => {
           this.csvData = results.data;
+          console.log(this.csvData);
           this.productIds = this.csvData
             .filter((row: any) => row.productId)
             .map((row: any) => row.productId);
@@ -37,10 +38,10 @@ export class UploadComponent {
             (details: Product[]) => {
               this.productDetails = details.map(product => {
                 const csvRow = this.csvData.find(row => row.productId === product.productId);
-                if(!csvRow){
-                  this.errors.push(`There is no product in the inventory with the product Id ${product.productId}`)
-                }
                 let quantity = csvRow ? parseInt(csvRow.quantity) : 1
+                if(isNaN(csvRow.quantity)){
+                  console.log(`the quantity you have in your csv file for productId ${csvRow.productId} is Not a number`)
+                }
                 let updatedQuantity=csvRow.quantity>this.cartService.maxQuantity ? this.cartService.maxQuantity : csvRow.quantity
                 if(parseInt(updatedQuantity)!=quantity){
                   this.errors.push(`Updated the quantity of Product Id ${csvRow.productId} to max Allowed Quantity`);

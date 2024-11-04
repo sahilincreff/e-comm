@@ -12,14 +12,17 @@ import { BehaviorSubject } from 'rxjs';
 export class CartPageComponent implements OnInit {
   cartItems: Cart = {};
   cartItemsList: cartItem[] = [];
-  private cartItemsSubject = new BehaviorSubject<Cart>(this.cartItems);
   cartClearConfirmation: boolean=false;
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService) {
+
+  }
 
   ngOnInit() {
-    this.cartItems = this.cartService.getCartItems();
-    this.cartItemsList = Object.values(this.cartItems);
+    this.cartService.getCartItemsObservable().subscribe(()=>{
+      this.cartItems = this.cartService.getCartItems();
+      this.cartItemsList = Object.values(this.cartItems);
+    })
   }
 
   showModal() {

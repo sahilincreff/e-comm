@@ -8,7 +8,7 @@
                     </svg>
                 </button>
             </div>
-            <h3>{{product.name}}</h3>
+            <h5>{{product.name}}</h5>
             <h3>{{product.price.sellingPrice * product.quantity | currency:'INR':'symbol-narrow':'4.0-2'}}</h3>
             <app-add-to-cart [productId]="product.productId"></app-add-to-cart>
         </div>
@@ -16,6 +16,6 @@
 
 <app-modal
     *ngIf="removeItemConfirmation"
-    [message]="'Are you sure you want to delete this item?'"
+    [message]="'Are you sure you want to remove this item from cart?'"
     (confirmed)="handleConfirmation($event)"
 ></app-modal>

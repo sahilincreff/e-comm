@@ -27,11 +27,11 @@ export class CartService {
     });
   }
 
-  ngOnInit(){
-    this.authService.currentUser$.subscribe(() => {
-      this.loadCartItems(); 
-    });
-  }
+  // ngOnInit(){
+  //   this.authService.currentUser$.subscribe(() => {
+  //     this.loadCartItems(); 
+  //   });
+  // }
 
   private loadCartItems(): void {
     const currentUser = this.authService.getCurrentUser();
@@ -40,6 +40,10 @@ export class CartService {
       if (cartItems) {
         this.cartItems = cartItems;
       }
+    }else{
+      const storedCart = sessionStorage.getItem('cart');
+      const cartData = storedCart ? JSON.parse(storedCart) : {};
+      this.cartItems=cartData;
     }
     this.cartItemsSubject.next(this.cartItems); 
   }
@@ -49,6 +53,8 @@ export class CartService {
     if (currentUser) {
       this.localStorageService.updateCart(this.cartItems);
       this.cartItemsSubject.next(this.cartItems);
+    }else{
+      sessionStorage.setItem('cart', JSON.stringify(this.cartItems));
     }
   }
 
