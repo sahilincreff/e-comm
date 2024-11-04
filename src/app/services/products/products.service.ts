@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, map, throwError } from 'rxjs';
-import { BehaviorSubject } from 'rxjs';
+import { Observable, catchError, map, throwError, BehaviorSubject } from 'rxjs';
 import { Product } from 'src/app/shared/models/product';
 import { FiltersService } from '../filters/filters.service';
 
@@ -15,16 +14,16 @@ export class ProductsService {
   private productsSubject = new BehaviorSubject<Product[]>([]);
 
   constructor(private http: HttpClient, private filterService: FiltersService) {
+    this.fetchProducts().subscribe();
     this.filterService.getFiltersUpdates().subscribe(() => {
-      this.filteredProducts = this.filterService.updateProductsForFilters(this.products);
-      this.productsSubject.next(this.filteredProducts);
+      this.applyFilters();
     });
   }
 
   fetchProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.productsApiUrl).pipe(
       map((data: Product[]) => {
-        this.setProducts(data); // Set the fetched products
+        this.setProducts(data); 
         return data;
       }),
       catchError(error => {
@@ -36,17 +35,16 @@ export class ProductsService {
 
   setProducts(products: Product[]): void {
     this.products = products;
+    this.applyFilters();
+  }
+
+  private applyFilters(): void {
     this.filteredProducts = this.filterService.updateProductsForFilters(this.products);
-    this.productsSubject.next(this.filteredProducts);
+    this.productsSubject.next(this.filteredProducts); 
   }
 
   getProducts(): Observable<Product[]> {
-    if (this.products.length === 0) {
-      // Fetch products if the list is empty
-      return this.fetchProducts();
-    } else {
-      return this.productsSubject.asObservable();
-    }
+    return this.productsSubject.asObservable();
   }
 
   isValidProduct(productId: string | null): boolean {
@@ -54,24 +52,18 @@ export class ProductsService {
   }
 
   getProductDetails(productId: string | null): Observable<Product[]> {
-    if (this.products.length === 0) {
-      // Fetch products if the list is empty before filtering
-      return this.fetchProducts().pipe(
-        map(() => this.products.filter(product => product.productId === productId))
-      );
-    } else {
-      return new Observable<Product[]>(observer => {
-        observer.next(this.products.filter(product => product.productId === productId));
-        observer.complete();
-      });
-    }
+    return this.fetchProducts().pipe(
+      map(() => this.products.filter(product => product.productId === productId))
+    );
   }
 
   getFilteredProducts(): Product[] {
     return this.filteredProducts;
   }
 
-  getProductDetailsFromId(productIds: string[]): Product[] {
-    return this.products.filter(product => productIds.includes(product.productId));
+  getProductDetailsFromId(productIds: string[]): Observable<Product[]> {
+    return this.fetchProducts().pipe(
+      map(() => this.products.filter(product => productIds.includes(product.productId)))
+    );
   }
 }

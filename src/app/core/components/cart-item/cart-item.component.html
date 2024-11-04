@@ -2,11 +2,14 @@
         <img class="cartItemImg" [src]="product.images[0]" />
         <div>
             <div class="cartItemHeader">
-                <h3>{{product.brand}}</h3><button class="removeItemBtn" (click)="handleItemRemove()">Remove From
-                    Cart</button>
+                <h3>{{product.brand}}</h3><button class="removeItemBtn" (click)="handleItemRemove()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                    </svg>
+                </button>
             </div>
             <h3>{{product.name}}</h3>
-            <h3>{{product.price.sellingPrice * product.quantity}}</h3>
+            <h3>₹{{product.price.sellingPrice * product.quantity}}</h3>
             <app-add-to-cart [productId]="product.productId"></app-add-to-cart>
         </div>
 </div>

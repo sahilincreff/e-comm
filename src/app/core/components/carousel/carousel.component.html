@@ -17,7 +17,7 @@
            (mouseover)="startImageChange()" 
            (mouseout)="stopImageChange()" />
     </div>
-    <div *ngIf="showMoreImages" class="listImages">
+    <div *ngIf="showMoreImages" class="listImages overflow-auto">
       <div *ngFor="let image of slideImages; let i = index" 
            (click)="selectSlide(i)" 
            class="smallImageCard">

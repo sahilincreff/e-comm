@@ -11,12 +11,24 @@ import { Cart } from 'src/app/shared/models/cart';
 export class CartPageComponent implements OnInit {
   cartItems: Cart = {};
   cartItemsList: cartItem[] = [];
+  cartClearConfirmation: boolean=false;
 
   constructor(private cartService: CartService) {}
 
   ngOnInit() {
     this.cartItems = this.cartService.getCartItems();
     this.cartItemsList = Object.values(this.cartItems);
+  }
+
+  showModal() {
+    this.cartClearConfirmation = true;
+  }
+
+  handleConfirmation(confirmed: boolean) {
+    if (confirmed) {
+      this.clearCart();
+    }
+    this.cartClearConfirmation = false;
   }
 
   calculateTotalCartPrice(): number {
@@ -27,5 +39,6 @@ export class CartPageComponent implements OnInit {
 
   clearCart(): void {
     this.cartService.clearCart();
+    this.cartItemsList=[]
   }
 }

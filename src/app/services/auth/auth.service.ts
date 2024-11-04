@@ -65,4 +65,8 @@ export class AuthService {
     localStorage.removeItem('currentUserId');
     this.setCurrentUser(null);
   }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('currentUserId');
+  }
 }

@@ -6,6 +6,11 @@
     <div class="card-body p-0 pt-2">
 
         <h5 class="product brand">{{product.brand}}</h5>
+        <span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star"></span>
+<span class="fa fa-star"></span>
         <h4 class="card-title produtCardTitle fs-5">{{product.name}}</h4>
         <h4 class="">₹ {{product.price.sellingPrice}} <del> {{product.price.mrp}}</del></h4>
         <app-add-to-cart [productId]="product.productId"></app-add-to-cart>

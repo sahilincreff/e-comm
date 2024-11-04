@@ -19,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './core/components/home/home.component';
 import { UploadComponent } from './core/components/upload/upload.component';
 import { ModalComponent } from './core/components/modal/modal.component';
+import { BackToTopComponent } from './shared/components/back-to-top/back-to-top.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ModalComponent } from './core/components/modal/modal.component';
     HomeComponent,
     ProductsListComponent,
     UploadComponent,
-    ModalComponent
+    ModalComponent,
+    BackToTopComponent
   ],
   imports: [
     BrowserModule,

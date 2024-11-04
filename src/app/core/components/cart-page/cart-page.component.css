@@ -11,13 +11,6 @@
     align-items: flex-start;
 }
 
-.clearCartBtn{
-    border: none;
-    background: transparent;
-    color: red;
-    cursor: pointer;
-}
-
 .cartSummaryContainer{
     display: flex;
     flex-direction: column;

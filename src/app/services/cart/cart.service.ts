@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { cartItem } from 'src/app/shared/models/cartItem';
+import { cartItem } from 'src/app/shared/models/cartItem'; 
 import { Product } from 'src/app/shared/models/product';
 import { ProductsService } from '../products/products.service';
 import { Cart } from 'src/app/shared/models/cart';
@@ -13,6 +13,7 @@ import { AuthService } from '../auth/auth.service';
 export class CartService {
   private cartItems: Cart = {};
   private cartItemsSubject = new BehaviorSubject<Cart>(this.cartItems);
+  maxQuantity: number = 100;
 
   constructor(
     private productService: ProductsService,
@@ -44,20 +45,31 @@ export class CartService {
   }
 
   addProductToCart(productId: string): void {
-    this.productService.getProducts().subscribe(products => {
-      const product = products.find(singleProduct => singleProduct.productId === productId);
-      if (product) {
-        const tempObj: cartItem = { ...product, quantity: 1 };
-        if (this.cartItems[productId]) {
-          this.cartItems[productId].quantity += 1;
-        } else {
-          this.cartItems[productId] = tempObj; 
-        }
-        this.updateCart();
+    if (!this.cachedProducts) {
+      this.productService.getProducts().subscribe(products => {
+        this.cachedProducts = products;
+        this.addProductToCartHelper(productId);
+      });
+    } else {
+      this.addProductToCartHelper(productId);
+    }
+  }
+
+  private cachedProducts: Product[] | null = null;
+
+  private addProductToCartHelper(productId: string): void {
+    const product = this.cachedProducts?.find(singleProduct => singleProduct.productId === productId);
+    if (product) {
+      const tempObj: cartItem = { ...product, quantity: 1 };
+      if (this.cartItems[productId]) {
+        // this.cartItems[productId].quantity += 1;
       } else {
-        console.error(`Product with ID ${productId} not found.`);
+        this.cartItems[productId] = tempObj; 
       }
-    });
+      this.updateCart();
+    } else {
+      console.error(`Product with ID ${productId} not found.`);
+    }
   }
 
   removeItemFromCart(productId: string): void {
@@ -112,11 +124,22 @@ export class CartService {
     return !!this.cartItems[productId];
   }
 
-  mergeWithCurrentCart(productList: Product[]){
-
+  mergeWithCurrentCart(productList: cartItem[]): void {
+    for (const product of productList) {
+      if (this.cartItems[product.productId]) {
+        this.cartItems[product.productId].quantity += product.quantity; 
+      } else {
+        this.cartItems[product.productId] = { ...product }; 
+      }
+    }
+    this.updateCart();
   }
 
-  replaceWithCurrentCart(productList: Product[]){
-
+  replaceWithCurrentCart(newItems: cartItem[]): void {
+    this.cartItems = {};
+    for (const item of newItems) {
+      this.cartItems[item.productId] = { ...item };
+    }
+    this.updateCart();
   }
 }

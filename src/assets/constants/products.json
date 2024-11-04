@@ -29,8 +29,10 @@
         "description": "<ul><li>Display: 6.7 inches (17.02 cm), AMOLED, 120 Hz Refresh Rate</li><li>Memory: 8GB RAM, 128GB ROM</li><li>Processor: MediaTek Dimensity 7200 Pro, Octa Core, 2.8 GHz</li><li>Camera: 50 MP + 50 MP Dual Rear & 32 MP Front Camera</li><li>Battery: 5000 mAh with 45W Fast Charging</li><li>USP: IP54 Water & Dust Resistant, 360 Degree Antenna, Hybrid Co-Existence 2.0</li></ul>",
         "images": ["https://media.croma.com/image/upload/v1710331546/Croma%20Assets/Communication/Mobiles/Images/305347_0_uedcyr.png",
                    "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1710482971/Croma%20Assets/Communication/Mobiles/Images/305350_2_yyhgr9.png",
+                   "https://media.croma.com/image/upload/v1710251223/Croma%20Assets/Communication/Mobiles/Images/305350_0_e6efve.png",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1710482971/Croma%20Assets/Communication/Mobiles/Images/305350_2_yyhgr9.png",
                    "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1709735939/Croma%20Assets/Communication/Mobiles/Images/305350_16_vkscqy.png?tr=w-640",
-                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1709735941/Croma%20Assets/Communication/Mobiles/Images/305350_15_tqtqn8.png?tr=w-225"],
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1709735937/Croma%20Assets/Communication/Mobiles/Images/305350_17_mr4chd.png?tr=w-640"],
         "price": {
             "mrp": 25999.0,
             "sellingPrice": 23999.0

@@ -8,6 +8,8 @@ import { ProductDetailComponent } from './core/components/product-detail/product
 import { Page404Component } from './core/components/page404/page404.component';
 import { LoginComponent } from './core/components/login/login.component';
 import { HomeComponent } from './core/components/home/home.component';
+import { CheckoutComponent } from './core/components/checkout/checkout.component';
+import { LoginGuard } from './services/auth/login.guard';
 
 const routes: Routes = [
   { path:'',
@@ -26,7 +28,12 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [LoginGuard] 
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent
   },
   {
     path: '**',

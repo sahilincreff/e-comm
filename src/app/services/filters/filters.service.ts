@@ -79,5 +79,6 @@ export class FiltersService {
   clearSelectedFilters(): void {
     this.selectedFilters = {};
     sessionStorage.removeItem('filters');
+    this.filterSubject.next(this.selectedFilters);
   }
 }

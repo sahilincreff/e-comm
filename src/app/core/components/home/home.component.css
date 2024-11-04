@@ -45,6 +45,11 @@
     margin-left: 0;
   }
   
-/* .filtersBtn{
-  border: 1px solid #E1E5E9 ;
-} */
+.mobileFiltersToggle, .mobileUpload{
+  border: 1px solid #E1E5E9 !important;
+  margin: 0px 10px;
+}
+
+.mobileUpload{
+
+}

@@ -1,10 +1,10 @@
 <div class="uploadPageContainer">
     <div class="downloadContainer">
-        <a class="btn btn-primary" href="assets/csv/sample.csv" download="sample.csv">Download Sample CSV</a>
-        <a class="btn btn-primary" href="assets/csv/template.csv" download="template.csv">Download CSV Template</a>
+        <a class="btn btn-secondary" href="assets/csv/sample.csv" download="sample.csv">Download Sample CSV</a>
+        <a class="btn btn-secondary" href="assets/csv/template.csv" download="template.csv">Download CSV Template</a>
     </div>
     <div class="uploadContainer">
-        <input type="file" accept=".csv" (change)="handleFileChange($event)"/>
+        <input class=" btn-primary" type="file" accept=".csv" (change)="handleFileChange($event)"/>
     </div>
     <div *ngIf="productDetails.length" class="csvDataContainer">
         <div class="container">
@@ -30,7 +30,7 @@
                         </td>
                         <td>{{data.name}}</td>
                         <td>{{data.brand}}</td>
-                        <td>2</td>
+                        <td>{{data.quantity}}</td>
                       </tr>
                     </tbody>
                   </table>   
@@ -38,7 +38,7 @@
             </div>
           </div>
     </div>
-    <div class="actionBtns d-flex">
+    <div *ngIf="productDetails.length" class="actionBtns d-flex">
         <button (click)="replaceWithCartItems()" class="btn btn-primary">Checkout</button>
         <button (click)="mergeWithCartItems()" class="btn btn-primary">Merge with Current Items in Cart</button>
     </div>
