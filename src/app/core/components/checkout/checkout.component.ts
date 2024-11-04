@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
   selector: 'app-checkout',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent {
-
+  constructor(private cartService: CartService){
+    this.cartService.clearCart();
+  }
 }

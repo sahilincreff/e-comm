@@ -10,6 +10,7 @@ import { LoginComponent } from './core/components/login/login.component';
 import { HomeComponent } from './core/components/home/home.component';
 import { CheckoutComponent } from './core/components/checkout/checkout.component';
 import { LoginGuard } from './services/auth/login.guard';
+import { CheckoutGuard } from './services/auth/checkout.guard';
 
 const routes: Routes = [
   { path:'',
@@ -33,7 +34,8 @@ const routes: Routes = [
   },
   {
     path: 'checkout',
-    component: CheckoutComponent
+    component: CheckoutComponent,
+    canActivate: [CheckoutGuard]
   },
   {
     path: '**',
