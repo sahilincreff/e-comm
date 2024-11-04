@@ -6,6 +6,7 @@ import { ProductsService } from '../products/products.service';
 import { Cart } from 'src/app/shared/models/cart';
 import { LocalStorageService } from '../localStorage/local-storage.service';
 import { AuthService } from '../auth/auth.service';
+import User from 'src/app/shared/models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ import { AuthService } from '../auth/auth.service';
 export class CartService {
   private cartItems: Cart = {};
   private cartItemsSubject = new BehaviorSubject<Cart>(this.cartItems);
+  currentUser: User | null = null;
   maxQuantity: number = 100;
 
   constructor(
@@ -20,6 +22,12 @@ export class CartService {
     private localStorageService: LocalStorageService,
     private authService: AuthService
   ) {
+    this.authService.currentUser$.subscribe(() => {
+      this.loadCartItems();
+    });
+  }
+
+  ngOnInit(){
     this.authService.currentUser$.subscribe(() => {
       this.loadCartItems(); 
     });

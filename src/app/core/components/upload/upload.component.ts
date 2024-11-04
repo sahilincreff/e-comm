@@ -14,6 +14,7 @@ export class UploadComponent {
   csvData: any[] = []; 
   productIds: string[]=[];
   productDetails: cartItem[]=[];
+  errors: string[]=[];
   constructor(private productService: ProductsService, private cartService: CartService){
     
   }
@@ -32,14 +33,17 @@ export class UploadComponent {
             (details: Product[]) => {
               this.productDetails = details.map(product => {
                 const csvRow = this.csvData.find(row => row.productId === product.productId);
-                let quantity = csvRow ? parseInt(csvRow.quantity) : 1;
-                if(quantity>this.cartService.maxQuantity){
-                  quantity=this.cartService.maxQuantity;
-                  console.log('max quanityt allowed is 100');
+                if(!csvRow){
+                  this.errors.push(`There is no product in the inventory with the product Id ${product.productId}`)
+                }
+                let quantity = csvRow ? parseInt(csvRow.quantity) : 1
+                let updatedQuantity=csvRow.quantity>this.cartService.maxQuantity ? this.cartService.maxQuantity : csvRow.quantity
+                if(parseInt(updatedQuantity)!=quantity){
+                  this.errors.push(`Updated the quantity of Product Id ${csvRow.productId} to max Allowed Quantity`);
                 }
                 return {
                   ...product,
-                  quantity: csvRow.quantity
+                  quantity: parseInt(updatedQuantity)
                 };
               });
             },

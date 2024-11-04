@@ -16,8 +16,9 @@ export class CartItemComponent {
     
   }
 
-  toggleItemConfirmation(){
+  toggleItemConfirmation($event: any){
     this.removeItemConfirmation=!this.removeItemConfirmation;
+    $event.stopPropagation();
   }
 
   handleConfirmation(deleteItem: boolean){

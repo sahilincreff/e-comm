@@ -34,12 +34,18 @@
                       </tr>
                     </tbody>
                   </table>   
+                  <div>
+                    <h2>Please Note</h2>
+                    <ul>
+                      <li *ngFor="let error of errors">{{error}}</li>
+                    </ul>
+                  </div>
               </div>
             </div>
           </div>
     </div>
     <div *ngIf="productDetails.length" class="actionBtns d-flex">
-        <button (click)="replaceWithCartItems()" class="btn btn-primary">Checkout</button>
-        <button (click)="mergeWithCartItems()" class="btn btn-primary">Merge with Current Items in Cart</button>
+        <button routerLink="/cart" (click)="replaceWithCartItems()" class="btn btn-primary">Checkout</button>
+        <button routerLink="/cart" (click)="mergeWithCartItems()" class="btn btn-primary">Merge with Current Items in Cart</button>
     </div>
 </div>

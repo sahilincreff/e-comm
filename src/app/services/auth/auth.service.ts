@@ -16,7 +16,7 @@ export class AuthService {
     this.loadCurrentUser();
   }
 
-  private loadCurrentUser(): void {
+  loadCurrentUser(): void {
     const userId = localStorage.getItem('currentUserId');
     if (userId) {
       this.getUserById(userId).subscribe(user => {
