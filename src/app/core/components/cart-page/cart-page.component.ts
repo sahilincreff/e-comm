@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { cartItem } from 'src/app/shared/models/cartItem';
 import { Cart } from 'src/app/shared/models/cart';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-cart-page',
@@ -11,6 +12,7 @@ import { Cart } from 'src/app/shared/models/cart';
 export class CartPageComponent implements OnInit {
   cartItems: Cart = {};
   cartItemsList: cartItem[] = [];
+  private cartItemsSubject = new BehaviorSubject<Cart>(this.cartItems);
   cartClearConfirmation: boolean=false;
 
   constructor(private cartService: CartService) {}

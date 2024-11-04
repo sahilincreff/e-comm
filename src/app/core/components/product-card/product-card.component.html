@@ -12,7 +12,7 @@
 <span class="fa fa-star"></span>
 <span class="fa fa-star"></span>
         <h4 class="card-title produtCardTitle fs-5">{{product.name}}</h4>
-        <h4 class="">₹ {{product.price.sellingPrice}} <del> {{product.price.mrp}}</del></h4>
+        <div class="d-flex gap-2"><h4 class="">{{product.price.sellingPrice | currency:'INR':'symbol-narrow':'4.0-2'}}</h4><h5><del> {{product.price.mrp | currency:'INR':'symbol-narrow':'4.0-2'}}</del></h5></div>
         <app-add-to-cart [productId]="product.productId"></app-add-to-cart>
     </div>
 </div>

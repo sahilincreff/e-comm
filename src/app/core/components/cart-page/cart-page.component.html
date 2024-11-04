@@ -29,12 +29,12 @@
                   <th scope="row">{{i+1}}</th>
                   <td>{{cartItem.name}}</td>
                   <td>{{cartItem.quantity}}</td>
-                  <td>{{cartItem.price.sellingPrice*cartItem.quantity}}</td>
+                  <td>{{cartItem.price.sellingPrice*cartItem.quantity | currency:'INR':'symbol-narrow':'4.0-2'}}</td>
                 </tr>
               </tbody>
             </table>
             </div>
-        <h1>Total = {{calculateTotalCartPrice()}}</h1>
+        <h1>Total = {{calculateTotalCartPrice() | currency:'INR':'symbol-narrow':'4.0-2'}}</h1>
         <a routerLink="/checkout" class="btn btn-primary">
             Proceed To Checkout
         </a>

@@ -1,11 +1,11 @@
-<div class="productDetailsContainer">
+<div *ngIf="!invalidProduct" class="productDetailsContainer">
     <div class="productDetails">
         <app-carousel class="productCarouselContainer" [slideImages]="product.images"></app-carousel>
         <div class="productInfo">
             <h3 class="brand">{{product.brand}}</h3>
             <h4 class="productName">{{product.name}}</h4>
             <h3 class="d-flex align-items-baseline gap-2">
-                ₹{{product.price.sellingPrice}}<del> <h5>{{product.price.mrp}}</h5></del>
+                {{product.price.sellingPrice | currency:'INR':'symbol-narrow':'4.0-2'}}<del> <h5>{{product.price.mrp | currency:'INR':'symbol-narrow':'4.0-2'}}</h5></del>
             </h3>
             <p [innerHTML]="product.description"></p>
             <div class="addToCartContainer">
@@ -13,7 +13,8 @@
             </div>
         </div>
     </div>
-    <div *ngIf="isValidProduct()===false">
-        No Product found with this product Id {{productId}}
-    </div>
+</div>
+
+<div *ngIf="invalidProduct" class="d-flex align-items-center justify-content-center">
+    <h2>No Product found with this product Id {{productId}}</h2>
 </div>

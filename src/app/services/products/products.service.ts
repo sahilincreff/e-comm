@@ -47,8 +47,10 @@ export class ProductsService {
     return this.productsSubject.asObservable();
   }
 
-  isValidProduct(productId: string | null): boolean {
-    return this.products.some(product => product.productId === productId);
+  isValidProduct(productId: string | null): Observable<boolean> {
+    return this.fetchProducts().pipe(
+      map(() => this.products.some(product => product.productId === productId)
+    ));
   }
 
   getProductDetails(productId: string | null): Observable<Product[]> {

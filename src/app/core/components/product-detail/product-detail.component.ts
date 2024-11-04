@@ -12,6 +12,7 @@ import { Product } from 'src/app/shared/models/product';
 export class ProductDetailComponent implements OnInit {
   productId: string | null=null;
   product!: Product;
+  invalidProduct=false;
 
   constructor(private router: ActivatedRoute, private cartService: CartService, private productService: ProductsService){
     
@@ -19,8 +20,8 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.router.paramMap.subscribe(params => {
-      this.productId = params.get('id');
-      if (this.productId) {
+      this.productId=params.get('id');
+      if (this.productId && this.isValidProduct()) {
         this.productService.getProductDetails(this.productId).subscribe(productDetails => {
           if (productDetails.length > 0) {
             this.product = productDetails[0];
@@ -28,6 +29,8 @@ export class ProductDetailComponent implements OnInit {
             console.error('Product not found');
           }
         });
+      }else{
+        this.invalidProduct=true;
       }
     });
   }

@@ -9,7 +9,7 @@
                 </button>
             </div>
             <h3>{{product.name}}</h3>
-            <h3>₹{{product.price.sellingPrice * product.quantity}}</h3>
+            <h3>{{product.price.sellingPrice * product.quantity | currency:'INR':'symbol-narrow':'4.0-2'}}</h3>
             <app-add-to-cart [productId]="product.productId"></app-add-to-cart>
         </div>
 </div>

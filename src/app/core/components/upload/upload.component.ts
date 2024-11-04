@@ -21,6 +21,10 @@ export class UploadComponent {
 
   handleFileChange(event: any) {
     const file = event.target.files[0];
+    if(file.type!=='text/csv'){
+      alert('Please select CSV Files Only');
+      return ;
+    }
     if (file) {
       Papa.parse(file, {
         complete: (results: any) => {
