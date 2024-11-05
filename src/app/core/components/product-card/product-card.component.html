@@ -5,12 +5,14 @@
     </div>
     <div class="card-body p-0 pt-2">
         <h5 class="product brand">{{product.brand}}</h5>
-        <h4 class="productCardTitle">{{product.name}}</h4>
-        <div class="d-flex">
-            <div class="d-flex flex-column mt-2"><h4 class="discountedPrice">{{product.price.sellingPrice | currency:'INR':'symbol-narrow':'4.0-2'}}</h4>
+        <h4 class="productCardTitle" [title]="product.name">{{product.name}}</h4>
+        <div class="">
+            <div class="d-flex mt-2 align-items-baseline">
+                <h4 class="discountedPrice">{{product.price.sellingPrice | currency:'INR':'symbol-narrow':'4.0-2'}}</h4>
                 <h5 class="originalPrice">{{product.price.mrp | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+                <h5 class="discountPercentage">({{product.price.sellingPrice | discount: product.price.mrp}})</h5>
             </div>
-            <app-add-to-cart class="w-100 p-2" [productId]="product.productId"></app-add-to-cart>
+            <app-add-to-cart class="w-100" [productId]="product.productId"></app-add-to-cart>
         </div>
     </div>
 </div>

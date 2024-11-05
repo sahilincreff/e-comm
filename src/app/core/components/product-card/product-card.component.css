@@ -40,17 +40,19 @@
 
 .productCardTitle{
     color: #535766;
-    font-size: 14px;
-    margin-bottom: 0;
-    margin-top: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-weight: 400;
-    display: block;
+  font-size: 14px;
+  margin-bottom: 0;
+  margin-top: 0;
+  font-weight: 400;
+  display: -webkit-box; 
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 }
 
 .discountedPrice{
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     color: #282c3f;
 }
@@ -60,7 +62,14 @@
     color: #7e818c;
     font-weight: 400;
     margin-left: 5px;
+    font-size: 14px;
+}
+
+.discountPercentage{
+    color: #ff905a;
+    font-weight: 400;
     font-size: 12px;
+    margin-left: 5px;
 }
 
 

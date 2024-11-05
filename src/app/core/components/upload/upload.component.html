@@ -34,7 +34,7 @@
                       </tr>
                     </tbody>
                   </table>   
-                  <div>
+                  <div *ngIf="errors.length">
                     <h2>Please Note</h2>
                     <ul>
                       <li *ngFor="let error of errors">{{error}}</li>

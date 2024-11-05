@@ -3,7 +3,9 @@ interface Filters{
     processor: string[],
     price: number[],
     connectivity: string[],
-    battery: number[]
+    battery: number[],
+    usp: string[],
+    category: string[]
 }
 
 export default Filters;

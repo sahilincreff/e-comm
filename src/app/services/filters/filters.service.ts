@@ -55,17 +55,12 @@ export class FiltersService {
     }
     let filteredProducts: Product[] = [];
     for(let product of products){
-      const matchesBrand = this.selectedFilters['brands']?.includes(product.brand) || this.selectedFilters['brands']?.length === 0 || !this.selectedFilters['brands'];
-      const matchesProcessor = this.selectedFilters['processor']?.includes(product.processor) || this.selectedFilters['processor']?.length === 0 || !this.selectedFilters['processor'];
-      const matchesBattery = this.selectedFilters['battery']?.includes(product.battery) || this.selectedFilters['battery']?.length === 0 || !this.selectedFilters['battery'];
-      const matchesConnectivity = this.selectedFilters['connectivity']?.includes(product.connectivity) || this.selectedFilters['connectivity']?.length === 0 || !this.selectedFilters['connectivity'];
-      const matchesPrice = this.selectedFilters['price'] 
-        ? (Array.isArray(this.selectedFilters['price']) && this.selectedFilters['price'].length > 1) 
-          ? product.price.sellingPrice <= Math.max(...this.selectedFilters['price']) 
-          : product.price.sellingPrice <= this.selectedFilters['price'][0] 
-        : true;
-
-      if (matchesBrand && matchesProcessor && matchesBattery && matchesConnectivity && matchesPrice) {
+      if((this.selectedFilters['brands']?.includes(product.brand) || (this.selectedFilters['brands']?.length==0) || (!this.selectedFilters['brands'])) &&
+        (this.selectedFilters['processor']?.includes(product.processor) || (this.selectedFilters['processor']?.length==0) || (!this.selectedFilters['processor'])) && 
+        (this.selectedFilters['battery']?.includes(product.battery) || (this.selectedFilters['battery']?.length==0 || !this.selectedFilters['battery'])) && 
+        (this.selectedFilters['connectivity']?.includes(product.connectivity) || (this.selectedFilters['connectivity']?.length==0 || !this.selectedFilters['connectivity'])) &&
+        (!this.selectedFilters['price'] || (Array.isArray(this.selectedFilters['price']) && product.price.sellingPrice<=Math.max(...this.selectedFilters['price'])) || this.selectedFilters['price'].length==0)
+      ){
         filteredProducts.push(product);
       }
     }
