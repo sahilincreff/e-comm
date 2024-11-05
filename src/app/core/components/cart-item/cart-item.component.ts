@@ -11,9 +11,16 @@ import { cartItem } from 'src/app/shared/models/cartItem';
 export class CartItemComponent {
   @Input() product!:cartItem;
   removeItemConfirmation: boolean = false;
+  deleteIconVisible: boolean=false;
 
-  constructor(private cartService: CartService, private router: Router){
-    
+  constructor(private cartService: CartService, private router: Router){}
+
+  showDeleteIcon(){
+    this.deleteIconVisible=true;
+  }
+
+  hideDeleteIcon(){
+    this.deleteIconVisible=false;
   }
 
   toggleItemConfirmation($event: any){
@@ -22,9 +29,7 @@ export class CartItemComponent {
   }
 
   handleConfirmation(deleteItem: boolean){
-    if(deleteItem){
-      this.handleItemRemove();
-    }
+    if(deleteItem) this.handleItemRemove();
     this.removeItemConfirmation=false;
   }
 

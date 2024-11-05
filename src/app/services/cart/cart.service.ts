@@ -138,6 +138,8 @@ export class CartService {
     return !!this.cartItems[productId];
   }
 
+  // for upload functionality
+
   mergeWithCurrentCart(productList: cartItem[]): void {
     for (const product of productList) {
       if (this.cartItems[product.productId]) {

@@ -15,9 +15,9 @@ export class CarouselComponent implements OnDestroy, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['slideImages'] && this.slideImages.length > 0) {
-      this.selectedSlide = 0; // Reset to first image if new images are received
-      this.currImage = this.slideImages[this.selectedSlide]; // Set current image to the first one
-      this.startImageChange(); // Start changing images if needed
+      this.selectedSlide = 0; 
+      this.currImage = this.slideImages[this.selectedSlide];
+      this.startImageChange();
     }
   }
 
@@ -35,7 +35,7 @@ export class CarouselComponent implements OnDestroy, OnChanges {
     if (!this.imageChangeInterval) {
       this.imageChangeInterval = setInterval(() => {
         this.onNext();
-      }, 3000);
+      }, 2000);
     }
   }
 

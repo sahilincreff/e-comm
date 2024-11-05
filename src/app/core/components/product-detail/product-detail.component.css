@@ -49,3 +49,10 @@
         width: 100%;
     }
 }
+
+.discountPercentage{
+    color: #ff905a;
+    font-weight: 400;
+    font-size: 1.25rem;
+    margin-left: 5px;
+}

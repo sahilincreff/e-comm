@@ -21,9 +21,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   handleConfirmation(confirmed: boolean) {
-    if (confirmed) {
-      this.handleLogout();
-    }
+    if (confirmed) this.handleLogout();
     this.isModalVisible = false;
   }
 

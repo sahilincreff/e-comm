@@ -1,9 +1,12 @@
 .cartItemContainer{
     display: flex;
+    gap: 10px
 }
 
 .cartItemImg{
    height: 200px;
+   background: #E5E8F1;
+   border-radius: 15px 0px 0px 15px;
 }
 
 .cartItemHeader{
@@ -17,4 +20,18 @@
     border: none;
     background: none;
     color: red;
+}
+
+.productBrand{
+    font-size: 16px;
+    font-weight: 700;
+    color: #282c3f;
+    margin-bottom: 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.productName{
+    
 }

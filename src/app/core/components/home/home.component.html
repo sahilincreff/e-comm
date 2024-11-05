@@ -16,6 +16,6 @@
 
 <div class="homeContainer">
     <app-filters class="filters"></app-filters>
-    <app-products-list></app-products-list>
+    <app-products-list [ngClass]="{'sidebarOpen': isOpen}"></app-products-list>
 </div>
 

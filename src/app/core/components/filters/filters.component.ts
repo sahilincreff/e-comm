@@ -40,7 +40,6 @@ export class FiltersComponent implements OnInit {
     const currFilter = this.selectedFilters[filter];
     return Array.isArray(currFilter) && currFilter.map(String).includes(String(value));
   }
-  
 
   getFilters(filterType: keyof Filter) {
     return this.filters[filterType];
@@ -50,5 +49,5 @@ export class FiltersComponent implements OnInit {
     this.filterService.clearSelectedFilters();
     this.selectedFilters = {}; 
   }
-}
 
+}

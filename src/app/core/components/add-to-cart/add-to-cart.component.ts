@@ -15,7 +15,6 @@ export class AddToCartComponent implements OnInit, OnDestroy {
   constructor(private cartService: CartService) {}
 
   ngOnInit() {
-    this.updateQuantity(); 
     this.cartSubscription = this.cartService.getCartItemsObservable().subscribe(() => {
       this.updateQuantity();
     });
