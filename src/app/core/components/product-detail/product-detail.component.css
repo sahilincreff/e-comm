@@ -16,6 +16,21 @@
     width: 50%;
 }
 
+.brand{
+    color: #282c3f;
+    padding: 0 20px 0 0;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.productName{
+    color: #535665;
+    padding: 5px 20px 14px 0;
+    font-size: 20px;
+    opacity: .8;
+    font-weight: 400;
+}
+
 @media screen and (max-width: 430px) {
     .productDetails{
         grid-template-columns: 1fr ;

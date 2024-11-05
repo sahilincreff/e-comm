@@ -8,6 +8,7 @@
     width: 100%;
     justify-content: center;
     padding: 10px;
+    font-size: 15px;
     background-color: #E5E8F1;
     /* border-radius: 25px */
 }
@@ -27,6 +28,7 @@
     border: none;
     width: 35%;
     padding: 10px;
+    background: transparent;
     background-color: #E5E8F1;
     border-radius: 50px;
 }

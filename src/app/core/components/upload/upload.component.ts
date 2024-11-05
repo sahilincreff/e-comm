@@ -29,7 +29,6 @@ export class UploadComponent {
       Papa.parse(file, {
         complete: (results: any) => {
           this.csvData = results.data;
-          console.log(this.csvData);
           this.productIds = this.csvData
             .filter((row: any) => row.productId)
             .map((row: any) => row.productId);

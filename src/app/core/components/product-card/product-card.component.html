@@ -4,15 +4,13 @@
         <!-- <div class="produtCardDiscount">50% OFF</div> -->
     </div>
     <div class="card-body p-0 pt-2">
-
         <h5 class="product brand">{{product.brand}}</h5>
-        <span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star checked"></span>
-<span class="fa fa-star"></span>
-<span class="fa fa-star"></span>
-        <h4 class="card-title produtCardTitle fs-5">{{product.name}}</h4>
-        <div class="d-flex gap-2"><h4 class="">{{product.price.sellingPrice | currency:'INR':'symbol-narrow':'4.0-2'}}</h4><h5><del> {{product.price.mrp | currency:'INR':'symbol-narrow':'4.0-2'}}</del></h5></div>
-        <app-add-to-cart [productId]="product.productId"></app-add-to-cart>
+        <h4 class="productCardTitle">{{product.name}}</h4>
+        <div class="d-flex">
+            <div class="d-flex flex-column mt-2"><h4 class="discountedPrice">{{product.price.sellingPrice | currency:'INR':'symbol-narrow':'4.0-2'}}</h4>
+                <h5 class="originalPrice">{{product.price.mrp | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+            </div>
+            <app-add-to-cart class="w-100 p-2" [productId]="product.productId"></app-add-to-cart>
+        </div>
     </div>
 </div>
