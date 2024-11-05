@@ -33,10 +33,6 @@ export class CartItemComponent {
     this.removeItemConfirmation=false;
   }
 
-  ngOnInit(){
-    
-  }
-
   productPresentInCart(){
     return this.cartService.productInCart(this.product.productId);
   }

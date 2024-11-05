@@ -1,16 +1,22 @@
 <div (click)="openProductDetails()" (mouseover)="showDeleteIcon()" (mouseout)="hideDeleteIcon()" class="cartItemContainer pb-2 button" *ngIf="productPresentInCart()">
         <img class="cartItemImg" [src]="product.images[0]" />
-        <div>
+        <div class="w-100">
             <div class="cartItemHeader">
-                <h3 *ngIf="deleteIconVisible" class="productBrand">{{product.brand}}</h3><button class="removeItemBtn" (click)="toggleItemConfirmation($event)">
+                <h3 class="productBrand">{{product.brand}}</h3><button *ngIf="deleteIconVisible" class="removeItemBtn" (click)="toggleItemConfirmation($event)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                         <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
                     </svg>
                 </button>
             </div>
             <h5 class="productName">{{product.name}}</h5>
-            <h3>{{product.price.sellingPrice * product.quantity | currency:'INR':'symbol-narrow':'4.0-2'}}</h3>
-            <app-add-to-cart [productId]="product.productId"></app-add-to-cart>
+            <h3 class="d-flex align-items-baseline gap-2">
+                {{product.price.sellingPrice | currency:'INR':'symbol-narrow':'4.0-2'}}
+                <del><h5>{{product.price.mrp | currency:'INR':'symbol-narrow':'4.0-2'}}</h5></del>
+                <!-- <h5 class="discountPercentage">({{product.price.sellingPrice | discount: product.price.mrp}})</h5> -->
+            </h3>
+            <div class="col-12 col-sm-6">
+                <app-add-to-cart [productId]="product.productId"></app-add-to-cart>
+            </div>
         </div>
 </div>
 

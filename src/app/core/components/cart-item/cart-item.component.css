@@ -4,7 +4,7 @@
 }
 
 .cartItemImg{
-   height: 200px;
+   height: 160px;
    background: #E5E8F1;
    border-radius: 15px 0px 0px 15px;
 }
@@ -23,15 +23,28 @@
 }
 
 .productBrand{
-    font-size: 16px;
-    font-weight: 700;
     color: #282c3f;
-    margin-bottom: 6px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .productName{
-    
+    opacity: .8;
+    font-weight: 400;
+    color: #535766;
+    font-size: 18px;
+    margin-bottom: 0;
+    margin-top: 0;
+    display: -webkit-box; 
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+
+.discountPercentage{
+    color: #ff905a;
+    font-weight: 400;
+    font-size: 1.25rem;
+    margin-left: 5px;
 }

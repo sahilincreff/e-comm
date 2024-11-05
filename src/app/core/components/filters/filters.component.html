@@ -8,110 +8,97 @@
   </div>
   <div>
     <div>
+<!-- 
+      <div *ngFor="let filter of filters | keyvalue">
+        <h5 class="filterHeading mt-2">{{ filter.key }}</h5>
+        <div class="filterOptionsContainer">
+          <div *ngFor="let opt of filter.value">
+            <label class="filterItemsLabel">
+              <input type="checkbox"
+                     [checked]="isChecked(filter.key, opt)"
+                     (change)="onCheckboxChange(filter.key, opt)" />
+              {{ opt }}
+            </label>
+          </div>
+        </div>
+      </div> -->
 
-      <h5 class="filterHeading">Brands</h5>
+      <h5 class="filterHeading mt-2">Brands</h5>
       <div class="filterOptionsContainer">
         <div *ngFor="let brand of filters.brands">
           <label class="filterItemsLabel">
-            <input
-              type="checkbox"
-              [checked]="isChecked('brands', brand)"
+            <input type="checkbox" [checked]="isChecked('brands', brand)"
               (change)="onCheckboxChange('brands', brand)" />
             {{ brand }}
           </label>
         </div>
       </div>
 
-      <hr>
-    
-      <h5 class="filterHeading">Processors</h5>
+
+      <h5 class="filterHeading mt-2">Processors</h5>
       <div class="filterOptionsContainer">
         <div *ngFor="let processor of filters.processor">
           <label class="filterItemsLabel">
-            <input
-              type="checkbox"
-              [checked]="isChecked('processor', processor)"
+            <input type="checkbox" [checked]="isChecked('processor', processor)"
               (change)="onCheckboxChange('processor', processor)" />
             {{ processor }}
           </label>
         </div>
       </div>
 
-      <hr>
-    
-      <h5 class="filterHeading">Price Ranges</h5>
+      <h5 class="filterHeading mt-2">Price Ranges</h5>
       <div class="filterOptionsContainer">
         <div *ngFor="let price of filters.price">
           <label class="filterItemsLabel">
-            <input
-              type="checkbox"
-              [checked]="isChecked('price', price)"
-              (change)="onCheckboxChange('price', price)" />
-              {{ price |  currency:'INR':'symbol-narrow':'4.0-2' }}
+            <input type="checkbox" [checked]="isChecked('price', price)" (change)="onCheckboxChange('price', price)" />
+            {{ price | currency:'INR':'symbol-narrow':'4.0-2' }}
           </label>
         </div>
       </div>
 
-      <hr>
-    
-      <h5 class="filterHeading">Connectivity</h5>
+      <h5 class="filterHeading mt-2">Connectivity</h5>
       <div class="filterOptionsContainer">
         <div *ngFor="let connectivity of filters.connectivity">
           <label class="filterItemsLabel">
-            <input
-              type="checkbox"
-              [checked]="isChecked('connectivity', connectivity)"
+            <input type="checkbox" [checked]="isChecked('connectivity', connectivity)"
               (change)="onCheckboxChange('connectivity', connectivity)" />
             {{connectivity}}
           </label>
         </div>
       </div>
 
-      <hr>
-    
-      <h5 class="filterHeading">Battery</h5>
+
+      <h5 class="filterHeading mt-2">Battery</h5>
       <div class="filterOptionsContainer">
         <div *ngFor="let battery of filters.battery">
           <label class="filterItemsLabel">
-            <input
-              type="checkbox"
-              [checked]="isChecked('battery', battery)"
+            <input type="checkbox" [checked]="isChecked('battery', battery)"
               (change)="onCheckboxChange('battery', battery)" />
             {{battery}} mAh
           </label>
         </div>
       </div>
 
-      <hr>
-
-
-      <h5 class="filterHeading">USP</h5>
+      <h5 class="filterHeading mt-2">USP</h5>
       <div class="filterOptionsContainer">
         <div *ngFor="let usp of filters.usp">
           <label class="filterItemsLabel">
-            <input
-              type="checkbox"
-              [checked]="isChecked('usp', usp)"
-              (change)="onCheckboxChange('usp', usp)" />
+            <input type="checkbox" [checked]="isChecked('usp', usp)" (change)="onCheckboxChange('usp', usp)" />
             {{usp}}
           </label>
         </div>
       </div>
 
-      <hr>
-
-      <h5 class="filterHeading">Category</h5>
+      <h5 class="filterHeading mt-2">Category</h5>
       <div class="filterOptionsContainer">
         <div *ngFor="let category of filters.category">
           <label class="filterItemsLabel">
-            <input
-              type="checkbox"
-              [checked]="isChecked('battery', category)"
+            <input type="checkbox" [checked]="isChecked('battery', category)"
               (change)="onCheckboxChange('battery', category)" />
             {{category}}
           </label>
         </div>
       </div>
-    </div>    
+    </div>
   </div>
 </div>

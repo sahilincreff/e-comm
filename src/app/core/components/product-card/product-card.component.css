@@ -40,15 +40,15 @@
 
 .productCardTitle{
     color: #535766;
-  font-size: 14px;
-  margin-bottom: 0;
-  margin-top: 0;
-  font-weight: 400;
-  display: -webkit-box; 
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden; 
-  text-overflow: ellipsis; 
+    font-size: 14px;
+    margin-bottom: 0;
+    margin-top: 0;
+    font-weight: 400;
+    display: -webkit-box; 
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
 }
 
 .discountedPrice{

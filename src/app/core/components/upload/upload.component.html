@@ -25,7 +25,7 @@
                       <tr *ngFor="let data of productDetails; let i=index">
                         <th scope="row">{{i+1}}</th>
                         <td>{{data.productId}}</td>
-                        <td class="w-25">
+                        <td class="w-25 mw-25">
                             <img [src]="data.images[0]" class="img-fluid img-thumbnail" alt="Sheep">
                         </td>
                         <td>{{data.name}}</td>
