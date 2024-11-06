@@ -139,6 +139,25 @@
         "battery":5000
     },
     {
+        "productId": "309169",
+        "brand": "Google",
+        "name": "Google Pixel 9 5G (12GB RAM, 256GB, Porcelain)",
+        "description": "<ul><li>Display: 6.3 inches (16.05 cm), OLED, 120 Hz Refresh Rate</li><li>Memory: 12GB RAM, 256GB ROM</li><li>Processor: Google Tensor G4 Chip, Octa Core</li><li>Camera: 50 MP + 48 MP Dual Rear & 10.5 MP Front Camera</li><li>Battery: 4700 mAh with 45W Fast Charge</li><li>USP: Built-in AI Assistant, IP68 Dust & Water Resistant</li></ul>",
+        "images": ["https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1723573787/Croma%20Assets/Communication/Mobiles/Images/309167_0_arn19i.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1724267435/Croma%20Assets/Communication/Mobiles/Images/309168_15_h95cpt.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1724267443/Croma%20Assets/Communication/Mobiles/Images/309168_19_szciy0.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1723573814/Croma%20Assets/Communication/Mobiles/Images/309168_10_pgpf7w.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1724267439/Croma%20Assets/Communication/Mobiles/Images/309168_17_xocevx.png?tr=w-640"],
+        "price": {
+            "mrp": 89999.0,
+            "sellingPrice": 79999.0
+        },
+        "usp": ["performance", "storage"],
+        "rating": 5.0,
+        "connectivity": "5G",
+        "battery":5000
+    },
+    {
         "productId": "304902",
         "brand": "Redmi",
         "name": "Redmi A3 (3GB RAM, 64GB, Lake Blue)",
@@ -179,6 +198,25 @@
         "price": {
             "mrp": 23999.0,
             "sellingPrice": 20499.0
+        },
+        "usp": ["performance", "storage"],
+        "rating": 5.0,
+        "connectivity": "5G",
+        "battery":5000
+    },
+    {
+        "productId": "309168",
+        "brand": "Google",
+        "name": "Google Pixel 9 5G (12GB RAM, 256GB, Obsidian)",
+        "description": "<ul><li>Display: 6.3 inches (16.05 cm), OLED, 120 Hz Refresh Rate</li><li>Memory: 12GB RAM, 256GB ROM</li><li>Processor: Google Tensor G4 Chip, Octa Core</li><li>Camera: 50 MP + 48 MP Dual Rear & 10.5 MP Front Camera</li><li>Battery: 4700 mAh with 45W Fast Charge</li><li>USP: Built-in AI Assistant, IP68 Dust & Water Resistant</li></ul>",
+        "images": ["https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1723573808/Croma%20Assets/Communication/Mobiles/Images/309168_0_yqdzbk.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1724267435/Croma%20Assets/Communication/Mobiles/Images/309168_15_h95cpt.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1724267443/Croma%20Assets/Communication/Mobiles/Images/309168_19_szciy0.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1723573814/Croma%20Assets/Communication/Mobiles/Images/309168_10_pgpf7w.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1724267439/Croma%20Assets/Communication/Mobiles/Images/309168_17_xocevx.png?tr=w-640"],
+        "price": {
+            "mrp": 89999.0,
+            "sellingPrice": 79999.0
         },
         "usp": ["performance", "storage"],
         "rating": 5.0,

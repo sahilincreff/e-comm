@@ -33,9 +33,11 @@ export class UploadComponent {
             .filter((row: any) => row.productId)
             .map((row: any) => row.productId);
           this.csvData.map((product, i)=>{
-            if(!this.productService.isValidProduct(product.productId)){
-              this.errors.push(`On row ${i+1},  ${product.productId} is not a valid product Id`);
-            }
+            if(this.productService.isValidProduct(product.productId).subscribe((isValid)=>{
+              if(!isValid){
+                this.errors.push(`On row ${i+1},  ${product.productId} is not a valid product Id`);
+              }
+            }))
             if(isNaN(product.quantity)){
               this.errors.push(`On row ${i+1},  ${product.quantity} is not a valid product Quantity`);
             }
