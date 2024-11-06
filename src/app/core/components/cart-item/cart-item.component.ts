@@ -37,7 +37,7 @@ export class CartItemComponent {
     return this.cartService.productInCart(this.product.productId);
   }
 
-  handleItemRemove(){
+  private handleItemRemove(){
     this.cartService.removeItemFromCart(this.product.productId);
   }
 

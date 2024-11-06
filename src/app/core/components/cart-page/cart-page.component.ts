@@ -44,7 +44,7 @@ export class CartPageComponent implements OnInit {
     }, 0);
   }
 
-  clearCart(): void {
+  private clearCart(): void {
     this.cartService.clearCart();
     this.cartItemsList=[];
   }
