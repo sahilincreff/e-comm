@@ -28,18 +28,12 @@ export class CartService {
     
   }
 
-  // ngOnInit(){
-  //   this.authService.currentUser$.subscribe(() => {
-  //     this.loadCartItems(); 
-  //   });
-  // }
-
   private loadCartItems(): void {
     const currentUser = this.authService.getCurrentUser();
     if (currentUser) {
       const userCartItems= this.localStorageService.getCurrentUserCart();
       if (userCartItems) {
-        this.cartItems = userCartItems;
+        this.cartItems = {...this.cartItems,  ...userCartItems};
       }
     }else{
       const storedCart = sessionStorage.getItem('cart');
@@ -59,7 +53,7 @@ export class CartService {
     }
   }
 
-  addProductToCart(productId: string): void {
+  addProductToCart(productId: string): void {    
     if (!this.cachedProducts) {
       this.productService.getProducts().subscribe(products => {
         this.cachedProducts = products;

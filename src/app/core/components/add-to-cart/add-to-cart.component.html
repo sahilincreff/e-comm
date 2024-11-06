@@ -5,7 +5,7 @@
     <div *ngIf="productPresentInCart() && itemQuantityInCart() > 0">
         <div class="quantityInCart">
             <button class="incrementDecrementBtn rounded-pill" (click)="decreaseItemQuantity()">-</button>
-            <h3>{{itemQuantityInCart()}}</h3>
+            <h4>{{itemQuantityInCart()}}</h4>
             <button class="incrementDecrementBtn rounded-pill" (click)="increaseItemQuantity()">+</button>
         </div>
     </div>

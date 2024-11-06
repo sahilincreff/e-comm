@@ -22,3 +22,7 @@
     justify-content: center;
 }
 
+.csvProductImage{
+    height: 75px;
+    width: 75px;
+}

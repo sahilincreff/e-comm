@@ -1,6 +1,10 @@
 .cartItemContainer{
     display: flex;
-    gap: 10px
+    gap: 10px;
+    border: 1px solid #eaeaec;
+    padding: 5px;
+    border-radius: 10px;
+    margin-top: 10px;
 }
 
 .cartItemImg{
@@ -37,7 +41,7 @@
     margin-top: 0;
     display: -webkit-box; 
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     overflow: hidden; 
     text-overflow: ellipsis; 
 }

@@ -4,7 +4,7 @@
             <app-product-card (click)="openProductDetails(product.productId)" [product]="product"></app-product-card>
         </div>
     </div>
-    <div *ngIf="filteredProducts.length==0">
+    <div *ngIf="filteredProducts.length===0">
         <img class="w-100" src="assets/images/NoProduct.jpg" />
     </div>
 </div>

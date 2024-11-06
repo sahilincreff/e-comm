@@ -5,11 +5,11 @@
             <button class="clearCartBtn btn btn-danger" (click)="showModal()">Clear Cart
             </button>
         </div>
-        <div *ngFor="let cartItem of cartItemsList" >
-            <app-cart-item [product]="cartItem"></app-cart-item>
+        <div *ngFor="let cartItem of cartItemsList" class="px-lg-4" >
+            <app-cart-item [product]="cartItem" class="pt-4"></app-cart-item>
         </div>
     </div>
-    <div class="cartSummaryContainer px-lg-40 py-lg-20">
+    <div *ngIf="cartItemsList.length" class="cartSummaryContainer px-lg-40 py-lg-20">
         <div class="bg-light p-3 w-75">
           <div class="d-flex justify-content-between">
             <h5>Subtotal</h5>
@@ -36,8 +36,8 @@
         </div>
     </div>
 </div>
-<div *ngIf="cartItemsList.length==0">
-    <img class="w-100" src="assets/images/emptyCart.jpg" />
+<div *ngIf="cartItemsList.length===0" class="w-100 d-flex justify-content-center">
+    <img class="img-fluid" src="assets/images/emptyCart.jpg" />
 </div>
 
 

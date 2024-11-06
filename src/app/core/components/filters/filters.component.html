@@ -8,21 +8,6 @@
   </div>
   <div>
     <div>
-<!-- 
-      <div *ngFor="let filter of filters | keyvalue">
-        <h5 class="filterHeading mt-2">{{ filter.key }}</h5>
-        <div class="filterOptionsContainer">
-          <div *ngFor="let opt of filter.value">
-            <label class="filterItemsLabel">
-              <input type="checkbox"
-                     [checked]="isChecked(filter.key, opt)"
-                     (change)="onCheckboxChange(filter.key, opt)" />
-              {{ opt }}
-            </label>
-          </div>
-        </div>
-      </div> -->
-
       <h5 class="filterHeading mt-2">Brands</h5>
       <div class="filterOptionsContainer">
         <div *ngFor="let brand of filters.brands">
