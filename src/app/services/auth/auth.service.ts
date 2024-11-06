@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import User from 'src/app/shared/models/user';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { CartService } from '../cart/cart.service';
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,6 @@
 .cartPageContainer{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: 10px;
 }
 
 .cartPageHeader{
@@ -15,7 +14,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px;
 }
 
 

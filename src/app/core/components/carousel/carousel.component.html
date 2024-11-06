@@ -14,8 +14,8 @@
     <div class="imageContainer">
       <img class="currentSelectedImage" 
            [src]="currImage" 
-           (mouseover)="startImageChange()" 
-           (mouseout)="stopImageChange()" />
+           (mouseout)="startImageChange()" 
+           (mouseover)="stopImageChange()" />
     </div>
     <div *ngIf="showMoreImages" class="listImages overflow-auto">
       <div *ngFor="let image of slideImages; let i = index" 

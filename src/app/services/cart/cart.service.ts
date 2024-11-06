@@ -25,6 +25,7 @@ export class CartService {
     this.authService.currentUser$.subscribe(() => {
       this.loadCartItems();
     });
+    
   }
 
   // ngOnInit(){
@@ -36,9 +37,9 @@ export class CartService {
   private loadCartItems(): void {
     const currentUser = this.authService.getCurrentUser();
     if (currentUser) {
-      const cartItems = this.localStorageService.getCurrentUserCart();
-      if (cartItems) {
-        this.cartItems = cartItems;
+      const userCartItems= this.localStorageService.getCurrentUserCart();
+      if (userCartItems) {
+        this.cartItems = userCartItems;
       }
     }else{
       const storedCart = sessionStorage.getItem('cart');
@@ -75,9 +76,7 @@ export class CartService {
     const product = this.cachedProducts?.find(singleProduct => singleProduct.productId === productId);
     if (product) {
       const tempObj: cartItem = { ...product, quantity: 1 };
-      if (this.cartItems[productId]) {
-        // this.cartItems[productId].quantity += 1;
-      } else {
+      if (!this.cartItems[productId]) {
         this.cartItems[productId] = tempObj; 
       }
       this.updateCart();

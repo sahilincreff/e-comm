@@ -18,10 +18,6 @@ export class ProductCardComponent {
     
   }
 
-  addProductToCart(productId: string){
-    this.cartService.addProductToCart(productId);
-  }
-
   isProductInCart(productId: string){
     return this.cartService.productInCart(productId);
   }

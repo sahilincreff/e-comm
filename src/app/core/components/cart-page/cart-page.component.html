@@ -9,32 +9,31 @@
             <app-cart-item [product]="cartItem"></app-cart-item>
         </div>
     </div>
-    <div class="cartSummaryContainer bg-light">
-        <h1>Cart Summary</h1>
-        <div class="container table-responsive"> 
-            <table class="table">
-              <thead class="thead-dark">
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Product</th>
-                  <th scope="col">Quantity</th>
-                  <th scope="col">Price</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let cartItem of cartItemsList, let i=index">
-                  <th scope="row">{{i+1}}</th>
-                  <td>{{cartItem.name}}</td>
-                  <td>{{cartItem.quantity}}</td>
-                  <td>{{cartItem.price.sellingPrice*cartItem.quantity | currency:'INR':'symbol-narrow':'4.0-2'}}</td>
-                </tr>
-              </tbody>
-            </table>
-            </div>
-        <h1>Total = {{calculateTotalCartPrice() | currency:'INR':'symbol-narrow':'4.0-2'}}</h1>
-        <a routerLink="/checkout" class="btn btn-primary">
-            Proceed To Checkout
-        </a>
+    <div class="cartSummaryContainer px-lg-40 py-lg-20">
+        <div class="bg-light p-3 w-75">
+          <div class="d-flex justify-content-between">
+            <h5>Subtotal</h5>
+          <h5>{{calculateTotalCartPrice() | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+          </div>
+          <div class="d-flex justify-content-between">
+            <h5>Shipping Charges</h5>
+            <h5>{{shippingCharges | currency:'INR':'symbol-narrow':'2.0-2'}}</h5>
+          </div>
+          <div class="d-flex justify-content-between">
+            <h5>Discount</h5>
+            <h5>{{discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-between py-3">
+            <h5>Total</h5>
+            <h5>{{calculateTotalCartPrice()+ shippingCharges - discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+          </div>
+          <div class="w-100 d-flex justify-content-center">
+            <a routerLink="/checkout" class="btn btn-primary p-2 mw-75">
+              Proceed To Checkout
+            </a>
+          </div>
+        </div>
     </div>
 </div>
 <div *ngIf="cartItemsList.length==0">

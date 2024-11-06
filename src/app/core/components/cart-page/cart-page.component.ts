@@ -13,6 +13,8 @@ export class CartPageComponent implements OnInit {
   cartItems: Cart = {};
   cartItemsList: cartItem[] = [];
   cartClearConfirmation: boolean=false;
+  discount: number=1000;
+  shippingCharges: number=50;
 
   constructor(private cartService: CartService) {
 

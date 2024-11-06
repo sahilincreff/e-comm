@@ -18,7 +18,7 @@
         },
         "usp": ["camera", "ui", "premium"],
         "rating": 5.0,
-        "processor": "Tensor",
+        "processor": "Google Tensor",
         "connectivity": "5G",
         "battery":5000
     },
