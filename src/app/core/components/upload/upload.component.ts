@@ -15,6 +15,7 @@ export class UploadComponent {
   productIds: string[]=[];
   productDetails: cartItem[]=[];
   errors: string[]=[];
+  maxAllowedRows=100;
   constructor(private productService: ProductsService, private cartService: CartService){
     
   }
@@ -29,6 +30,9 @@ export class UploadComponent {
       Papa.parse(file, {
         complete: (results: any) => {
           this.csvData = results.data;
+          if(this.csvData.length>this.maxAllowedRows){
+            alert()
+          }
           this.productIds = this.csvData
             .filter((row: any) => row.productId)
             .map((row: any) => row.productId);

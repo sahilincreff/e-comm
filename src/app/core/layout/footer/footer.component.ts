@@ -6,9 +6,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
-  currDate=new Date();
+  currentTime: string = '';
+  private timeInterval: any;
 
-  ngOnChanges(){
-    
+  ngOnInit(): void {
+    this.updateTime(); 
+    this.timeInterval = setInterval(() => {
+      this.updateTime();
+    }, 1000);
+  }
+
+  ngOnDestroy(): void {
+    if (this.timeInterval) {
+      clearInterval(this.timeInterval); 
+    }
+  }
+
+  private updateTime(): void {
+    const now = new Date();
+    this.currentTime = now.toUTCString();
   }
 }

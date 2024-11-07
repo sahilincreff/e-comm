@@ -26,7 +26,7 @@ export class LoginComponent {
           this.authService.setCurrentUser(user);
           this.router.navigate(['/']);
         } else {
-          alert('Wrong email or password');
+          alert('wrong password');
         }
       });
     }

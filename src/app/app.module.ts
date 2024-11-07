@@ -21,6 +21,7 @@ import { UploadComponent } from './core/components/upload/upload.component';
 import { ModalComponent } from './core/components/modal/modal.component';
 import { BackToTopComponent } from './shared/components/back-to-top/back-to-top.component';
 import { DiscountPipe } from './shared/pipes/discount.pipe';
+import { ToastComponent } from './shared/components/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { DiscountPipe } from './shared/pipes/discount.pipe';
     UploadComponent,
     ModalComponent,
     BackToTopComponent,
-    DiscountPipe
+    DiscountPipe,
+    ToastComponent
   ],
   imports: [
     BrowserModule,

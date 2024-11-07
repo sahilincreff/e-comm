@@ -13,6 +13,10 @@ export class CarouselComponent implements OnDestroy, OnChanges {
   showMoreImages = true;
   imageChangeInterval: any;
 
+  constructor(){
+    this.startImageChange();
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes['slideImages'] && this.slideImages.length > 0) {
       this.selectedSlide = 0; 
