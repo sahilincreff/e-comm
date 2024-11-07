@@ -15,7 +15,7 @@ export class CartService {
   private cartItems: Cart = {};
   private cartItemsSubject = new BehaviorSubject<Cart>(this.cartItems);
   currentUser: User | null = null;
-  maxQuantity: number = 100;
+  maxQuantity: number =50;
 
   constructor(
     private productService: ProductsService,

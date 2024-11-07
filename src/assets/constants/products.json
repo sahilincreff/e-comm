@@ -20,7 +20,8 @@
         "rating": 5.0,
         "processor": "Google Tensor",
         "connectivity": "5G",
-        "battery":5000
+        "battery":5000,
+        "category": "premium"
     },
     {
         "productId": "309694",
@@ -40,7 +41,8 @@
         "rating": 5.0,
         "processor": "Bionic",
         "connectivity": "5G",
-        "battery":5000
+        "battery":5000,
+        "category": "premium"
     },
     {
         "productId": "268886",
@@ -60,7 +62,8 @@
         "rating": 5.0,
         "processor": "Snapdragon",
         "connectivity": "5G",
-        "battery":5000
+        "battery":5000,
+        "category": "premium"
     },
     {
         "productId": "305350",
@@ -79,7 +82,8 @@
         "rating": 3.18,
         "processor": "Snapdragon",
         "connectivity": "5G",
-        "battery":5000
+        "battery":5000,
+        "category": "budget"
     },
     {
         "productId": "305347",
@@ -100,7 +104,8 @@
         "rating": 2.83,
         "processor": "MediaTek",
         "connectivity": "5G",
-        "battery":5000
+        "battery":5000,
+        "category": "budget"
     },
     {
         "productId": "308989",
@@ -120,7 +125,8 @@
         "rating": 2.83,
         "processor": "MediaTek",
         "connectivity": "5G",
-        "battery":5000
+        "battery":5000,
+        "category":"budget"
     },
     {
         "productId": "303491",
@@ -136,7 +142,8 @@
         "rating": 2.71,
         "processor": "MediaTek",
         "connectivity": "5G",
-        "battery":5000
+        "battery":5000,
+        "category": "budget"
     },
     {
         "productId": "309169",
@@ -155,7 +162,8 @@
         "usp": ["performance", "storage"],
         "rating": 5.0,
         "connectivity": "5G",
-        "battery":5000
+        "battery":5000,
+        "category": "premium"
     },
     {
         "productId": "304902",
@@ -171,7 +179,8 @@
         "rating": 1.0,
         "processor": "MediaTek",
         "connectivity": "4G",
-        "battery":6000
+        "battery":6000,
+        "category": "budget"
     },
     {
         "productId": "3053502",
@@ -187,7 +196,8 @@
         "rating": 3.18,
         "processor": "MediaTek",
         "connectivity": "5G",
-        "battery":5000
+        "battery":5000,
+        "category": "budget"
     },
     {
         "productId": "3052812",
@@ -202,7 +212,8 @@
         "usp": ["performance", "storage"],
         "rating": 5.0,
         "connectivity": "5G",
-        "battery":5000
+        "battery":5000,
+        "category": "budget"
     },
     {
         "productId": "309168",
@@ -221,6 +232,7 @@
         "usp": ["performance", "storage"],
         "rating": 5.0,
         "connectivity": "5G",
-        "battery":5000
+        "battery":5000,
+        "category": "premium"
     }
 ]

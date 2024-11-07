@@ -40,7 +40,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   getCartItemsCount(): number {
     const cartItems = this.cartService.getCartItems();
-    return Object.keys(cartItems).length;
+    let cartItemsCount=0;
+    Object.keys(cartItems).map((currItem)=>{
+      cartItemsCount+=cartItems[currItem].quantity
+    })
+    return cartItemsCount;
   }
 
   handleLogout(): void { 

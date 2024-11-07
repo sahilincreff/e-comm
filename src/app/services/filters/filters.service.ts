@@ -57,7 +57,7 @@ export class FiltersService {
     for(let product of products){
       if((this.selectedFilters['brands']?.includes(product.brand) || (this.selectedFilters['brands']?.length==0) || (!this.selectedFilters['brands'])) &&
         (this.selectedFilters['processor']?.includes(product.processor) || (this.selectedFilters['processor']?.length==0) || (!this.selectedFilters['processor'])) && 
-        (this.selectedFilters['battery']?.includes(product.battery) || (this.selectedFilters['battery']?.length==0 || !this.selectedFilters['battery'])) && 
+        (!this.selectedFilters['battery'] || (Array.isArray(this.selectedFilters['battery']) && product.battery<=Math.max(...this.selectedFilters['battery'])) || this.selectedFilters['battery'].length==0) &&
         (this.selectedFilters['connectivity']?.includes(product.connectivity) || (this.selectedFilters['connectivity']?.length==0 || !this.selectedFilters['connectivity'])) &&
         (!this.selectedFilters['price'] || (Array.isArray(this.selectedFilters['price']) && product.price.sellingPrice<=Math.max(...this.selectedFilters['price'])) || this.selectedFilters['price'].length==0)
       ){
