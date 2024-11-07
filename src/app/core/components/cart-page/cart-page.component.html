@@ -1,4 +1,4 @@
-<div *ngIf="cartItemsList.length" class="cartPageContainer">
+<div *ngIf="cartItemsList.length" class="cartPageContainer px-lg-5">
     <div class="p-3">
         <div class="cartPageHeader">
             <h2>{{cartItemsList.length}} products in Cart</h2>
@@ -9,8 +9,8 @@
             <app-cart-item [product]="cartItem" class="pt-4"></app-cart-item>
         </div>
     </div>
-    <div *ngIf="cartItemsList.length" class="cartSummaryContainer px-lg-40 py-lg-20">
-        <div class="bg-light p-3 w-75">
+    <div *ngIf="cartItemsList.length" class="cartSummaryContainer px-lg-40 py-lg-20 p-3">
+        <div class="bg-light p-3 w-100">
           <div class="d-flex justify-content-between">
             <h5>Subtotal</h5>
           <h5>{{calculateTotalCartPrice() | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
@@ -21,7 +21,7 @@
           </div>
           <div class="d-flex justify-content-between">
             <h5>Discount</h5>
-            <h5>{{discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+            <h5> - {{discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
           </div>
           <hr>
           <div class="d-flex justify-content-between py-3">
@@ -29,14 +29,15 @@
             <h5>{{calculateTotalCartPrice()+ shippingCharges - discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
           </div>
           <div class="w-100 d-flex justify-content-center">
-            <a routerLink="/checkout" class="btn btn-primary p-2 mw-75">
+            <a routerLink="/checkout" class="btn btn-primary p-2 w-100">
               Proceed To Checkout
+              <span class="mdi mdi-arrow-right"></span>
             </a>
           </div>
         </div>
     </div>
 </div>
-<div *ngIf="cartItemsList.length===0" class="w-100 d-flex justify-content-center">
+<div *ngIf="cartItemsList.length===0" class="w-100 d-flex flex-column justify-content-center">
     <img class="img-fluid" src="assets/images/emptyCart.jpg" />
 </div>
 

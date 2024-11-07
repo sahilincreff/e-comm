@@ -4,7 +4,7 @@ import Filter from 'src/app/shared/models/filter';
 import { ProductsService } from '../products/products.service';
 import { FILTERS } from 'src/assets/constants/filters';
 import { Product } from 'src/app/shared/models/product';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -81,4 +81,5 @@ export class FiltersService {
     sessionStorage.removeItem('filters');
     this.filterSubject.next(this.selectedFilters);
   }
+
 }

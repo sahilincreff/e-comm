@@ -51,7 +51,6 @@ export class FiltersComponent implements OnInit {
   }
 
   nofilterApplied(){
-    // this.filterService.areFiltersApplied.susb
+    return this.filterService.isEmptyFilter();
   }
-
 }

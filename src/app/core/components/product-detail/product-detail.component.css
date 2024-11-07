@@ -9,7 +9,7 @@
 }
 
 .productInfo{
-    padding: 5px;
+    padding: 10px;
 }
 
 .addToCartContainer{
@@ -47,6 +47,7 @@
         box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
         border-radius: 30px 30px 0px 0px;
         width: 100%;
+        z-index: 100;
     }
 }
 

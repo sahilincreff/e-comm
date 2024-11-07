@@ -5,6 +5,20 @@
         </div>
     </div>
     <div *ngIf="filteredProducts.length===0">
-        <img class="w-100" src="assets/images/NoProduct.jpg" />
+        <!-- <img class="w-100" src="assets/images/NoProduct.jpg" /> -->
+        <section class="py-3 py-md-5 min-vh-90 d-flex justify-content-center align-items-center">
+            <div class="container">
+              <div class="row">
+                <div class="col-12">
+                  <div class="text-center">
+                    <img class="img-fluid" src="https://www.simplinamdharis.com/assets/animation_nofound-b0584b837b2c320b19b87eaa0ee18fb427a627ee601bc5472eeb13463fde3c32.gif" />
+                    <h3 class="h2 mb-2">Oops! No Products Found.</h3>
+                    <p class="mb-5">Try removing some filters or clear search filters!</p>
+                    <a class="btn bsb-btn-5xl btn-dark rounded-pill px-5 fs-6 m-0" (click)="removeSearchFilters()" role="button">Clear Search Filters</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
     </div>
 </div>

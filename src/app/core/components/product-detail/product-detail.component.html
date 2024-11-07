@@ -9,7 +9,7 @@
                 <del><h5>{{product.price.mrp | currency:'INR':'symbol-narrow':'4.0-2'}}</h5></del>
                 <h5 class="discountPercentage">({{product.price.sellingPrice | discount: product.price.mrp}})</h5>
             </h3>
-            <h5>Inclusive of All Taxes.</h5>
+            <h6 class="text-secondary">Inclusive of All Taxes.</h6>
             <p [innerHTML]="product.description"></p>
             <div class="addToCartContainer">
                 <app-add-to-cart [productId]="product.productId"></app-add-to-cart>
@@ -35,6 +35,17 @@
     </div>
 </div>
 
-<div *ngIf="invalidProduct" class="d-flex align-items-center justify-content-center">
-    <h2>No Product found with this product Id {{productId}}</h2>
-</div>
+<section *ngIf="invalidProduct" class="py-3 py-md-5 min-vh-90 d-flex justify-content-center align-items-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="text-center">
+          <img class="" src="assets/images/6430770.webp" />
+          <h3 class="h2 mb-2">Oops! You're lost.</h3>
+          <p class="mb-5">The Product with the Product Id <span class="fw-bold">{{productId}}</span>, that you are looking for was not found.</p>
+          <a class="btn bsb-btn-5xl btn-dark rounded-pill px-5 fs-6 m-0" routerLink="/" role="button">Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

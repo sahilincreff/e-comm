@@ -1,9 +1,9 @@
-<div class="filtersContainer">
+<div class="filtersContainer px-sm-3">
   <div class="filtersHeader">
     <h3>
       Filters
     </h3>
-    <button *ngIf="nofilterApplied()" class="border-0 bg-transparent text-danger" (click)="handleClearFilter()">Clear All
+    <button *ngIf="nofilterApplied()===false" class="border-0 bg-transparent text-danger" (click)="handleClearFilter()">Clear All
     </button>
   </div>
   <div>

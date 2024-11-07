@@ -104,3 +104,7 @@
     align-items: center;
     gap: 10px;
 }
+
+.mdi-account-circle{
+    font-size: 25px;
+}

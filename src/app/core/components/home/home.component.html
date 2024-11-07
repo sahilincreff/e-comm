@@ -6,8 +6,9 @@
   </nav>
   
   <div [ngClass]="{'sidebar': true, 'active': isOpen}" class="shadow-lg" id="sidebar">
-      <button (click)="toggleSidebar()" class=" btn btn-primary rounded sticky-top">
-        <span class="mdi mdi-close border-0 bg-transparent "></span>
+      <button (click)="toggleSidebar()" class="rounded sticky-top bg-transparent border-0 p-3">
+        <span class="mdi mdi-chevron-left"></span>
+        Back To Products
       </button>
       <app-filters></app-filters>
   </div>
