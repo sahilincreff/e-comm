@@ -9,10 +9,28 @@
                 <del><h5>{{product.price.mrp | currency:'INR':'symbol-narrow':'4.0-2'}}</h5></del>
                 <h5 class="discountPercentage">({{product.price.sellingPrice | discount: product.price.mrp}})</h5>
             </h3>
+            <h5>Inclusive of All Taxes.</h5>
             <p [innerHTML]="product.description"></p>
             <div class="addToCartContainer">
                 <app-add-to-cart [productId]="product.productId"></app-add-to-cart>
             </div>
+            <hr>
+            <div class="mt-3">
+                <ul class="list-unstyled">
+                  <li class="d-flex align-items-center mb-2">
+                    <i class="bi bi-check2-circle text-primary me-2"></i>
+                    <span class="small">100% Original Products</span>
+                  </li>
+                  <li class="d-flex align-items-center mb-2">
+                    <i class="bi bi-truck text-primary me-2"></i>
+                    <span class="small">Pay on delivery might be available</span>
+                  </li>
+                  <li class="d-flex align-items-center">
+                    <i class="bi bi-arrow-repeat text-primary me-2"></i>
+                    <span class="small">Easy 14 days returns and exchanges</span>
+                  </li>
+                </ul>
+              </div>
         </div>
     </div>
 </div>

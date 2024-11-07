@@ -48,9 +48,9 @@ export class UploadComponent {
                 const csvRow = this.csvData.find(row => row.productId === product.productId);
                 let quantity = csvRow ? parseInt(csvRow.quantity) : 1
                 if(isNaN(csvRow.quantity)){
-                  console.log(`the quantity you have in your csv file for productId ${csvRow.productId} is Not a number`)
+                  this.errors.push(`the quantity you have in your csv file for productId ${csvRow.productId} is Not a number`)
                 }
-                let updatedQuantity=csvRow.quantity>this.cartService.maxQuantity ? this.cartService.maxQuantity : csvRow.quantity
+                let updatedQuantity=csvRow.quantity>this.cartService.maxQuantity ? this.cartService.maxQuantity : csvRow.quantity;
                 if(parseInt(updatedQuantity)!=quantity){
                   this.errors.push(`Updated the quantity of Product Id ${csvRow.productId} to max Allowed Quantity`);
                 }
@@ -69,11 +69,6 @@ export class UploadComponent {
         skipEmptyLines: true,
       });
     }
-  }
-  
-
-  getHeaders() {
-    return this.csvData.length > 0 ? Object.keys(this.csvData[0]) : [];
   }
 
   mergeWithCartItems() {

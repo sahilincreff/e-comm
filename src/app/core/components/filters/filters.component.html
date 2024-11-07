@@ -3,7 +3,7 @@
     <h3>
       Filters
     </h3>
-    <button class="border-0 bg-transparent text-danger" (click)="handleClearFilter()">Clear All
+    <button *ngIf="nofilterApplied()" class="border-0 bg-transparent text-danger" (click)="handleClearFilter()">Clear All
     </button>
   </div>
   <div>
@@ -60,16 +60,6 @@
             <input type="checkbox" [checked]="isChecked('battery', battery)"
               (change)="onCheckboxChange('battery', battery)" />
             {{battery}} mAh
-          </label>
-        </div>
-      </div>
-
-      <h5 class="filterHeading mt-2">USP</h5>
-      <div class="filterOptionsContainer">
-        <div *ngFor="let usp of filters.usp">
-          <label class="filterItemsLabel">
-            <input type="checkbox" [checked]="isChecked('usp', usp)" (change)="onCheckboxChange('usp', usp)" />
-            {{usp}}
           </label>
         </div>
       </div>

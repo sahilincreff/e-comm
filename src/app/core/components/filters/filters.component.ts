@@ -50,4 +50,8 @@ export class FiltersComponent implements OnInit {
     this.selectedFilters = {}; 
   }
 
+  nofilterApplied(){
+    // this.filterService.areFiltersApplied.susb
+  }
+
 }

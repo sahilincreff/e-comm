@@ -6,6 +6,5 @@ export const FILTERS: Filter = {
     price: [5000, 10000, 15000, 20000, 30000, 50000, 100000],
     connectivity: ["4G", "5G"],
     battery: [5000, 6000],
-    usp: ['Camera', 'Processor', 'Screen', 'Battery'],
     category: ['Premium', 'Budget']
 };

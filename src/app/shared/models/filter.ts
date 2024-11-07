@@ -4,7 +4,6 @@ interface Filters{
     price: number[],
     connectivity: string[],
     battery: number[],
-    usp: string[],
     category: string[]
 }
 
