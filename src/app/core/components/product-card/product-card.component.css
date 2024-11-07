@@ -3,16 +3,18 @@
     align-items: center;
     justify-content: center;
     border: none;   
-}
-
-.productCard :hover{
-    
+    border-radius: 20px;
 }
 
 .productCardTopPanel{
     position: relative;
     background: #E5E8F1;
     border-radius: 15px 15px 0px 0px;
+}
+
+.card:hover{
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 3px;
 }
 
 .productImage{

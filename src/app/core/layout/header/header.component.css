@@ -14,16 +14,6 @@
     align-items: center;
 }
 
-.cartIcon{
-    height: 25px;
-    width: 25px;
-}
-
-.userIcon{
-    height: 25px;
-    width: 25px;
-}
-
 .currentUserImage{
     height: 25px;
     width: 25px;
@@ -105,6 +95,6 @@
     gap: 10px;
 }
 
-.mdi-account-circle{
+.mdi-account-circle, .mdi-cart, .mdi-file-upload, .mdi-account-circle{
     font-size: 25px;
 }

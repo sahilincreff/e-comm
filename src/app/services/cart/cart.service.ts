@@ -120,6 +120,7 @@ export class CartService {
 
   clearCart(): void {
     this.cartItems = {};
+    sessionStorage.removeItem('cart');
     this.updateCart();
   }
 

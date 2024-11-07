@@ -38,7 +38,7 @@ export class UploadComponent {
                 this.errors.push(`On row ${i+1},  ${product.productId} is not a valid product Id`);
               }
             }))
-            if(isNaN(product.quantity)){
+            if(isNaN(product.quantity) || product.quantity<0){
               this.errors.push(`On row ${i+1},  ${product.quantity} is not a valid product Quantity`);
             }
           })
@@ -51,7 +51,7 @@ export class UploadComponent {
                   this.errors.push(`the quantity you have in your csv file for productId ${csvRow.productId} is Not a number`)
                 }
                 let updatedQuantity=csvRow.quantity>this.cartService.maxQuantity ? this.cartService.maxQuantity : csvRow.quantity;
-                if(parseInt(updatedQuantity)!=quantity){
+                if(parseInt(updatedQuantity)!==quantity ){
                   this.errors.push(`Updated the quantity of Product Id ${csvRow.productId} to max Allowed Quantity`);
                 }
                 return {
