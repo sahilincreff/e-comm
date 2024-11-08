@@ -15,7 +15,7 @@ export class CartService {
   private cartItems: Cart = {};
   private cartItemsSubject = new BehaviorSubject<Cart>(this.cartItems);
   currentUser: User | null = null;
-  maxQuantity: number =50;
+  maxQuantity: number =10;
 
   constructor(
     private productService: ProductsService,
@@ -32,8 +32,9 @@ export class CartService {
     const currentUser = this.authService.getCurrentUser();
     if (currentUser) {
       const userCartItems= this.localStorageService.getCurrentUserCart();
+      let validatedUserItems=this.validateCartItems(userCartItems || {});
       if (userCartItems) {
-        this.cartItems = {...this.cartItems,  ...userCartItems};
+        this.cartItems = {...this.cartItems,  ...validatedUserItems};
       }
     }else{
       const storedCart = sessionStorage.getItem('cart');
@@ -151,5 +152,17 @@ export class CartService {
       this.cartItems[item.productId] = { ...item };
     }
     this.updateCart();
+  }
+
+  validateCartItems(userCartItems: Cart): Cart {
+    let tempCartItems: Cart = {};
+    Object.keys(userCartItems).forEach(currCartItem => {
+      const item = userCartItems[currCartItem];
+      if (item.quantity > 0) {
+        tempCartItems[currCartItem] = item;
+      }
+    });
+    
+    return tempCartItems;
   }
 }

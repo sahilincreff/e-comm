@@ -22,6 +22,7 @@ import { ModalComponent } from './core/components/modal/modal.component';
 import { BackToTopComponent } from './shared/components/back-to-top/back-to-top.component';
 import { DiscountPipe } from './shared/pipes/discount.pipe';
 import { ToastComponent } from './shared/components/toast/toast.component';
+import { CheckoutComponent } from './core/components/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ToastComponent } from './shared/components/toast/toast.component';
     ModalComponent,
     BackToTopComponent,
     DiscountPipe,
-    ToastComponent
+    ToastComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

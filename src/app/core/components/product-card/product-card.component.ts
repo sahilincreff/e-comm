@@ -25,4 +25,8 @@ export class ProductCardComponent {
   openProductDetailsPage(){
     
   }
+
+  handleQuantityClick($event: Event){
+    $event.stopPropagation();
+  }
 }

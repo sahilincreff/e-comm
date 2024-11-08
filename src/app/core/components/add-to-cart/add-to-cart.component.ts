@@ -11,6 +11,8 @@ export class AddToCartComponent implements OnInit, OnDestroy {
   @Input() productId!: string;
   quantityInCart: number = 0;
   private cartSubscription!: Subscription;
+  showRemoveConfirmation: boolean=false;
+  maxItemsToast: boolean=false;
 
   constructor(private cartService: CartService) {}
 
@@ -35,11 +37,31 @@ export class AddToCartComponent implements OnInit, OnDestroy {
   }
 
   decreaseItemQuantity() {
-    this.cartService.decreaseQuantity(this.productId);
+    if(this.cartService.getItemQuantityInCart(this.productId)==1){
+      this.showRemoveConfirmation=true;
+    }else{
+      this.cartService.decreaseQuantity(this.productId);
+    }
+    
+  }
+
+  removeConfirmation(confirmation: boolean){
+    if(confirmation){
+      this.cartService.decreaseQuantity(this.productId);
+    }
+    this.showRemoveConfirmation=false;
+
   }
 
   increaseItemQuantity() {
-    this.cartService.increaseQuantity(this.productId);
+    if(this.cartService.getItemQuantityInCart(this.productId)>=this.cartService.maxQuantity){
+      this.maxItemsToast=true;
+      setTimeout(()=>{
+        this.maxItemsToast=false;
+      }, 3000)
+    }else{
+      this.cartService.increaseQuantity(this.productId);
+    }
   }
 
   addProductToCart() {

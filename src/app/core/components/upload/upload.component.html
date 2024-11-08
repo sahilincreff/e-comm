@@ -4,11 +4,9 @@
         <input class="form-control" type="file" id="formFile" accept=".csv" (change)="handleFileChange($event)">
       </div>
         <a class="btn btn-secondary" href="assets/csv/template.csv" download="template.csv">Download CSV Template</a>
-        <span class="mdi mdi-information"></span>
-
     </div>
     
-    <div *ngIf="productDetails.length && errors.length===0" class="csvDataContainer">
+    <div *ngIf="productDetails.length" class="csvDataContainer">
         <div class="container">
             <div class="row">
               <div class="col-12">
@@ -40,7 +38,7 @@
             </div>
         </div>
         <div class="actionBtns d-flex">
-          <button routerLink="/checkout" (click)="replaceWithCartItems()" class="btn btn-primary">Checkout</button>
+          <button routerLink="/checkout" (click)="handleCsvCheckout()" class="btn btn-primary">Checkout</button>
           <button routerLink="/cart" (click)="mergeWithCartItems()" class="btn btn-primary">Merge with Current Items in Cart</button>
       </div>
     </div>

@@ -10,3 +10,10 @@
         </div>
     </div>
 </div>
+
+
+<app-modal
+    *ngIf="showRemoveConfirmation"
+    [message]="'Are you sure you want to remove this item from cart?'"
+    (confirmed)="removeConfirmation($event)"
+></app-modal>

@@ -20,6 +20,7 @@
 </div>
 
 <app-modal
+    (click)="handleEvent($event)"
     *ngIf="removeItemConfirmation"
     [message]="'Are you sure you want to remove this item from cart?'"
     (confirmed)="handleConfirmation($event)"

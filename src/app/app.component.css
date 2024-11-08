@@ -11,5 +11,6 @@ html, body {
   
 .main-content {
   flex: 1; 
+  margin-top: 80px;
 }
   

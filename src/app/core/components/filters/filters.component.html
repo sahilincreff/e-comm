@@ -63,17 +63,6 @@
           </label>
         </div>
       </div>
-
-      <h5 class="filterHeading mt-2">Category</h5>
-      <div class="filterOptionsContainer">
-        <div *ngFor="let category of filters.category">
-          <label class="filterItemsLabel">
-            <input type="checkbox" [checked]="isChecked('battery', category)"
-              (change)="onCheckboxChange('battery', category)" />
-            {{category}}
-          </label>
-        </div>
-      </div>
     </div>
   </div>
 </div>

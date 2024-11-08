@@ -12,7 +12,7 @@
                 <h5 class="originalPrice">{{product.price.mrp | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
                 <h5 class="discountPercentage">({{product.price.sellingPrice | discount: product.price.mrp}})</h5>
             </div>
-            <app-add-to-cart class="w-100" [productId]="product.productId"></app-add-to-cart>
+            <app-add-to-cart (click)="handleQuantityClick($event)" class="w-100" [productId]="product.productId"></app-add-to-cart>
         </div>
     </div>
 </div>

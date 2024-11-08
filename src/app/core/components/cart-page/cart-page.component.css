@@ -23,3 +23,13 @@
         border: none;
     }
   }
+
+  .emptyCartImage{
+    width: 400px;
+  }
+
+  .emtpyCartContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

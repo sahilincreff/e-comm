@@ -12,13 +12,10 @@ import { Page404Component } from './components/page404/page404.component';
 import { LoginComponent } from './components/login/login.component';
 import { FiltersComponent } from './components/filters/filters.component';
 import { HomeComponent } from './components/home/home.component';
-import { CheckoutComponent } from './components/checkout/checkout.component';
 
 @NgModule({
   declarations: [
   
-  
-    CheckoutComponent
   ],
   imports: [
     CommonModule

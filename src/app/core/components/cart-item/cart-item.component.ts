@@ -45,4 +45,8 @@ export class CartItemComponent {
     this.router.navigate(['/product', this.product.productId]);
   }
 
+  handleEvent($event: Event){
+    $event.stopPropagation();
+  }
+
 }
