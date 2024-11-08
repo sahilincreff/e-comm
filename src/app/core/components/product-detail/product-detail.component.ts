@@ -42,4 +42,8 @@ export class ProductDetailComponent implements OnInit {
   isValidProduct(){
     return this.productService.isValidProduct(this.productId);
   }
+
+  productQuantityInCart(){
+    return this.cartService.getItemQuantityInCart(this.productId || "");
+  }
 }

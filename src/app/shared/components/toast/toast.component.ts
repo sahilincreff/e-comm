@@ -1,38 +1,20 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
+import { ToastService } from 'src/app/services/toast/toast.service';
+import { Toast } from 'src/app/services/toast/toast.service';
 
 @Component({
   selector: 'app-toast',
   templateUrl: './toast.component.html',
   styleUrls: ['./toast.component.css']
 })
-export class ToastComponent implements OnInit, OnDestroy {
-  @Input() toastTitle: string = '';
-  @Input() toastMessage: string = '';
-  @Input() toastClass: string = 'bg-success'; 
-  @Input() duration: number = 3000;
-  @Output() toastClosed = new EventEmitter<void>();
+export class ToastComponent {
+  toasts: Toast[] = [];
 
-  showToast: boolean = false;
-
-  constructor() {}
+  constructor(private toastService: ToastService) {}
 
   ngOnInit(): void {
-    this.showToast = true; 
-    this.autoCloseToast();
-  }
-
-  ngOnDestroy(): void {
-    this.showToast = false;
-  }
-
-  closeToast(): void {
-    this.showToast = false;
-    this.toastClosed.emit();
-  }
-
-  private autoCloseToast(): void {
-    setTimeout(() => {
-      this.closeToast();
-    }, this.duration);
+    this.toastService.getToasts().subscribe(toasts => {
+      this.toasts = toasts;
+    });
   }
 }

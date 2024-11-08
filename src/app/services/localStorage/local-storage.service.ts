@@ -37,4 +37,11 @@ export class LocalStorageService {
     const cart = localStorage.getItem(this.cartKey);
     return cart ? JSON.parse(cart) : null; 
   }
+
+  setCartLocalStorage(cartItems: Cart){
+    // let lsCart={};
+    // Object.keys(cartItems).map((currKey)=>{
+    //   lsCart[currKey]=cartItems[currKey].quantity;
+    // })
+  }
 }

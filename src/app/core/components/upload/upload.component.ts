@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import * as Papa from 'papaparse';
+import { Observable } from 'rxjs';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ProductsService } from 'src/app/services/products/products.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
 import { cartItem } from 'src/app/shared/models/cartItem';
 import { Product } from 'src/app/shared/models/product';
 
@@ -14,89 +16,65 @@ export class UploadComponent {
   csvData: any[] = []; 
   productIds: string[] = [];
   productDetails: cartItem[] = [];
-  errors: string[] = [];
-  maxAllowedRows = 100;
+  errors: {[key: number]: string} ={2:"Invalid quantity", 3: "invalid productid"};
+  selectedFile!: File;
+  maxAllowedRows = 10;
 
   constructor(
     private productService: ProductsService, 
-    private cartService: CartService
+    private cartService: CartService,
+    private toastService: ToastService
   ) {}
 
   handleFileChange(event: any) {
     const file = event.target.files[0];
-    if (file.type !== 'text/csv') {
-      alert('Please select CSV Files Only');
-      return;
+    if(file){
+      if(file.type !== 'text/csv') {
+        this.toastService.showToast('Please select CSV Files only')
+        return;
+      }else{
+        this.selectedFile=file
+      }
+    }else{
+      this.toastService.showToast("Oh no! You didn't selected any file");
     }
+  }
 
-    if (file) {
-      Papa.parse(file, {
-        complete: (results: any) => {
-          this.csvData = results.data;
-          
-          if (this.csvData.length > this.maxAllowedRows) {
-            alert('File exceeds the maximum row limit');
-            return;
-          }
+  handleUploadClick(){
+    Papa.parse(this.selectedFile, {
+      complete: (results: any) => {
+        if(results.data.length>this.maxAllowedRows){
+          this.toastService.showToast('This csv file has more then max allowed rows');
+        }else{
+          // this.validateItemsAndQuantity(results.data).pipe(()=>{
 
-          this.productIds = this.csvData
-            .filter((row: any) => row.productId)
-            .map((row: any) => row.productId);
+          // })
+        }
+      },
+      header: true,
+      skipEmptyLines: true,
+    });
+  }
 
-          const productQuantityMap: { [productId: string]: number } = {};
+  hasErrors(): boolean{
+    return Object.keys(this.errors).length>0;
+  }
 
-          this.csvData.forEach((product, i) => {
-            if (this.productService.isValidProduct(product.productId)) {
-              if (!productQuantityMap[product.productId]) {
-                productQuantityMap[product.productId] = 0;
-              }
+  // validateItemsAndQuantity(csvData): boolean{
+  //   let validatedProducts:{[key: number]: string}={};
+  //   csvData.map((rowData)=>{
+  //     let validProductId: boolean=this.productService.isValidProduct(rowData.productId) || false;
+  //     let validProductQuantity: boolean=this.isValidQuantity(rowData.quantity);
 
-              let quantity = parseInt(product.quantity, 10);
-              if (isNaN(quantity) || quantity < 0) {
-                this.errors.push(`On row ${i + 1}, ${product.quantity} is not a valid quantity for productId ${product.productId}`);
-                return;
-              }
+  //   })
+  // }
 
-              productQuantityMap[product.productId] += quantity;
-            } else {
-              this.errors.push(`On row ${i + 1}, ${product.productId} is not a valid product Id`);
-            }
-          });
-
-          this.productService.getProductDetailsFromId(this.productIds).subscribe(
-            (details: Product[]) => {
-              this.productDetails = details.map(product => {
-                const totalQuantity = productQuantityMap[product.productId] || 0;
-                const updatedQuantity = totalQuantity > this.cartService.maxQuantity
-                  ? this.cartService.maxQuantity
-                  : totalQuantity;
-
-                if (updatedQuantity !== totalQuantity) {
-                  this.errors.push(`Updated the quantity of ProductId ${product.productId} to the max allowed quantity`);
-                }
-
-                return {
-                  ...product,
-                  quantity: updatedQuantity
-                };
-              });
-            },
-            (error) => {
-              console.error('Error fetching product details', error);
-            }
-          );
-        },
-        header: true,
-        skipEmptyLines: true,
-      });
-    }
+  isValidQuantity(quantity: number): boolean{
+    if(isNaN(quantity)) return false;
+    return true;
   }
 
   mergeWithCartItems() {
     this.cartService.mergeWithCurrentCart(this.productDetails);
-  }
-
-  handleCsvCheckout() {
-    this.cartService.replaceWithCurrentCart(this.productDetails);
   }
 }

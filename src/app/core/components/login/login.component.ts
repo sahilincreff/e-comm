@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private toastService: ToastService) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]]
@@ -26,7 +27,7 @@ export class LoginComponent {
           this.authService.setCurrentUser(user);
           this.router.navigate(['/']);
         } else {
-          alert('wrong password');
+          this.toastService.showToast("Wrong Email or Password", 'error', 3000)
         }
       });
     }

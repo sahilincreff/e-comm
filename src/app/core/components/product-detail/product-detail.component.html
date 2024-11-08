@@ -12,8 +12,11 @@
             </h3>
             <h6 class="text-secondary">Inclusive of All Taxes.</h6>
             <p [innerHTML]="product.description"></p>
-            <div class="addToCartContainer">
+            <div class="d-flex">
+              <div class="addToCartContainer">
                 <app-add-to-cart [productId]="product.productId"></app-add-to-cart>
+              </div>
+              <button *ngIf="productQuantityInCart()>0" class="btn btn-sm">Remove From Cart</button>
             </div>
             <hr>
             <div class="mt-3">

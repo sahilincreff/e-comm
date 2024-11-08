@@ -52,3 +52,17 @@
     font-size: 1.25rem;
     margin-left: 5px;
 }
+
+.cartItemContainer:hover{
+    padding: 7px;
+}
+
+.mdi-delete{
+    display: none;
+}
+
+.cartItemContainer:hover{
+    .mdi-delete{
+        display: block;
+    }
+}

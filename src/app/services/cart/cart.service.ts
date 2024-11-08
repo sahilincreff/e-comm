@@ -35,6 +35,7 @@ export class CartService {
       let validatedUserItems=this.validateCartItems(userCartItems || {});
       if (userCartItems) {
         this.cartItems = {...this.cartItems,  ...validatedUserItems};
+        sessionStorage.removeItem('cart');
       }
     }else{
       const storedCart = sessionStorage.getItem('cart');

@@ -5,16 +5,18 @@
     </button>
   </nav>
   
-  <div [ngClass]="{'sidebar': true, 'active': isOpen}" class="shadow-lg" id="sidebar">
-      <button (click)="toggleSidebar()" class="rounded sticky-top bg-transparent border-0 p-3">
-        <span class="mdi mdi-chevron-left"></span>
-        Back To Products
-      </button>
-      <app-filters></app-filters>
-  </div>
+<div [ngClass]="{'sidebar': true, 'active': isOpen}" class="shadow-lg" id="sidebar">
+    <button (click)="toggleSidebar()" class="rounded sticky-top bg-transparent border-0 p-3">
+      <span class="mdi mdi-chevron-left"></span>
+      Back to Products
+    </button>
+    <app-filters></app-filters>
+</div>
 
 <div class="homeContainer">
     <app-filters class="filters shadow-sm"></app-filters>
     <app-products-list [ngClass]="{'sidebarOpen': isOpen}"></app-products-list>
 </div>
+
+
 

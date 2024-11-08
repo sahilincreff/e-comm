@@ -2,13 +2,13 @@
     <div class="p-3">
         <div class="cartPageHeader">
             <h2>{{cartItemsList.length}} products in Cart</h2>
-            <button class="clearCartBtn btn btn-danger" (click)="showModal()">Clear Cart</button>
+            <button class="clearCartBtn btn btn-outline-danger" (click)="showModal()">Clear Cart</button>
         </div>
         <div *ngFor="let cartItem of cartItemsList" class="" >
             <app-cart-item [product]="cartItem" class="pt-4"></app-cart-item>
         </div>
     </div>
-    <div *ngIf="cartItemsList.length" class="cartSummaryContainer px-lg-40 py-lg-20 p-3">
+    <div *ngIf="cartItemsList.length" class="cartSummaryContainer px-lg-40 py-lg-20 p-3 ">
         <h2>Order Summary</h2>
         <div class="bg-light p-3 w-100">
           <div class="d-flex justify-content-between">
@@ -29,7 +29,7 @@
             <h5>{{calculateTotalCartPrice()+ shippingCharges - discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
           </div>
           <div class="w-100 d-flex justify-content-center">
-            <a routerLink="/checkout" class="btn btn-primary p-2 w-100">
+            <a routerLink="/checkout" (click)="handleCartCheckout()" class="btn btn-primary p-2 w-100">
               Proceed To Checkout
               <span class="mdi mdi-arrow-right"></span>
             </a>
@@ -37,8 +37,10 @@
         </div>
     </div>
 </div>
-<div *ngIf="cartItemsList.length===0" class="w-100 d-flex emtpyCartContainer">
+<div *ngIf="cartItemsList.length===0" class="w-100 d-flex flex-column emtpyCartContainer gap-2">
     <img class="emptyCartImage" src="assets/images/emptyCart.jpg" />
+    <h1>Your Cart is Empty!</h1>
+    <button routerLink="/" class="btn btn-primary">Back to Home</button>
 </div>
 
 

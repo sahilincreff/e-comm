@@ -1,51 +1,37 @@
 <div class="uploadPageContainer">
-    <div class="d-flex align-items-center justify-content-center gap-2 ">
-      <div class="w-25">
+  <div class="d-flex align-items-baseline justify-content-center gap-2 " >
+    <div class="w-25 d-flex">
+      <div>
         <input class="form-control" type="file" id="formFile" accept=".csv" (change)="handleFileChange($event)">
+        <a class="btn btn-link p-0" href="assets/csv/template.csv" download="template.csv">Download CSV Template</a>
       </div>
-        <a class="btn btn-secondary" href="assets/csv/template.csv" download="template.csv">Download CSV Template</a>
     </div>
-    
-    <div *ngIf="productDetails.length" class="csvDataContainer">
-        <div class="container">
-            <div class="row">
-              <div class="col-12">
-                  <table class="table table-image">
-                    <thead>
-                      <tr>
-                        <th scope="col">S. No.</th>
-                        <th scope="col">Product Id</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Item</th>
-                        <th scope="col">Brand</th>
-                        <th scope="col">Quantity</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let data of productDetails; let i=index">
-                        <th scope="row">{{i+1}}</th>
-                        <td>{{data.productId}}</td>
-                        <td class="csvProductImage">
-                            <img [src]="data.images[0]" class="csvProductImage" alt="Sheep">
-                        </td>
-                        <td>{{data.name}}</td>
-                        <td>{{data.brand}}</td>
-                        <td>{{data.quantity}}</td>
-                      </tr>
-                    </tbody>
-                  </table>   
-              </div>
-            </div>
+    <button type="button" class="btn btn-sm btn-primary" [disabled]="!selectedFile" (click)="handleUploadClick()" data-toggle="tooltip" data-placement="bottom" title="Upload CSV File">Upload</button>
+  </div>
+  <div *ngIf="hasErrors()">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Row</th>
+                <th>Error</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let error of errors|keyvalue; let i=index" class="table-danger">
+                <td>{{error.key}}</td>
+                <td>{{error.value}}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="actionBtns d-flex">
-          <button routerLink="/checkout" (click)="handleCsvCheckout()" class="btn btn-primary">Checkout</button>
-          <button routerLink="/cart" (click)="mergeWithCartItems()" class="btn btn-primary">Merge with Current Items in Cart</button>
       </div>
+      Note :- Please Correct all the errors before proceeding to place order
     </div>
-    <div *ngIf="errors.length" class="container d-flex justify-content-center flex-column py-5">
-      <h2>Oh No! Your CSV File has the following errors.</h2>
-      <ul>
-        <li class="text-danger" *ngFor="let error of errors">{{error}}</li>
-      </ul>
-    </div>
+  </div>
+  <div *ngIf="hasErrors()===false && productDetails.length">
+    
+  </div>
 </div>

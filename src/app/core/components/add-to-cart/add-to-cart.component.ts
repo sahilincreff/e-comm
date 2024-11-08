@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { Subscription } from 'rxjs';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
   selector: 'app-add-to-cart',
@@ -14,7 +15,7 @@ export class AddToCartComponent implements OnInit, OnDestroy {
   showRemoveConfirmation: boolean=false;
   maxItemsToast: boolean=false;
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private toastService: ToastService) {}
 
   ngOnInit() {
     this.cartSubscription = this.cartService.getCartItemsObservable().subscribe(() => {
@@ -41,6 +42,7 @@ export class AddToCartComponent implements OnInit, OnDestroy {
       this.showRemoveConfirmation=true;
     }else{
       this.cartService.decreaseQuantity(this.productId);
+      this.toastService.showToast('Item Removed Successfully', 'success', 2000)
     }
     
   }
@@ -48,6 +50,7 @@ export class AddToCartComponent implements OnInit, OnDestroy {
   removeConfirmation(confirmation: boolean){
     if(confirmation){
       this.cartService.decreaseQuantity(this.productId);
+      this.toastService.showToast('Item Removed Successfully', 'success', 2000)
     }
     this.showRemoveConfirmation=false;
 

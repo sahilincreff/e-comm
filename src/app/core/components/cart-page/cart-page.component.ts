@@ -3,6 +3,7 @@ import { CartService } from 'src/app/services/cart/cart.service';
 import { cartItem } from 'src/app/shared/models/cartItem';
 import { Cart } from 'src/app/shared/models/cart';
 import { BehaviorSubject } from 'rxjs';
+import * as Papa from 'papaparse'
 
 @Component({
   selector: 'app-cart-page',
@@ -47,5 +48,28 @@ export class CartPageComponent implements OnInit {
   private clearCart(): void {
     this.cartService.clearCart();
     this.cartItemsList=[];
+  }
+
+  handleCartCheckout(){
+    const headers = [
+        "productId",
+        "quantity"
+    ];
+
+    const csvData = Object.values(this.cartItems).map((item: cartItem) => [
+        item.productId,
+        item.quantity
+    ]);
+    const data = [headers, ...csvData];
+    const csv = Papa.unparse(data);
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', 'cart_items.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   }
 }
