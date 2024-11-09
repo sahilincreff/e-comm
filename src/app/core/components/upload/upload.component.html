@@ -6,7 +6,7 @@
         <a class="btn btn-link p-0" href="assets/csv/template.csv" download="template.csv">Download CSV Template</a>
       </div>
     </div>
-    <button type="button" class="btn btn-sm btn-primary" [disabled]="!selectedFile" (click)="handleUploadClick()" data-toggle="tooltip" data-placement="bottom" title="Upload CSV File">Upload</button>
+    <!-- <button type="button" class="btn btn-sm btn-primary" [disabled]="!selectedFile" (click)="handleUploadClick()" data-toggle="tooltip" data-placement="bottom" title="Upload CSV File">Upload</button> -->
   </div>
   <div *ngIf="hasErrors()">
     <div class="container">
@@ -32,6 +32,13 @@
     </div>
   </div>
   <div *ngIf="hasErrors()===false && productDetails.length">
-    
+    <div class="">
+      <div class="itemsContainer">
+        <app-cart-item *ngFor="let product of productDetails" [product]="product"></app-cart-item>
+      </div>
+      <div class="summaryContainer">
+
+      </div>
+    </div>
   </div>
 </div>

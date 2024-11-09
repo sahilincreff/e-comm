@@ -1,5 +1,6 @@
 import Filter from "../../app/shared/models/filter";
 
+// TODO: filters should be fetched from products list
 export const FILTERS: Filter = {
     brands: ['Nothing', 'Samsung', 'Redmi', 'Realme', 'Apple', 'Poco', 'Google', 'Xiaomi', "Lava", "IQOO", "Vivo"],
     processor: ['Snapdragon', 'MediaTek', 'Exynos', 'Google Tensor'],

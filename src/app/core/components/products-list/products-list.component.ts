@@ -14,9 +14,7 @@ export class ProductsListComponent {
   products: Product[] =[];
   filteredProducts: Product[]=[];
 
-  constructor(private productService: ProductsService, private router: Router, private filterService: FiltersService){
-    
-  }
+  constructor(private productService: ProductsService, private router: Router, private filterService: FiltersService){}
 
   ngOnInit(){
     this.productService.fetchProducts().subscribe(

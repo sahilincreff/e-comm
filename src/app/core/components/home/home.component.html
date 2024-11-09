@@ -5,7 +5,7 @@
     </button>
   </nav>
   
-<div [ngClass]="{'sidebar': true, 'active': isOpen}" class="shadow-lg" id="sidebar">
+<div [ngClass]="{'active': isOpen}" class="shadow-lg sidebar" id="sidebar">
     <button (click)="toggleSidebar()" class="rounded sticky-top bg-transparent border-0 p-3">
       <span class="mdi mdi-chevron-left"></span>
       Back to Products
@@ -13,6 +13,7 @@
     <app-filters></app-filters>
 </div>
 
+<!-- TODO: use bootstrap classes wherever possible -->
 <div class="homeContainer">
     <app-filters class="filters shadow-sm"></app-filters>
     <app-products-list [ngClass]="{'sidebarOpen': isOpen}"></app-products-list>

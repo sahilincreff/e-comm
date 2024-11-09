@@ -13,11 +13,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   currentUser: User | null = null;
   userLoggedIn: boolean = false;
   private currentUserSubscription!: Subscription;
-
+  dropdownVisible: boolean = false;
   isModalVisible = false;
 
   showModal() {
     this.isModalVisible = true;
+  }
+
+  toggleDropdown() {
+    this.dropdownVisible = !this.dropdownVisible;
   }
 
   handleConfirmation(confirmed: boolean) {

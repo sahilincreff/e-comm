@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Cart } from 'src/app/shared/models/cart';
 import { AuthService } from '../auth/auth.service';
 import User from 'src/app/shared/models/user';
+import { ToastService } from '../toast/toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import User from 'src/app/shared/models/user';
 export class LocalStorageService {
   private cartKey = 'cartItems';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private toastService: ToastService) {}
 
   updateCart(cartItems: Cart): void {
     const currentUser: User | null = this.authService.getCurrentUser();
@@ -29,6 +30,14 @@ export class LocalStorageService {
       return null;
     }
     const storedCart = localStorage.getItem(this.cartKey);
+    try{
+      // if(JSON.parse(storedCart)){
+      //   this.toastService.showToast('There were some modifications in the cart stored in the localstorage.')
+      // }
+
+    }catch{
+
+    }
     const cartData = storedCart ? JSON.parse(storedCart) : {};
     return cartData[currentUser.userId] || {}; 
   }

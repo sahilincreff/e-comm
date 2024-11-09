@@ -4,6 +4,8 @@
     gap: 15px;
 }
 
+/* TODO: use bootstrap cols */
+
 @media screen and (max-width: 1340px) {
     .productListContainer{
         grid-template-columns: 1fr 1fr 1fr 1fr;

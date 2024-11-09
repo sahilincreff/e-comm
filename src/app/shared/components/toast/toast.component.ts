@@ -17,4 +17,8 @@ export class ToastComponent {
       this.toasts = toasts;
     });
   }
+
+  removeToast(i:number){
+    this.toasts.slice(i,1);
+  }
 }

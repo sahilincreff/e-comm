@@ -40,21 +40,29 @@ export class UploadComponent {
     }
   }
 
-  handleUploadClick(){
-    Papa.parse(this.selectedFile, {
-      complete: (results: any) => {
-        if(results.data.length>this.maxAllowedRows){
-          this.toastService.showToast('This csv file has more then max allowed rows');
-        }else{
-          // this.validateItemsAndQuantity(results.data).pipe(()=>{
+  // handleUploadClick(){
+  //   Papa.parse(this.selectedFile, {
+  //     complete: (results: any) => {
+  //       if(results.data.length>this.maxAllowedRows){
+  //         this.toastService.showToast('This csv file has more then max allowed rows');
+  //       }else{
+  //         let validProducts:{[key:string]:number}={};
+  //         results.data.map((rowData)=>{
+  //           if(this.productService.isValidProduct(rowData.productId) && this.isValidQuantity(rowData.quantity)){
+  //             validProducts.push()
+  //           }
+  //         })
+  //         if(Object.keys(validProducts).length!==results.data.length){
+  //           this.toastService.showToast('Please Check you CAV files for the following Errors', 'error', 3000);
+  //         }else{
 
-          // })
-        }
-      },
-      header: true,
-      skipEmptyLines: true,
-    });
-  }
+  //         }
+  //       }
+  //     },
+  //     header: true,
+  //     skipEmptyLines: true,
+  //   });
+  // }
 
   hasErrors(): boolean{
     return Object.keys(this.errors).length>0;

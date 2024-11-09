@@ -24,18 +24,24 @@
             </a>
             <div class="currentUserInfo">
                 <div *ngIf="userLoggedIn" class="loggedInUserContainer">
-                    <img *ngIf="currentUser?.imageUrl" [src]="currentUser?.imageUrl"
-                        class="currentUserImage rounded-circle" />
-                    <span *ngIf="!currentUser?.imageUrl">
-                        <span class="mdi mdi-account-circle"></span>
-                    </span>
-                    <div>Hello, {{currentUser?.firstName}}!</div>
-                    <div class="cursor-pointer d-block " title="Logout" (click)="showModal()">
-                        <span class="mdi mdi-logout"></span>
+                    <div class="dropdown">
+                      <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img *ngIf="currentUser?.imageUrl" [src]="currentUser?.imageUrl" class="currentUserImage rounded-circle" />
+                        <span *ngIf="!currentUser?.imageUrl">
+                          <span class="mdi mdi-account-circle" style="font-size: 24px;"></span>
+                        </span>
+                      </button>
+                      
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><span class="dropdown-item">Hello, {{ currentUser?.firstName }}!</span></li>
+                        <li><a class="dropdown-item" href="#" (click)="showModal()">Logout
+                            <span class="mdi mdi-logout"></span>
+                        </a></li>
+                      </ul>
                     </div>
-                </div>
+                  </div>
+                  
                 <div *ngIf="!userLoggedIn" class="d-flex gap-2 align-items-center" [routerLink]="['/login']">
-                    <span class="mdi mdi-account-circle"></span>
                     <div>Login</div>
                 </div>
             </div>

@@ -21,6 +21,7 @@ export class AuthService {
     const userId = localStorage.getItem('currentUserId');
     if (userId) {
       this.getUserById(userId).subscribe(user => {
+        // TODO: remove currentuser from localstorage if user is null
         this.setCurrentUser(user);
       });
     }
@@ -65,7 +66,8 @@ export class AuthService {
     localStorage.removeItem('currentUserId');
     this.setCurrentUser(null);
   }
-
+  
+  // TODO: to check wheather user exists
   isLoggedIn(): boolean {
     return !!localStorage.getItem('currentUserId');
   }

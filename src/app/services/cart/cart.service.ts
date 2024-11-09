@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { cartItem } from 'src/app/shared/models/cartItem'; 
+import { cartItem } from 'src/app/shared/models/cartItem';
 import { Product } from 'src/app/shared/models/product';
 import { ProductsService } from '../products/products.service';
 import { Cart } from 'src/app/shared/models/cart';
@@ -15,7 +15,7 @@ export class CartService {
   private cartItems: Cart = {};
   private cartItemsSubject = new BehaviorSubject<Cart>(this.cartItems);
   currentUser: User | null = null;
-  maxQuantity: number =10;
+  maxQuantity: number = 10;
 
   constructor(
     private productService: ProductsService,
@@ -25,24 +25,25 @@ export class CartService {
     this.authService.currentUser$.subscribe(() => {
       this.loadCartItems();
     });
-    
   }
 
   private loadCartItems(): void {
     const currentUser = this.authService.getCurrentUser();
     if (currentUser) {
-      const userCartItems= this.localStorageService.getCurrentUserCart();
-      let validatedUserItems=this.validateCartItems(userCartItems || {});
+      // TODO: handle json parsing
+      const userCartItems = this.localStorageService.getCurrentUserCart();
+      let validatedUserItems = this.validateCartItems(userCartItems || {});
       if (userCartItems) {
-        this.cartItems = {...this.cartItems,  ...validatedUserItems};
+        // TODO: 
+        this.cartItems = { ...this.cartItems, ...validatedUserItems };
         sessionStorage.removeItem('cart');
       }
-    }else{
+    } else {
       const storedCart = sessionStorage.getItem('cart');
-      const cartData = storedCart ? JSON.parse(storedCart) : {};
-      this.cartItems=cartData;
+      this.cartItems = storedCart ? JSON.parse(storedCart) : {};
+      
     }
-    this.cartItemsSubject.next(this.cartItems); 
+    this.cartItemsSubject.next(this.cartItems);
   }
 
   private updateCart(): void {
@@ -50,20 +51,21 @@ export class CartService {
     if (currentUser) {
       this.localStorageService.updateCart(this.cartItems);
       this.cartItemsSubject.next(this.cartItems);
-    }else{
+    } else {
       sessionStorage.setItem('cart', JSON.stringify(this.cartItems));
     }
   }
 
-  addProductToCart(productId: string): void {    
-    if (!this.cachedProducts) {
-      this.productService.getProducts().subscribe(products => {
-        this.cachedProducts = products;
-        this.addProductToCartHelper(productId);
-      });
-    } else {
+  addProductToCart(productId: string): void {
+    if (this.cachedProducts) {
       this.addProductToCartHelper(productId);
+      return;
     }
+
+    this.productService.getProducts().subscribe(products => {
+      this.cachedProducts = products;
+      this.addProductToCartHelper(productId);
+    });
   }
 
   private cachedProducts: Product[] | null = null;
@@ -72,9 +74,9 @@ export class CartService {
     const product = this.cachedProducts?.find(singleProduct => singleProduct.productId === productId);
     if (product) {
       const tempObj: cartItem = { ...product, quantity: 1 };
-      if (!this.cartItems[productId]) {
-        this.cartItems[productId] = tempObj; 
-      }
+
+      if (!this.cartItems[productId]) this.cartItems[productId] = tempObj;
+
       this.updateCart();
     } else {
       console.error(`Product with ID ${productId} not found.`);
@@ -117,7 +119,7 @@ export class CartService {
   }
 
   getItemQuantityInCart(productId: string): number {
-    return this.cartItems[productId]?.quantity || 0; 
+    return this.cartItems[productId]?.quantity || 0;
   }
 
   clearCart(): void {
@@ -127,7 +129,7 @@ export class CartService {
   }
 
   getCartItemsObservable() {
-    return this.cartItemsSubject.asObservable(); 
+    return this.cartItemsSubject.asObservable();
   }
 
   productInCart(productId: string): boolean {
@@ -139,9 +141,9 @@ export class CartService {
   mergeWithCurrentCart(productList: cartItem[]): void {
     for (const product of productList) {
       if (this.cartItems[product.productId]) {
-        this.cartItems[product.productId].quantity += product.quantity; 
+        this.cartItems[product.productId].quantity += product.quantity;
       } else {
-        this.cartItems[product.productId] = { ...product }; 
+        this.cartItems[product.productId] = { ...product };
       }
     }
     this.updateCart();
@@ -156,6 +158,7 @@ export class CartService {
   }
 
   validateCartItems(userCartItems: Cart): Cart {
+    // TODO: don't use extra variable if not required
     let tempCartItems: Cart = {};
     Object.keys(userCartItems).forEach(currCartItem => {
       const item = userCartItems[currCartItem];
@@ -163,7 +166,7 @@ export class CartService {
         tempCartItems[currCartItem] = item;
       }
     });
-    
+
     return tempCartItems;
   }
 }
