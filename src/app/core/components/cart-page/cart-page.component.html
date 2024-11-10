@@ -9,23 +9,23 @@
         </div>
     </div>
     <div *ngIf="cartItemsList.length" class="cartSummaryContainer px-lg-40 py-lg-20 p-3 ">
-        <h2>Order Summary</h2>
+        <h2 >Order Summary</h2>
         <div class="bg-light p-3 w-100">
           <div class="d-flex justify-content-between">
-            <h5>Subtotal</h5>
+            <h5 class="text-muted">Subtotal</h5>
           <h5>{{calculateTotalCartPrice() | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
           </div>
           <div class="d-flex justify-content-between">
-            <h5>Shipping Charges</h5>
+            <h5 class="text-muted">Shipping Charges</h5>
             <h5>{{shippingCharges | currency:'INR':'symbol-narrow':'2.0-2'}}</h5>
           </div>
           <div class="d-flex justify-content-between">
-            <h5>Discount</h5>
+            <h5 class="text-muted">Discount</h5>
             <h5> - {{discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
           </div>
           <hr>
           <div class="d-flex justify-content-between py-3">
-            <h5>Total</h5>
+            <h4>Total</h4>
             <h5>{{calculateTotalCartPrice()+ shippingCharges - discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
           </div>
           <div class="w-100 d-flex justify-content-center">
