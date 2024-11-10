@@ -96,7 +96,7 @@ export class UploadComponent {
 
   proceedToCheckout(){
     this.router.navigate(['/checkout'], {
-      state: { productDetails: this.productDetails }
+      state: { productDetails: this.productDetails, isFromCart: false}
     });
   }
 

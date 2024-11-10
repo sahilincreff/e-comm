@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as Papa from 'papaparse'; 
+import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
   selector: 'app-checkout',
@@ -9,14 +10,19 @@ import * as Papa from 'papaparse';
 })
 export class CheckoutComponent implements OnInit {
   productDetails: any[] = [];
+  isFromCart: boolean=false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private cartService:CartService) {}
 
   ngOnInit() {
     const navigationState = history.state;
     if (navigationState && navigationState.productDetails) {
       this.productDetails = navigationState.productDetails;
+      this.isFromCart=navigationState.isFromCart;
       this.downloadCSV(); 
+    }
+    if(this.isFromCart){
+      this.cartService.clearCart();
     }
   }
 
@@ -25,11 +31,19 @@ export class CheckoutComponent implements OnInit {
       console.log('No product details to download');
       return;
     }
-  
-    const filteredData = this.productDetails.map(item => ({
-      productId: item.productId,  
-      quantity: item.quantity      
-    }));
+
+    let filteredData;
+    if(this.isFromCart){
+      filteredData =Object.keys(this.productDetails).map(item => ({
+        productId: item, 
+        // quantity: this.productDetails[item]
+      }));
+    }else{
+      filteredData = this.productDetails.map(item => ({
+        productId: item.productId,  
+        quantity: item.quantity      
+      }));
+    }
   
     const csv = Papa.unparse(filteredData);
   

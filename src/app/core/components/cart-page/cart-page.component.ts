@@ -83,7 +83,7 @@ export class CartPageComponent implements OnInit {
 
   proceedToCheckout(){
     this.router.navigate(['/checkout'], {
-      state: { productDetails: this.cartItems }
+      state: { productDetails: this.cartItems, isFromCart: true}
     });
   }
 
