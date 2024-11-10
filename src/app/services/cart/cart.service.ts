@@ -1,37 +1,81 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { cartItem } from 'src/app/shared/models/cartItem';
-import { Product } from 'src/app/shared/models/product';
-import { ProductsService } from '../products/products.service';
-import { Cart } from 'src/app/shared/models/cart';
 import { LocalStorageService } from '../localStorage/local-storage.service';
 import { AuthService } from '../auth/auth.service';
+import { BehaviorSubject } from 'rxjs';
 import User from 'src/app/shared/models/user';
+import { cartItem } from 'src/app/shared/models/cartItem';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private cartItems: Cart = {};
-  private cartItemsSubject = new BehaviorSubject<Cart>(this.cartItems);
-  private cachedProducts: Product[] | null = null;
+  private cartItems: { [productId: string]: number } = {}; 
+  private cartItemsSubject: BehaviorSubject<{ [productId: string]: number }> = new BehaviorSubject<{ [productId: string]: number }>(this.cartItems); // To notify listeners when the cart changes
+  private cartMerged: boolean = false; 
   maxQuantity: number = 10;
+  private cartLoaded: boolean = false;
 
   constructor(
-    private productService: ProductsService,
     private localStorageService: LocalStorageService,
     private authService: AuthService
   ) {
-    this.authService.currentUser$.subscribe(() => this.loadCartItems());
+    this.authService.currentUser$.subscribe((user) => {
+      if (user) {
+        this.handleUserLogin(user); 
+      } else {
+        this.loadCartItems();
+      }
+    });
   }
 
   private loadCartItems(): void {
-    this.localStorageService.getCurrentUserCart().subscribe((userCartItems) => {
-      if (userCartItems) {
-        const validatedUserItems = this.validateCartItems(userCartItems);
-        this.cartItems = { ...this.cartItems, ...validatedUserItems };
-      }
-    });
+    if (this.cartLoaded) return; 
+
+    const userCartItems = this.localStorageService.getCurrentUserCart();
+    if (userCartItems) {
+      this.cartItems = { ...this.cartItems, ...userCartItems }; 
+    }
+
+    this.cartItemsSubject.next(this.cartItems); 
+    this.cartLoaded = true;
+  }
+
+  private handleUserLogin(user: User): void {
+    if (!this.cartMerged) { 
+      this.mergeGuestCartWithUserCart(user.userId);
+      this.cartMerged = true; 
+    }
+  }
+
+  private mergeGuestCartWithUserCart(userId: string): void {
+    console.log("Merging guest cart with user cart...");
+
+    const guestCart = this.localStorageService.getCurrentUserCart();
+    if (guestCart) {
+      Object.entries(guestCart).forEach(([productId, quantity]) => {
+        if (this.cartItems[productId]) {
+          this.cartItems[productId] += quantity;
+        } else {
+          this.cartItems[productId] = quantity;
+        }
+      });
+
+      this.localStorageService.clearGuestCart();
+
+      this.updateCart();
+    } else {
+      this.loadUserCart(userId);
+    }
+  }
+
+  private loadUserCart(userId: string): void {
+    const storedUserCart = this.localStorageService.getCurrentUserCart();
+    if (storedUserCart) {
+      this.cartItems = { ...this.cartItems, ...storedUserCart };
+    } else {
+      this.cartItems = {}; 
+    }
+
     this.cartItemsSubject.next(this.cartItems);
   }
 
@@ -41,28 +85,12 @@ export class CartService {
   }
 
   addProductToCart(productId: string): void {
-    if (this.cachedProducts) {
-      this.addProductToCartHelper(productId);
-      return;
-    }
-
-    this.productService.getProducts().subscribe(products => {
-      this.cachedProducts = products;
-      this.addProductToCartHelper(productId);
-    });
-  }
-
-  private addProductToCartHelper(productId: string): void {
-    const product = this.cachedProducts?.find((p) => p.productId === productId);
-    if (product) {
-      const tempObj: cartItem = { ...product, quantity: 1 };
-      if (!this.cartItems[productId]) {
-        this.cartItems[productId] = tempObj;
-      }
-      this.updateCart();
+    if (this.cartItems[productId]) {
+      this.cartItems[productId] += 1;
     } else {
-      console.error(`Product with ID ${productId} not found.`);
+      this.cartItems[productId] = 1;
     }
+    this.updateCart(); 
   }
 
   removeItemFromCart(productId: string): void {
@@ -76,8 +104,8 @@ export class CartService {
 
   increaseQuantity(productId: string, quantity: number = 1): void {
     if (this.cartItems[productId]) {
-      const newQuantity = Math.min(this.cartItems[productId].quantity + quantity, this.maxQuantity);
-      this.cartItems[productId].quantity = newQuantity;
+      const newQuantity = Math.min(this.cartItems[productId] + quantity, this.maxQuantity);
+      this.cartItems[productId] = newQuantity;
       this.updateCart();
     } else {
       console.warn(`Product with ID ${productId} is not in the cart.`);
@@ -86,11 +114,11 @@ export class CartService {
 
   decreaseQuantity(productId: string, quantity: number = 1): void {
     if (this.cartItems[productId]) {
-      const newQuantity = this.cartItems[productId].quantity - quantity;
+      const newQuantity = this.cartItems[productId] - quantity;
       if (newQuantity <= 0) {
         this.removeItemFromCart(productId);
       } else {
-        this.cartItems[productId].quantity = newQuantity;
+        this.cartItems[productId] = newQuantity;
         this.updateCart();
       }
     } else {
@@ -98,54 +126,40 @@ export class CartService {
     }
   }
 
-  getCartItems(): Cart {
+  getCartItems(): { [productId: string]: number } {
     return this.cartItems;
   }
 
   getItemQuantityInCart(productId: string): number {
-    return this.cartItems[productId]?.quantity || 0;
+    return this.cartItems[productId] || 0;
   }
 
   clearCart(): void {
     this.cartItems = {};
-    this.updateCart();
-  }
-
-  getCartItemsObservable() {
-    return this.cartItemsSubject.asObservable();
+    this.updateCart(); 
   }
 
   productInCart(productId: string): boolean {
     return !!this.cartItems[productId];
   }
 
-  mergeWithCurrentCart(productList: cartItem[]): void {
-    for (const product of productList) {
-      if (this.cartItems[product.productId]) {
-        this.cartItems[product.productId].quantity += product.quantity;
+  getCartItemsObservable() {
+    return this.cartItemsSubject.asObservable();
+  }
+
+  mergeItemsWithCurrentCart(products : cartItem[]){
+    let currCartItems = this.cartItems;
+    products.map((currProd) => {
+      const quantity = parseInt(currProd.quantity.toString(), 10);
+      if (currCartItems[currProd.productId]) {
+        currCartItems[currProd.productId] += quantity;
       } else {
-        this.cartItems[product.productId] = { ...product };
-      }
-    }
-    this.updateCart();
-  }
-
-  replaceWithCurrentCart(newItems: cartItem[]): void {
-    this.cartItems = {};
-    for (const item of newItems) {
-      this.cartItems[item.productId] = { ...item };
-    }
-    this.updateCart();
-  }
-
-  private validateCartItems(userCartItems: Cart): Cart {
-    const validCartItems: Cart = {};
-    Object.keys(userCartItems).forEach((currCartItem) => {
-      const item = userCartItems[currCartItem];
-      if (item.quantity > 0) {
-        validCartItems[currCartItem] = item;
+        currCartItems[currProd.productId] = quantity;
       }
     });
-    return validCartItems;
+    this.cartItems = currCartItems;
+    this.updateCart();
   }
+
 }
+

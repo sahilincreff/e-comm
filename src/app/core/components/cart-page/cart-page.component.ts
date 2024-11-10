@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart/cart.service';
-import { cartItem } from 'src/app/shared/models/cartItem';
+import { ProductsService } from 'src/app/services/products/products.service';
 import { Cart } from 'src/app/shared/models/cart';
-import { BehaviorSubject } from 'rxjs';
-import * as Papa from 'papaparse'
+import { Product } from 'src/app/shared/models/product';
+import { cartItem } from 'src/app/shared/models/cartItem';
+import * as Papa from 'papaparse';
 
 @Component({
   selector: 'app-cart-page',
@@ -13,26 +14,51 @@ import * as Papa from 'papaparse'
 export class CartPageComponent implements OnInit {
   cartItems: Cart = {};
   cartItemsList: cartItem[] = [];
-  cartClearConfirmation: boolean=false;
-  discount: number=1000;
-  shippingCharges: number=50;
+  cartClearConfirmation: boolean = false;
+  discount: number = 1000;
+  shippingCharges: number = 50;
+  loading: boolean = true;
 
-  constructor(private cartService: CartService) {
+  constructor(
+    private cartService: CartService,
+    private productService: ProductsService
+  ) {}
 
+  ngOnInit(): void {
+    // Subscribe to cart updates
+    this.cartService.getCartItemsObservable().subscribe(() => {
+      this.loadCartItems();
+    });
   }
 
-  ngOnInit() {
-    this.cartService.getCartItemsObservable().subscribe(()=>{
-      this.cartItems = this.cartService.getCartItems();
-      this.cartItemsList = Object.values(this.cartItems);
-    })
+  private loadCartItems(): void {
+    // Get cart items from the cart service
+    this.cartItems = this.cartService.getCartItems();
+    const productIds = Object.keys(this.cartItems);
+
+    if (productIds.length === 0) {
+      this.loading = false;
+      return;
+    }
+
+    // Fetch product details based on productIds
+    this.productService.getProductDetailsFromId(productIds).subscribe((products: Product[]) => {
+      this.cartItemsList = products.map(product => {
+        return {
+          ...product,
+          quantity: this.cartItems[product.productId]
+        };
+      });
+
+      this.loading = false;
+    });
   }
 
-  showModal() {
+  showModal(): void {
     this.cartClearConfirmation = true;
   }
 
-  handleConfirmation(confirmed: boolean) {
+  handleConfirmation(confirmed: boolean): void {
     if (confirmed) {
       this.clearCart();
     }
@@ -40,25 +66,26 @@ export class CartPageComponent implements OnInit {
   }
 
   calculateTotalCartPrice(): number {
-    return Object.values(this.cartItems).reduce((total, product) => {
-      return total + (product.price.sellingPrice * product.quantity);
+    return this.cartItemsList.reduce((total, item) => {
+      return total + (item.price.sellingPrice * item.quantity);
     }, 0);
   }
 
   private clearCart(): void {
     this.cartService.clearCart();
-    this.cartItemsList=[];
+    this.cartItemsList = [];
   }
 
-  handleCartCheckout(){
-    const headers = [
-        "productId",
-        "quantity"
-    ];
+  cartItemsQuantity(): number{
+    const products=this.cartService.getCartItems();
+    return Object.keys(products).length;
+  }
 
-    const csvData = Object.values(this.cartItems).map((item: cartItem) => [
-        item.productId,
-        item.quantity
+  handleCartCheckout(): void {
+    const headers = ["productId", "quantity"];
+    const csvData = this.cartItemsList.map((item: cartItem) => [
+      item.productId,
+      item.quantity
     ]);
     const data = [headers, ...csvData];
     const csv = Papa.unparse(data);

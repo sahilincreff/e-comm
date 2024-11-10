@@ -46,4 +46,8 @@ export class ProductDetailComponent implements OnInit {
   productQuantityInCart(){
     return this.cartService.getItemQuantityInCart(this.productId || "");
   }
+
+  removeItemFromCart(){
+    this.cartService.removeItemFromCart(this.productId || "");
+  }
 }

@@ -12,8 +12,9 @@ export class AddToCartComponent implements OnInit, OnDestroy {
   @Input() productId!: string;
   quantityInCart: number = 0;
   private cartSubscription!: Subscription;
-  showRemoveConfirmation: boolean=false;
-  maxItemsToast: boolean=false;
+  showRemoveConfirmation: boolean = false;
+  maxItemsToast: boolean = false;
+  @Input() productDetailPage: boolean=false;
 
   constructor(private cartService: CartService, private toastService: ToastService) {}
 
@@ -21,6 +22,8 @@ export class AddToCartComponent implements OnInit, OnDestroy {
     this.cartSubscription = this.cartService.getCartItemsObservable().subscribe(() => {
       this.updateQuantity();
     });
+  
+    this.updateQuantity();
   }
 
   ngOnDestroy() {
@@ -37,45 +40,49 @@ export class AddToCartComponent implements OnInit, OnDestroy {
     return this.cartService.getItemQuantityInCart(this.productId);
   }
 
-  decreaseItemQuantity() {
-    if(this.cartService.getItemQuantityInCart(this.productId)==1){
-      this.showRemoveConfirmation=true;
-    }else{
+  decreaseItemQuantity(): void {
+    const currentQuantity = this.cartService.getItemQuantityInCart(this.productId);
+    if (currentQuantity === 1) {
+      this.showRemoveConfirmation = true;
+    } else {
       this.cartService.decreaseQuantity(this.productId);
-      this.toastService.showToast('Item Removed Successfully', 'success', 2000)
+      this.toastService.showToast('Item Removed Successfully', 'success', 2000);
     }
-    
   }
 
-  removeConfirmation(confirmation: boolean){
-    if(confirmation){
-      this.cartService.decreaseQuantity(this.productId);
-      this.toastService.showToast('Item Removed Successfully', 'success', 2000)
+  removeConfirmation(confirmation: boolean): void {
+    if (confirmation) {
+      this.cartService.removeItemFromCart(this.productId);
+      this.toastService.showToast('Item Removed Successfully', 'success', 2000);
     }
-    this.showRemoveConfirmation=false;
-
+    this.showRemoveConfirmation = false;
   }
 
-  increaseItemQuantity() {
-    if(this.cartService.getItemQuantityInCart(this.productId)>=this.cartService.maxQuantity){
-      this.maxItemsToast=true;
-      setTimeout(()=>{
-        this.maxItemsToast=false;
-      }, 3000)
-    }else{
+  increaseItemQuantity(): void {
+    const currentQuantity = this.cartService.getItemQuantityInCart(this.productId);
+    if (currentQuantity >= this.cartService.maxQuantity) {
+      this.maxItemsToast = true;
+      setTimeout(() => {
+        this.maxItemsToast = false;
+      }, 3000);
+    } else {
       this.cartService.increaseQuantity(this.productId);
     }
   }
 
-  addProductToCart() {
+  addProductToCart(): void {
     this.cartService.addProductToCart(this.productId);
   }
 
-  handleProductQuantityClick(event: MouseEvent) {
+  handleProductQuantityClick(event: MouseEvent): void {
     event.stopPropagation();
   }
 
-  private updateQuantity() {
+  private updateQuantity(): void {
     this.quantityInCart = this.cartService.getItemQuantityInCart(this.productId);
+  }
+
+  removeItemFromCart(){
+    this.showRemoveConfirmation=true;
   }
 }

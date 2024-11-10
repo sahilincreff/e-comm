@@ -23,6 +23,7 @@ import { BackToTopComponent } from './shared/components/back-to-top/back-to-top.
 import { DiscountPipe } from './shared/pipes/discount.pipe';
 import { ToastComponent } from './shared/components/toast/toast.component';
 import { CheckoutComponent } from './core/components/checkout/checkout.component';
+import { InrCurrencyPipe } from './shared/pipes/inr-currency.pipe';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { CheckoutComponent } from './core/components/checkout/checkout.component
     BackToTopComponent,
     DiscountPipe,
     ToastComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    InrCurrencyPipe
   ],
   imports: [
     BrowserModule,

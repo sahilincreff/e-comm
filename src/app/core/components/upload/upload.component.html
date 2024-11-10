@@ -1,13 +1,19 @@
 <div class="uploadPageContainer">
-  <div class="d-flex align-items-baseline justify-content-center gap-2 " >
+  <!-- File Upload Section -->
+  <div class="d-flex align-items-baseline justify-content-center gap-2">
     <div class="w-25 d-flex">
       <div>
         <input class="form-control" type="file" id="formFile" accept=".csv" (change)="handleFileChange($event)">
         <a class="btn btn-link p-0" href="assets/csv/template.csv" download="template.csv">Download CSV Template</a>
       </div>
     </div>
-    <!-- <button type="button" class="btn btn-sm btn-primary" [disabled]="!selectedFile" (click)="handleUploadClick()" data-toggle="tooltip" data-placement="bottom" title="Upload CSV File">Upload</button> -->
+    <button type="button" class="btn btn-sm btn-primary" [disabled]="!selectedFile" (click)="handleUploadClick()"
+      data-toggle="tooltip" data-placement="bottom" title="Upload CSV File">
+      Upload
+    </button>
   </div>
+
+  <!-- Error Handling Section -->
   <div *ngIf="hasErrors()">
     <div class="container">
       <div class="row">
@@ -20,7 +26,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let error of errors|keyvalue; let i=index" class="table-danger">
+              <tr *ngFor="let error of errors | keyvalue; let i = index" class="table-danger">
                 <td>{{error.key}}</td>
                 <td>{{error.value}}</td>
               </tr>
@@ -28,16 +34,66 @@
           </table>
         </div>
       </div>
-      Note :- Please Correct all the errors before proceeding to place order
+      <div>Note: Please correct all the errors before proceeding to place order.</div>
     </div>
   </div>
-  <div *ngIf="hasErrors()===false && productDetails.length">
-    <div class="">
-      <div class="itemsContainer">
-        <app-cart-item *ngFor="let product of productDetails" [product]="product"></app-cart-item>
-      </div>
-      <div class="summaryContainer">
 
+  <!-- Product Details Section (Display Products if No Errors) -->
+  <div *ngIf="!hasErrors() && productDetails.length" class="">
+    <div class="cartPageContainer px-lg-5">
+      <div class="p-3">
+        <div *ngFor="let product of productDetails" class="">
+          <div class="cartItemContainer pb-2 button" *ngIf="product.quantity>0" role="button">
+            <img class="cartItemImg" [src]="product.images[0]" />
+            <div class="w-100">
+              <div class="cartItemHeader">
+                <h3 class="productBrand">{{product.brand}}</h3>
+              </div>
+              <h5 class="productName">{{product.name}}</h5>
+              <h4 class="d-flex align-items-baseline gap-2 pt-3">
+                {{product.price.sellingPrice | currency:'INR':'symbol-narrow':'4.0-2'}}
+                <del>
+                  <h5>{{product.price.mrp | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+                </del>
+                <!-- <h5 class="discountPercentage">({{product.price.sellingPrice | discount: product.price.mrp}})</h5> -->
+              </h4>
+              <div class="col-12 col-sm-4">
+                <h5>Quantity : {{product.quantity}}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cartSummaryContainer px-lg-40 py-lg-20 p-3 ">
+        <h2>Order Summary</h2>
+        <div class="bg-light p-3 w-100">
+          <div class="d-flex justify-content-between">
+            <h5 class="text-muted">Subtotal</h5>
+            <h5>{{calculateTotalCartPrice() | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+          </div>
+          <div class="d-flex justify-content-between">
+            <h5 class="text-muted">Shipping Charges</h5>
+            <h5>{{shippingCharges | currency:'INR':'symbol-narrow':'2.0-2'}}</h5>
+          </div>
+          <div class="d-flex justify-content-between">
+            <h5 class="text-muted">Discount</h5>
+            <h5> - {{discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-between py-3">
+            <h4>Total</h4>
+            <h5>{{calculateTotalCartPrice()+ shippingCharges - discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+          </div>
+          <div class="w-100 d-flex justify-content-center gap-2">
+            <a routerLink="/cart" class="btn btn-primary p-2 w-100" (click)="mergeWithCartItems()">
+              Merge with Cart
+            </a>
+            <a routerLink="/checkout" class="btn btn-primary p-2 w-100">
+              Checkout
+              <span class="mdi mdi-arrow-right"></span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

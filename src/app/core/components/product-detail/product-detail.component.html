@@ -17,9 +17,9 @@
             <p [innerHTML]="product.description"></p>
             <div class="d-flex">
               <div class="addToCartContainer">
-                <app-add-to-cart [productId]="product.productId"></app-add-to-cart>
+                <app-add-to-cart [productId]="product.productId" [productDetailPage]="true"></app-add-to-cart>
               </div>
-              <button *ngIf="productQuantityInCart()>0" class="btn btn-sm">Remove From Cart</button>
+              <button *ngIf="productQuantityInCart()>0" class="btn btn-sm btn-secondary d-none d-lg-block" (click)="removeItemFromCart()">Remove From Cart</button>
             </div>
             <hr>
             <div class="mt-3">

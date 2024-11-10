@@ -2,12 +2,13 @@
     <button class="addToCartBtn rounded-pill btn btn-primary" (click)="addProductToCart()" *ngIf="!productPresentInCart() || itemQuantityInCart() === 0">
         Add To Cart
     </button>
-    <div *ngIf="productPresentInCart() && itemQuantityInCart() > 0">
-        <div class="quantityInCart">
+    <div *ngIf="productPresentInCart() && itemQuantityInCart() > 0" class="d-flex gap-1">
+        <div [ngClass]="{'quantityInCart': true, 'w-75': productDetailPage, 'w-100': !productDetailPage}">
             <button class="incrementDecrementBtn rounded-pill" (click)="decreaseItemQuantity()">-</button>
             <h5>{{itemQuantityInCart()}}</h5>
             <button class="incrementDecrementBtn rounded-pill" (click)="increaseItemQuantity()">+</button>
         </div>
+        <button *ngIf="productDetailPage"  (click)="removeItemFromCart()" class="d-block d-lg-none incrementDecrementBtn">Remove</button>
     </div>
 </div>
 
