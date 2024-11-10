@@ -25,7 +25,14 @@ export class CheckoutComponent implements OnInit {
       console.log('No product details to download');
       return;
     }
-    const csv = Papa.unparse(this.productDetails);
+  
+    const filteredData = this.productDetails.map(item => ({
+      productId: item.productId,  
+      quantity: item.quantity      
+    }));
+  
+    const csv = Papa.unparse(filteredData);
+  
     const blob = new Blob([csv], { type: 'text/csv' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
@@ -34,4 +41,5 @@ export class CheckoutComponent implements OnInit {
     link.click();
     document.body.removeChild(link);
   }
+  
 }
