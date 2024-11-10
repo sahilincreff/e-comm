@@ -6,6 +6,8 @@ import { ProductsService } from 'src/app/services/products/products.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { cartItem } from 'src/app/shared/models/cartItem';
 import { Product } from 'src/app/shared/models/product';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-upload',
@@ -26,7 +28,8 @@ export class UploadComponent {
     private productService: ProductsService, 
     private cartService: CartService,
     private toastService: ToastService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router
   ) {}
 
   handleFileChange(event: any) {
@@ -89,6 +92,12 @@ export class UploadComponent {
     return this.productDetails.reduce((acc, curr) => {
       return acc + (curr.price.sellingPrice * curr.quantity);
     }, 0);
+  }
+
+  proceedToCheckout(){
+    this.router.navigate(['/checkout'], {
+      state: { productDetails: this.productDetails }
+    });
   }
 
   mergeWithCartItems() {

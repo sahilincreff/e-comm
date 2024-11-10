@@ -88,7 +88,7 @@
             <a routerLink="/cart" class="btn btn-primary p-2 w-100" (click)="mergeWithCartItems()">
               Merge with Cart
             </a>
-            <a routerLink="/checkout" class="btn btn-primary p-2 w-100">
+            <a (click)="proceedToCheckout()" class="btn btn-primary p-2 w-100">
               Checkout
               <span class="mdi mdi-arrow-right"></span>
             </a>

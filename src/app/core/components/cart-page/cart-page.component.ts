@@ -5,6 +5,7 @@ import { Cart } from 'src/app/shared/models/cart';
 import { Product } from 'src/app/shared/models/product';
 import { cartItem } from 'src/app/shared/models/cartItem';
 import * as Papa from 'papaparse';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-page',
@@ -21,7 +22,8 @@ export class CartPageComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private productService: ProductsService
+    private productService: ProductsService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -40,8 +42,6 @@ export class CartPageComponent implements OnInit {
       this.loading = false;
       return;
     }
-
-    // Fetch product details based on productIds
     this.productService.getProductDetailsFromId(productIds).subscribe((products: Product[]) => {
       this.cartItemsList = products.map(product => {
         return {
@@ -81,22 +81,10 @@ export class CartPageComponent implements OnInit {
     return Object.keys(products).length;
   }
 
-  handleCartCheckout(): void {
-    const headers = ["productId", "quantity"];
-    const csvData = this.cartItemsList.map((item: cartItem) => [
-      item.productId,
-      item.quantity
-    ]);
-    const data = [headers, ...csvData];
-    const csv = Papa.unparse(data);
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-    const url = URL.createObjectURL(blob);
-    link.setAttribute('href', url);
-    link.setAttribute('download', 'cart_items.csv');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+  proceedToCheckout(){
+    this.router.navigate(['/checkout'], {
+      state: { productDetails: this.cartItems }
+    });
   }
+
 }

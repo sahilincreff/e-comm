@@ -29,7 +29,7 @@
             <h5>{{calculateTotalCartPrice()+ shippingCharges - discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
           </div>
           <div class="w-100 d-flex justify-content-center">
-            <a routerLink="/checkout" (click)="handleCartCheckout()" class="btn btn-primary p-2 w-100">
+            <a routerLink="/checkout" (click)="proceedToCheckout()" class="btn btn-primary p-2 w-100">
               Proceed To Checkout
               <span class="mdi mdi-arrow-right"></span>
             </a>
