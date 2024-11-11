@@ -1,8 +1,8 @@
 <div class="uploadPageContainer">
   <!-- File Upload Section -->
-  <div class="d-flex align-items-baseline justify-content-center gap-2">
+  <div class="d-flex align-items-baseline justify-content-center gap-2 uploadContainer">
     <div class="w-25 d-flex">
-      <div>
+      <div class="uploadInput">
         <input class="form-control" type="file" id="formFile" accept=".csv" (change)="handleFileChange($event)">
         <a class="btn btn-link p-0 text-decoration-none" href="assets/csv/template.csv" download="template.csv">Download CSV Template</a>
       </div>
@@ -39,32 +39,36 @@
   </div>
 
   <!-- Product Details Section (Display Products if No Errors) -->
-  <div *ngIf="!hasErrors() && productDetails.length" class="">
+  <div *ngIf="!hasErrors() && productDetails.length">
     <div class="cartPageContainer px-lg-5">
-      <div class="p-3">
-        <div *ngFor="let product of productDetails" class="">
-          <div class="cartItemContainer pb-2 button" *ngIf="product.quantity>0" role="button">
-            <img class="cartItemImg" [src]="product.images[0]" />
-            <div class="w-100">
-              <div class="cartItemHeader">
-                <h3 class="productBrand">{{product.brand}}</h3>
-              </div>
-              <h5 class="productName">{{product.name}}</h5>
-              <h4 class="d-flex align-items-baseline gap-2 pt-3">
-                {{product.price.sellingPrice | currency:'INR':'symbol-narrow':'4.0-2'}}
-                <del>
-                  <h5>{{product.price.mrp | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
-                </del>
-                <!-- <h5 class="discountPercentage">({{product.price.sellingPrice | discount: product.price.mrp}})</h5> -->
-              </h4>
-              <div class="col-12 col-sm-4">
-                <h5>Quantity : {{product.quantity}}</h5>
+      <!-- Product List (Left Side) -->
+      <div class="productListContainer">
+        <div class="p-3">
+          <ng-container *ngFor="let product of productDetails">
+            <div *ngIf="product.quantity > 0" class="cartItemContainer" role="button">
+              <img class="cartItemImg" [src]="product.images[0]" />
+              <div class="w-100">
+                <div class="cartItemHeader">
+                  <h3 class="productBrand">{{product.brand}}</h3>
+                </div>
+                <h5 class="productName">{{product.name}}</h5>
+                <h4 class="d-flex align-items-baseline gap-2 pt-3">
+                  {{product.price.sellingPrice | currency:'INR':'symbol-narrow':'4.0-2'}}
+                  <del>
+                    <h5>{{product.price.mrp | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+                  </del>
+                </h4>
+                <div class="col-12 col-sm-4">
+                  <h5>Quantity : {{product.quantity}}</h5>
+                </div>
               </div>
             </div>
-          </div>
+          </ng-container>
         </div>
       </div>
-      <div class="cartSummaryContainer px-lg-40 py-lg-20 p-3 ">
+
+      <!-- Order Summary (Right Side) -->
+      <div class="cartSummaryContainer">
         <h2>Order Summary</h2>
         <div class="bg-light p-3 w-100">
           <div class="d-flex justify-content-between">
@@ -82,10 +86,10 @@
           <hr>
           <div class="d-flex justify-content-between py-3">
             <h4>Total</h4>
-            <h5>{{calculateTotalCartPrice()+ shippingCharges - discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+            <h5>{{calculateTotalCartPrice() + shippingCharges - discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
           </div>
-          <div class="w-100 d-flex justify-content-center gap-2">
-            <a routerLink="/cart" class="btn btn-primary p-2 w-100" (click)="mergeWithCartItems()">
+          <div class="w-100 d-flex justify-content-center gap-2 actionBtns">
+            <a routerLink="/cart" class="btn btn-secondary p-2 w-100" (click)="mergeWithCartItems()">
               Merge with Cart
             </a>
             <a (click)="proceedToCheckout()" class="btn btn-primary p-2 w-100">

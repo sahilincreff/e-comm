@@ -1,107 +1,186 @@
-
-
-.actionBtns{
-    justify-content: center;
-    gap: 20px;
+.uploadPageContainer {
+  margin-top: 20px;
+  padding: 20px;
 }
 
-.csvDataRow{
-    display: flex;
-    gap: 5px;
-    padding: 5px;
+.uploadContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.uploadContainer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.uploadInput {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
 }
 
-.csvProductImage{
-    height: 75px;
-    width: 75px;
+input[type="file"] {
+  display: block;
+  margin-bottom: 10px;
+}
+
+button {
+  display: inline-block;
+}
+
+button[disabled] {
+  opacity: 0.5; 
+}
+
+.container {
+  margin-top: 20px;
+}
+
+.table-danger {
+  background-color: #f8d7da;
+}
+
+.table th, .table td {
+  padding: 0.75rem;
+  vertical-align: middle;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+.productListContainer {
+  max-height: 70vh;
+  overflow-y: auto; 
+  padding-right: 15px;
+}
+
+.cartPageContainer {
+  display: grid;
+  grid-template-columns: 3fr 1fr; 
+  gap: 20px;
 }
 
 .cartItemContainer {
-    display: flex;
-    gap: 10px;
-    border: 1px solid #eaeaec;
-    padding: 5px;
-    border-radius: 10px;
-    margin-top: 10px;
+  display: flex;
+  gap: 15px;
+  border: 1px solid #eaeaec;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+  transition: box-shadow 0.3s;
+}
+
+.cartItemContainer:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .cartItemImg {
-    height: 160px;
-    background: #E5E8F1;
-    border-radius: 15px 0px 0px 15px;
-}
-
-.cartItemHeader {
-    display: flex;
-    justify-content: space-between;
-    padding-right: 10px;
-    align-items: flex-start;
+  height: 160px;
+  background: #E5E8F1;
+  border-radius: 15px 0 0 15px;
+  object-fit: cover;
 }
 
 .productBrand {
-    color: #282c3f;
-    font-size: 20px;
-    font-weight: 700;
+  font-weight: 700;
+  color: #282c3f;
+  font-size: 20px;
 }
 
 .productName {
-    opacity: .8;
-    font-weight: 400;
-    color: #535766;
-    font-size: 18px;
-    margin-bottom: 0;
-    margin-top: 0;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  font-weight: 400;
+  color: #535766;
+  font-size: 18px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.uploadedProductsContainer{
-    display: grid;
-    grid-template-columns: 3fr 2fr;
+.cartSummaryContainer {
+  position: sticky;
+  top: 20px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  border-radius: 10px;
 }
 
-
-.cartPageContainer{
-    display: grid;
-    grid-template-columns: 3fr 2fr;
-}
-
-.cartPageHeader{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    align-items: flex-start;
-}
-
-.cartSummaryContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    border-left: 1px solid #eaeaec;
+.cartSummaryContainer h2 {
+  margin-bottom: 20px;
 }
 
 @media screen and (max-width: 768px) {
-    .cartPageContainer{
-        grid-template-columns: 1fr;
-        border: none;
-    }
+  .cartPageContainer {
+    grid-template-columns: 1fr; 
+    gap: 15px;
   }
 
-  .emptyCartImage{
-    width: 400px;
+  .uploadContainer {
+    flex-direction: column; 
   }
 
-  .emtpyCartContainer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .cartSummaryContainer {
+    position: static;
   }
+
+  .cartItemImg {
+    height: 120px;
+  }
+}
+
+.emptyCartImage {
+  width: 100%;
+  max-width: 400px;
+}
+
+.emtpyCartContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+.cartPageContainer {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.cartSummaryContainer {
+  position: sticky;
+  top: 20px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for the sticky container */
+  border-radius: 10px;
+  /* Optional: increase the width for larger screens */
+  min-width: 350px; /* Ensure the summary doesn't shrink too much */
+}
+
+.cartSummaryContainer h2 {
+  margin-bottom: 20px;
+}
+
+/* Responsive Design: Adjust grid and layout for smaller screens */
+@media screen and (max-width: 768px) {
+  .cartPageContainer {
+    grid-template-columns: 1fr; /* Stack items in a single column on smaller screens */
+    gap: 15px;
+  }
+
+  .uploadContainer {
+    flex-direction: column;
+  }
+
+  .cartSummaryContainer {
+    position: static; 
+  }
+
+  .cartItemImg {
+    height: 120px;
+  }
+}
+
