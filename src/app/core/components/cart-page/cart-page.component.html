@@ -12,33 +12,33 @@
           </div>
       </div>
 
-      <div *ngIf="cartItemsList.length" class="col-12 col-lg-4 cartSummaryContainer">
-          <h2>Order Summary</h2>
-          <div class="bg-light p-3">
-              <div class="d-flex justify-content-between">
-                  <h5 class="text-muted">Subtotal</h5>
-                  <h5>{{calculateTotalCartPrice() | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
-              </div>
-              <div class="d-flex justify-content-between">
-                  <h5 class="text-muted">Shipping Charges</h5>
-                  <h5>{{shippingCharges | currency:'INR':'symbol-narrow':'2.0-2'}}</h5>
-              </div>
-              <div class="d-flex justify-content-between">
-                  <h5 class="text-muted">Discount</h5>
-                  <h5> - {{discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
-              </div>
-              <hr>
-              <div class="d-flex justify-content-between py-3">
-                  <h4>Total</h4>
-                  <h5>{{calculateTotalCartPrice() + shippingCharges - discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
-              </div>
-              <div class="d-flex justify-content-center">
-                  <a routerLink="/checkout" (click)="proceedToCheckout()" class="btn btn-primary w-100" placement="bottom" ngbTooltip="Proceed to Checkout">
-                      Proceed To Checkout
-                      <span class="mdi mdi-arrow-right"></span>
-                  </a>
-              </div>
+      <div class="cartSummaryContainer">
+        <h2>Order Summary</h2>
+        <div class="bg-light p-3 w-100">
+          <div class="d-flex justify-content-between">
+            <h5 class="text-muted">Subtotal</h5>
+            <h5>{{calculateTotalCartPrice() | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
           </div>
+          <div class="d-flex justify-content-between">
+            <h5 class="text-muted">Shipping Charges</h5>
+            <h5>{{shippingCharges | currency:'INR':'symbol-narrow':'2.0-2'}}</h5>
+          </div>
+          <div class="d-flex justify-content-between">
+            <h5 class="text-muted">Discount</h5>
+            <h5> - {{discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-between py-3">
+            <h4>Total</h4>
+            <h5>{{calculateTotalCartPrice() + shippingCharges - discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+          </div>
+          <div class="w-100 d-flex justify-content-center gap-2 actionBtns">
+            <a (click)="proceedToCheckout()" class="btn btn-primary p-2 w-100">
+              Checkout
+              <span class="mdi mdi-arrow-right"></span>
+            </a>
+          </div>
+        </div>
       </div>
   </div>
 </div>

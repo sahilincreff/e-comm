@@ -1,47 +1,45 @@
-/* Cart Page Container */
+
 .cartSummaryContainer {
-  border-left: 1px solid #eaeaec; /* Left border for order summary */
+  border-left: 1px solid #eaeaec;
   padding-left: 20px;
-  position: relative; /* Default position for small screens */
+  position: relative; 
 }
 
-/* Empty Cart Image */
+
 .emptyCartImage {
   max-width: 100%;
-  width: 400px; /* Limit the image width */
+  width: 400px; 
 }
 
-/* Empty Cart Container */
+
 .emptyCartContainer {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Full height for vertical centering */
+  height: 100vh; 
   text-align: center;
 }
 
-/* Sticky Cart Summary (fixed on large screens) */
 @media (min-width: 992px) {
   .cartSummaryContainer {
-      position: fixed;  /* Fix the summary container */
-      top: 80px; /* Keep it in view while scrolling */
-      right: 0; /* Stick to the right of the screen */
-      width: 35%; /* Take up 35% of the screen width */
-      height: 100vh; /* Make it full height */
-      overflow-y: auto; /* Allow scrolling if the content exceeds screen height */
+      position: fixed;  
+      top: 80px;
+      right: 0; 
+      width: 35%; 
+      height: 100vh; 
+      overflow-y: auto; 
   }
 
   .col-lg-8 {
-      max-height: 100vh; /* Make sure cart items are scrollable */
-      overflow-y: auto; /* Allow cart items to scroll independently */
+      max-height: 100vh; 
+      overflow-y: auto; 
   }
 }
 
-/* Ensure that cart summary is stacked below on smaller screens */
 @media (max-width: 991px) {
   .cartSummaryContainer {
-      position: relative; /* Reset to normal positioning on smaller screens */
-      width: 100%; /* Full width on smaller screens */
+      position: relative; 
+      width: 100%; 
       margin-top: 20px;
   }
 }

@@ -154,20 +154,18 @@ h5 {
   top: 20px;
   padding: 20px;
   background: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for the sticky container */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
   border-radius: 10px;
-  /* Optional: increase the width for larger screens */
-  min-width: 350px; /* Ensure the summary doesn't shrink too much */
+  min-width: 350px; 
 }
 
 .cartSummaryContainer h2 {
   margin-bottom: 20px;
 }
 
-/* Responsive Design: Adjust grid and layout for smaller screens */
 @media screen and (max-width: 768px) {
   .cartPageContainer {
-    grid-template-columns: 1fr; /* Stack items in a single column on smaller screens */
+    grid-template-columns: 1fr; 
     gap: 15px;
   }
 
