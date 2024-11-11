@@ -1,21 +1,17 @@
 <div *ngIf="cartItemsQuantity()" class="container-fluid px-lg-5">
-  <!-- Cart Item List and Order Summary -->
   <div class="row">
-      <!-- Cart Item List (3/5 on large screens) -->
       <div class="col-12 col-lg-8">
           <div class="p-3" style="max-height: 100vh; overflow-y: auto;">
               <div class="d-flex justify-content-between align-items-start mb-3">
                   <h2>{{cartItemsList.length}} Items in Cart</h2>
                   <button class="btn btn-outline-danger" (click)="showModal()" placement="bottom" ngbTooltip="Clear Cart">Clear Cart</button>
               </div>
-              <!-- Loop through cart items -->
               <div *ngFor="let cartItem of cartItemsList" class="pt-2">
                   <app-cart-item [product]="cartItem"></app-cart-item>
               </div>
           </div>
       </div>
 
-      <!-- Order Summary (2/5 on large screens) -->
       <div *ngIf="cartItemsList.length" class="col-12 col-lg-4 cartSummaryContainer">
           <h2>Order Summary</h2>
           <div class="bg-light p-3">
@@ -47,14 +43,12 @@
   </div>
 </div>
 
-<!-- Empty Cart View (Centered) -->
 <div *ngIf="cartItemsQuantity() == 0" class="w-100 d-flex flex-column align-items-center justify-content-center gap-3 emptyCartContainer">
   <img class="emptyCartImage" src="assets/images/emptyCart.jpg" />
   <h1>Your Cart is Empty!</h1>
   <button routerLink="/" class="btn btn-primary">Back to Home</button>
 </div>
 
-<!-- Confirmation Modal -->
 <app-modal
   *ngIf="cartClearConfirmation"
   [message]="'Are you sure you want to clear the cart?'"

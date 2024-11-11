@@ -1,5 +1,4 @@
 <div class="uploadPageContainer">
-  <!-- File Upload Section -->
   <div class="d-flex align-items-baseline justify-content-center gap-2 uploadContainer">
     <div class="w-25 d-flex">
       <div class="uploadInput">
@@ -13,7 +12,6 @@
     </button>
   </div>
 
-  <!-- Error Handling Section -->
   <div *ngIf="hasErrors()">
     <div class="container">
       <div class="row">
@@ -38,10 +36,8 @@
     </div>
   </div>
 
-  <!-- Product Details Section (Display Products if No Errors) -->
   <div *ngIf="!hasErrors() && productDetails.length">
     <div class="cartPageContainer px-lg-5">
-      <!-- Product List (Left Side) -->
       <div class="productListContainer">
         <div class="p-3">
           <ng-container *ngFor="let product of productDetails">
@@ -67,7 +63,6 @@
         </div>
       </div>
 
-      <!-- Order Summary (Right Side) -->
       <div class="cartSummaryContainer">
         <h2>Order Summary</h2>
         <div class="bg-light p-3 w-100">
