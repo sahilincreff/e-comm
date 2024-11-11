@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart/cart.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
 import { cartItem } from 'src/app/shared/models/cartItem';
 
 @Component({
@@ -13,7 +14,7 @@ export class CartItemComponent {
   removeItemConfirmation: boolean = false;
   deleteIconVisible: boolean=false;
 
-  constructor(private cartService: CartService, private router: Router){}
+  constructor(private cartService: CartService, private router: Router, private toastService : ToastService){}
 
   showDeleteIcon(){
     this.deleteIconVisible=true;
@@ -29,7 +30,10 @@ export class CartItemComponent {
   }
 
   handleConfirmation(deleteItem: boolean){
-    if(deleteItem) this.handleItemRemove();
+    if(deleteItem){
+      this.handleItemRemove();
+      this.toastService.showToast('Item Removed From Cart', 'warning')
+    }
     this.removeItemConfirmation=false;
   }
 

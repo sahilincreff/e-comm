@@ -19,7 +19,7 @@
               <div class="addToCartContainer">
                 <app-add-to-cart [productId]="product.productId" [productDetailPage]="true"></app-add-to-cart>
               </div>
-              <button *ngIf="productQuantityInCart()>0" class="btn btn-sm btn-secondary d-none d-lg-block rounded-pill" (click)="removeItemFromCart()" placement="bottom" ngbTooltip="Remove Item From Cart">Remove From Cart</button>
+              <button *ngIf="productQuantityInCart()>0" class="btn btn-sm btn-secondary d-none d-lg-block rounded-pill px-3" (click)="removeItemFromCart()" placement="bottom" ngbTooltip="Remove Item From Cart">Remove From Cart</button>
             </div>
             <hr>
             <div class="mt-3">

@@ -1,17 +1,34 @@
 <div class="toast-container z-10 bg-transparent p-4">
-  <div *ngFor="let toast of toasts; let i=index"
-       class="p-3 align-items-center text-bg-primary border-0 rounded-pill"
+  <div *ngFor="let toast of toasts; let i = index" 
+       class="toast align-items-center border-0 rounded-pill"
        [ngClass]="{
-         'bg-success': toast.type === 'success',
-         'bg-danger': toast.type === 'error',
-         'bg-warning': toast.type === 'warning'
+         'text-bg-success': toast.type === 'success',
+         'text-bg-warning': toast.type === 'warning',
+         'text-bg-danger': toast.type === 'error'
        }"
        role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="d-flex">
-      <div class="toast-body">
-        {{toast.message}}
+    
+    <div class="toast-body">
+      <div class="d-flex gap-4">
+        <span *ngIf="toast.type === 'success'">
+          <i class="fa-solid fa-circle-check fa-lg"></i>
+        </span>
+        <span *ngIf="toast.type === 'warning'">
+          <i class="fa-solid fa-triangle-exclamation fa-lg"></i>
+        </span>
+        <span *ngIf="toast.type === 'error'">
+          <i class="fa-solid fa-circle-exclamation fa-lg"></i>
+        </span>
+
+        <div class="d-flex flex-grow-1 align-items-center">
+          <span class="fw-semibold">{{ toast.message }}</span>
+          <button (click)="removeToast(i)" 
+                  type="button" 
+                  class="btn-close btn-close-white btn-close-sm ms-auto" 
+                  data-bs-dismiss="toast" 
+                  aria-label="Close"></button>
+        </div>
       </div>
-      <button (click)="removeToast(i)" type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
   </div>
 </div>
