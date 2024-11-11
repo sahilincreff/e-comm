@@ -87,4 +87,13 @@ export class CartPageComponent implements OnInit {
     });
   }
 
+  totalCartItemsQuantity(){
+    const products=this.cartService.getCartItems();
+    let len=0;
+    Object.keys(products).map((curr)=>{
+      len+=(products[curr]);
+    })
+    return len;
+  }
+
 }

@@ -7,7 +7,6 @@ import { Component, OnDestroy, Input, OnChanges, SimpleChanges } from '@angular/
 })
 export class CarouselComponent implements OnDestroy, OnChanges {
   @Input() slideImages: string[] = [];
-
   selectedSlide = 0;
   currImage = '';
   showMoreImages = true;
