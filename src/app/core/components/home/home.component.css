@@ -67,3 +67,9 @@
     transform: translateX(250px);
   }
 }
+
+@media screen and (min-width: 992px){
+  .productsContainer{
+    margin-left: 250px;
+  }
+}

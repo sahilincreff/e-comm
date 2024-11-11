@@ -14,8 +14,8 @@
 </div>
 
 <div class="home-container d-flex flex-column flex-lg-row">
-  <app-filters class="filters shadow-sm d-none d-lg-block"></app-filters>
-  <app-products-list [ngClass]="{'sidebarOpen': isOpen}"></app-products-list>
+  <app-filters class="filters position-fixed shadow-sm d-none d-lg-block"></app-filters>
+  <app-products-list class="productsContainer" [ngClass]="{'sidebarOpen': isOpen}"></app-products-list>
 </div>
 
 <button class="mobile-filters-toggle position-fixed bottom-0 start-0 end-0 w-100 bg-white border-top shadow-sm p-3 text-center d-lg-none" (click)="toggleSidebar()">
