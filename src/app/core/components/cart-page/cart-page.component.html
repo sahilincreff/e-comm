@@ -1,51 +1,62 @@
-<div *ngIf="cartItemsQuantity()" class="cartPageContainer px-lg-5">
-    <div class="p-3">
-        <div class="cartPageHeader">
-            <h2>{{cartItemsList.length}} Items in Cart</h2>
-            <button class="clearCartBtn btn btn-outline-danger" (click)="showModal()" placement="bottom" ngbTooltip="Clear Cart">Clear Cart</button>
-        </div>
-        <div *ngFor="let cartItem of cartItemsList" class="" >
-            <app-cart-item [product]="cartItem" class="pt-4"></app-cart-item>
-        </div>
-    </div>
-    <div *ngIf="cartItemsList.length" class="cartSummaryContainer px-lg-40 py-lg-20 p-3 ">
-        <h2 >Order Summary</h2>
-        <div class="bg-light p-3 w-100">
-          <div class="d-flex justify-content-between">
-            <h5 class="text-muted">Subtotal</h5>
-          <h5>{{calculateTotalCartPrice() | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+<div *ngIf="cartItemsQuantity()" class="container-fluid px-lg-5">
+  <!-- Cart Item List and Order Summary -->
+  <div class="row">
+      <!-- Cart Item List (3/5 on large screens) -->
+      <div class="col-12 col-lg-8">
+          <div class="p-3" style="max-height: 100vh; overflow-y: auto;">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                  <h2>{{cartItemsList.length}} Items in Cart</h2>
+                  <button class="btn btn-outline-danger" (click)="showModal()" placement="bottom" ngbTooltip="Clear Cart">Clear Cart</button>
+              </div>
+              <!-- Loop through cart items -->
+              <div *ngFor="let cartItem of cartItemsList" class="pt-2">
+                  <app-cart-item [product]="cartItem"></app-cart-item>
+              </div>
           </div>
-          <div class="d-flex justify-content-between">
-            <h5 class="text-muted">Shipping Charges</h5>
-            <h5>{{shippingCharges | currency:'INR':'symbol-narrow':'2.0-2'}}</h5>
+      </div>
+
+      <!-- Order Summary (2/5 on large screens) -->
+      <div *ngIf="cartItemsList.length" class="col-12 col-lg-4 cartSummaryContainer">
+          <h2>Order Summary</h2>
+          <div class="bg-light p-3">
+              <div class="d-flex justify-content-between">
+                  <h5 class="text-muted">Subtotal</h5>
+                  <h5>{{calculateTotalCartPrice() | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+              </div>
+              <div class="d-flex justify-content-between">
+                  <h5 class="text-muted">Shipping Charges</h5>
+                  <h5>{{shippingCharges | currency:'INR':'symbol-narrow':'2.0-2'}}</h5>
+              </div>
+              <div class="d-flex justify-content-between">
+                  <h5 class="text-muted">Discount</h5>
+                  <h5> - {{discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+              </div>
+              <hr>
+              <div class="d-flex justify-content-between py-3">
+                  <h4>Total</h4>
+                  <h5>{{calculateTotalCartPrice() + shippingCharges - discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+              </div>
+              <div class="d-flex justify-content-center">
+                  <a routerLink="/checkout" (click)="proceedToCheckout()" class="btn btn-primary w-100" placement="bottom" ngbTooltip="Proceed to Checkout">
+                      Proceed To Checkout
+                      <span class="mdi mdi-arrow-right"></span>
+                  </a>
+              </div>
           </div>
-          <div class="d-flex justify-content-between">
-            <h5 class="text-muted">Discount</h5>
-            <h5> - {{discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
-          </div>
-          <hr>
-          <div class="d-flex justify-content-between py-3">
-            <h4>Total</h4>
-            <h5>{{calculateTotalCartPrice()+ shippingCharges - discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
-          </div>
-          <div class="w-100 d-flex justify-content-center">
-            <a routerLink="/checkout" (click)="proceedToCheckout()" class="btn btn-primary p-2 w-100" placement="bottom" ngbTooltip="Proceed to Checkout">
-              Proceed To Checkout
-              <span class="mdi mdi-arrow-right"></span>
-            </a>
-          </div>
-        </div>
-    </div>
-</div>
-<div *ngIf="cartItemsQuantity()==0" class="w-100 d-flex flex-column emtpyCartContainer gap-2">
-    <img class="emptyCartImage" src="assets/images/emptyCart.jpg" />
-    <h1>Your Cart is Empty!</h1>
-    <button routerLink="/" class="btn btn-primary">Back to Home</button>
+      </div>
+  </div>
 </div>
 
+<!-- Empty Cart View (Centered) -->
+<div *ngIf="cartItemsQuantity() == 0" class="w-100 d-flex flex-column align-items-center justify-content-center gap-3 emptyCartContainer">
+  <img class="emptyCartImage" src="assets/images/emptyCart.jpg" />
+  <h1>Your Cart is Empty!</h1>
+  <button routerLink="/" class="btn btn-primary">Back to Home</button>
+</div>
 
+<!-- Confirmation Modal -->
 <app-modal
-    *ngIf="cartClearConfirmation"
-    [message]="'Are you sure you want to clear the cart?'"
-    (confirmed)="handleConfirmation($event)"
-></app-modal>
+  *ngIf="cartClearConfirmation"
+  [message]="'Are you sure you want to clear the cart?'"
+  (confirmed)="handleConfirmation($event)">
+</app-modal>

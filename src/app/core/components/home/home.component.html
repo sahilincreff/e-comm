@@ -1,23 +1,23 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light d-lg-none">
-    <button class="navbar-toggler border border-light mobileFiltersToggle" type="button" (click)="toggleSidebar()" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
-      Filters
-      <span class="mdi mdi-filter"></span>
-    </button>
-  </nav>
-  
-<div [ngClass]="{'active': isOpen}" class="shadow-lg sidebar" id="sidebar">
-    <button (click)="toggleSidebar()" class="rounded sticky-top bg-transparent border-0 p-3">
-      <span class="mdi mdi-chevron-left"></span>
-      Back to Products
-    </button>
-    <app-filters></app-filters>
+  <button class="navbar-toggler border border-light mobile-filters-toggle" type="button" (click)="toggleSidebar()" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+    Filters
+    <span class="mdi mdi-filter"></span>
+  </button>
+</nav>
+
+<div [ngClass]="{'active': isOpen}" class="sidebar position-fixed top-0 start-0 w-100 h-100 bg-light shadow-lg transition-all zindex-1050 d-lg-none">
+  <button (click)="toggleSidebar()" class="btn btn-link text-dark rounded-0 sticky-top p-3">
+    <span class="mdi mdi-chevron-left"></span>
+    Back to Products
+  </button>
+  <app-filters></app-filters>
 </div>
 
-<!-- TODO: use bootstrap classes wherever possible -->
-<div class="homeContainer">
-    <app-filters class="filters shadow-sm"></app-filters>
-    <app-products-list [ngClass]="{'sidebarOpen': isOpen}"></app-products-list>
+<div class="home-container d-flex flex-column flex-lg-row">
+  <app-filters class="filters shadow-sm d-none d-lg-block"></app-filters>
+  <app-products-list [ngClass]="{'sidebarOpen': isOpen}"></app-products-list>
 </div>
 
-
-
+<button class="mobile-filters-toggle position-fixed bottom-0 start-0 end-0 w-100 bg-white border-top shadow-sm p-3 text-center d-lg-none" (click)="toggleSidebar()">
+  <span class="mdi mdi-filter"></span> Filters
+</button>

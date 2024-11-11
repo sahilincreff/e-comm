@@ -1,61 +1,37 @@
-.homeContainer{
-    display: grid;
-    grid-template-columns: 3fr 14fr;
-}
-
-@media screen and (max-width: 768px) {
-    .homeContainer{
-        grid-template-columns: 1fr;
-    }
-    .filters{
-        display: none;
-    }
-  }
-
-@media screen and (max-width: 430px) {
-    .productListContainer{
-        grid-template-columns: 1fr;
-    }
-    .filters{
-        display: none;
-    }
-}
-
 .sidebar {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    height: 100%;
-    width: 100%;
-    background: #f8f9fa;
-    transition: left 0.5s;
-    z-index: 1000;
-  }
-  
-  .sidebar.active {
-    left: 0;
-  }
-
-  .content {
-    margin-left: 100%;
-    transition: margin-left 0.3s;
-  }
-  
-  .sidebar.active + .content {
-    margin-left: 0;
-  }
-  
-/* TODO: .mobile-filters-toggle naming convention */
-.mobileFiltersToggle, .mobileUpload{
-  border: 1px solid #E1E5E9 !important;
-  margin: 0px 10px;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(-100%);
+  z-index: 1050; 
 }
 
-.sidebarOpen{
-  opacity: 50%;
+.sidebar.active {
+  transform: translateX(0); 
 }
 
-.mobileFiltersToggle{
+.home-container .filters {
+  transition: transform 0.3s ease-in-out;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-container .filters.d-none {
+  display: none; 
+}
+
+.home-container .sidebarOpen {
+  opacity: 0.5;
+  pointer-events: none; 
+  transition: opacity 0.3s ease-in-out;
+}
+
+.app-products-list {
+  z-index: 1; 
+}
+
+.mobile-filters-toggle {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -66,5 +42,28 @@
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
   width: 100%;
   z-index: 100;
-  margin: 0px;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .home-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .filters {
+    display: none;
+  }
+
+  .sidebar.active + .home-container .filters {
+    display: block;
+  }
+
+  .app-products-list {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .sidebar.active + .home-container .app-products-list {
+    transform: translateX(250px);
+  }
 }
