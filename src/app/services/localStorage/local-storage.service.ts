@@ -57,7 +57,7 @@ export class LocalStorageService {
       return userCart;  // Return the cart data as it is stored in localStorage
     } catch (error) {
       // Handle any errors, like corrupted cart data
-      this.toastService.showToast('There were some modifications in the Cart stored in local storage, clearing the local storage cart!');
+      this.toastService.showToast('There were some modifications in the Cart stored in local storage, clearing the local storage cart!', "error");
       localStorage.removeItem(this.cartKey);  // Clear localStorage if cart data is invalid
       return {};  // Return an empty object if the data is corrupted
     }

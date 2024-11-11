@@ -46,14 +46,14 @@ export class AddToCartComponent implements OnInit, OnDestroy {
       this.showRemoveConfirmation = true;
     } else {
       this.cartService.decreaseQuantity(this.productId);
-      this.toastService.showToast('Item Removed Successfully', 'success', 2000);
+      this.toastService.showToast('Item Quantity decreased by 1', 'warning', 2000);
     }
   }
 
   removeConfirmation(confirmation: boolean): void {
     if (confirmation) {
       this.cartService.removeItemFromCart(this.productId);
-      this.toastService.showToast('Item Removed Successfully', 'success', 2000);
+      this.toastService.showToast('Item Removed From Cart', 'warning', 2000);
     }
     this.showRemoveConfirmation = false;
   }

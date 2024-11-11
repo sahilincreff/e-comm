@@ -3,7 +3,7 @@
         <div class="w-100">
             <div class="cartItemHeader">
                 <h3 class="productBrand">{{product.brand}}</h3>
-                    <button class="removeItemBtn" (click)="toggleItemConfirmation($event)">
+                <button class="removeItemBtn" (click)="toggleItemConfirmation($event)" placement="bottom" ngbTooltip="Remove Item From Cart">
                     <span class="mdi mdi-delete-outline"></span>
                 </button>
             </div>

@@ -1,5 +1,12 @@
 <div class="toast-container z-10 bg-transparent p-4">
-  <div *ngFor="let toast of toasts; let i=index" class="bg-black p-3 align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+  <div *ngFor="let toast of toasts; let i=index"
+       class="p-3 align-items-center text-bg-primary border-0 rounded-pill"
+       [ngClass]="{
+         'bg-success': toast.type === 'success',
+         'bg-danger': toast.type === 'error',
+         'bg-warning': toast.type === 'warning'
+       }"
+       role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
       <div class="toast-body">
         {{toast.message}}

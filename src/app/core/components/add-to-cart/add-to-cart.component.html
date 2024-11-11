@@ -1,14 +1,14 @@
 <div (click)="handleProductQuantityClick($event)" class="addToCartContainer">
-    <button class="addToCartBtn rounded-pill btn btn-primary" (click)="addProductToCart()" *ngIf="!productPresentInCart() || itemQuantityInCart() === 0">
+    <button class="addToCartBtn rounded-pill btn btn-primary" (click)="addProductToCart()" *ngIf="!productPresentInCart() || itemQuantityInCart() === 0" placement="bottom" ngbTooltip="Add Product To Cart">
         Add To Cart
     </button>
     <div *ngIf="productPresentInCart() && itemQuantityInCart() > 0" class="d-flex gap-1">
         <div [ngClass]="{'quantityInCart': true, 'w-75': productDetailPage, 'w-100': !productDetailPage}">
-            <button class="incrementDecrementBtn rounded-pill" (click)="decreaseItemQuantity()">-</button>
+            <button class="incrementDecrementBtn rounded-pill" (click)="decreaseItemQuantity()" placement="bottom" ngbTooltip="Decrease Item Quantity">-</button>
             <h5>{{itemQuantityInCart()}}</h5>
-            <button class="incrementDecrementBtn rounded-pill" (click)="increaseItemQuantity()">+</button>
+            <button class="incrementDecrementBtn rounded-pill" (click)="increaseItemQuantity()" placement="bottom" ngbTooltip="Increase Item Quantity">+</button>
         </div>
-        <button *ngIf="productDetailPage"  (click)="removeItemFromCart()" class="d-block d-lg-none incrementDecrementBtn">Remove</button>
+        <button *ngIf="productDetailPage"  (click)="removeItemFromCart()" class="d-block d-lg-none incrementDecrementBtn" placement="bottom" ngbTooltip="Remove From Cart">Remove</button>
     </div>
 </div>
 

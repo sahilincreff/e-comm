@@ -24,6 +24,7 @@ import { DiscountPipe } from './shared/pipes/discount.pipe';
 import { ToastComponent } from './shared/components/toast/toast.component';
 import { CheckoutComponent } from './core/components/checkout/checkout.component';
 import { InrCurrencyPipe } from './shared/pipes/inr-currency.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { InrCurrencyPipe } from './shared/pipes/inr-currency.pipe';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

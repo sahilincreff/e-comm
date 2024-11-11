@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ProductsService } from 'src/app/services/products/products.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
 import { Product } from 'src/app/shared/models/product';
 
 @Component({
@@ -13,8 +14,9 @@ export class ProductDetailComponent implements OnInit {
   productId: string | null=null;
   product!: Product;
   invalidProduct!: boolean;
+  showRemoveConfirmation: boolean=false;
 
-  constructor(private router: ActivatedRoute, private cartService: CartService, private productService: ProductsService){
+  constructor(private router: ActivatedRoute, private cartService: CartService, private productService: ProductsService, private toastService: ToastService){
     
   }
 
@@ -47,7 +49,19 @@ export class ProductDetailComponent implements OnInit {
     return this.cartService.getItemQuantityInCart(this.productId || "");
   }
 
+  confirmation(){
+
+  }
+
+  handleRemoveConfirmation($event: boolean){
+    if($event){
+      this.cartService.removeItemFromCart(this.productId || "");
+      this.toastService.showToast('Item removed from cart', 'warning')
+    }
+    this.showRemoveConfirmation=false;
+  }
+
   removeItemFromCart(){
-    this.cartService.removeItemFromCart(this.productId || "");
+    this.showRemoveConfirmation=true;
   }
 }

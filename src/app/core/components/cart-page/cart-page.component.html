@@ -1,8 +1,8 @@
 <div *ngIf="cartItemsQuantity()" class="cartPageContainer px-lg-5">
     <div class="p-3">
         <div class="cartPageHeader">
-            <h2>{{cartItemsList.length}} products in Cart</h2>
-            <button class="clearCartBtn btn btn-outline-danger" (click)="showModal()">Clear Cart</button>
+            <h2>{{cartItemsList.length}} Items in Cart</h2>
+            <button class="clearCartBtn btn btn-outline-danger" (click)="showModal()" placement="bottom" ngbTooltip="Clear Cart">Clear Cart</button>
         </div>
         <div *ngFor="let cartItem of cartItemsList" class="" >
             <app-cart-item [product]="cartItem" class="pt-4"></app-cart-item>
@@ -29,7 +29,7 @@
             <h5>{{calculateTotalCartPrice()+ shippingCharges - discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
           </div>
           <div class="w-100 d-flex justify-content-center">
-            <a routerLink="/checkout" (click)="proceedToCheckout()" class="btn btn-primary p-2 w-100">
+            <a routerLink="/checkout" (click)="proceedToCheckout()" class="btn btn-primary p-2 w-100" placement="bottom" ngbTooltip="Proceed to Checkout">
               Proceed To Checkout
               <span class="mdi mdi-arrow-right"></span>
             </a>

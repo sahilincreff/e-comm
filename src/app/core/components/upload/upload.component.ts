@@ -36,19 +36,19 @@ export class UploadComponent {
     const file = event.target.files[0];
     if (file) {
       if (file.type !== 'text/csv') {
-        this.toastService.showToast('Please select CSV Files only');
+        this.toastService.showToast('Please select CSV Files only', "error");
         return;
       } else {
         this.selectedFile = file;
       }
     } else {
-      this.toastService.showToast("Oh no! You didn't select any file");
+      this.toastService.showToast("Oh no! You didn't select any file", "warning");
     }
   }
 
   handleUploadClick() {
     if (!this.selectedFile) {
-      this.toastService.showToast("Please select a file to upload.");
+      this.toastService.showToast("Please select a file to upload.", "error");
       return;
     }
     this.errors=[];
