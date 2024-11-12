@@ -1,6 +1,5 @@
 
 .cartSummaryContainer {
-  border-left: 1px solid #eaeaec;
   padding-left: 20px;
   position: relative; 
 }
@@ -23,8 +22,8 @@
   .cartSummaryContainer {
       position: fixed;  
       top: 80px;
-      right: 0; 
-      width: 35%; 
+      right: 5vw; 
+      width: 30%; 
       height: 100vh; 
       overflow-y: auto; 
   }

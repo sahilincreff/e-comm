@@ -3,6 +3,7 @@ import { CartService } from 'src/app/services/cart/cart.service';
 import User from '../../../shared/models/user';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -16,6 +17,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   dropdownVisible: boolean = false;
   isModalVisible = false;
 
+  constructor(private cartService: CartService, private authService: AuthService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.currentUserSubscription = this.authService.currentUser$.subscribe(user => {
+      this.currentUser = user;
+      this.userLoggedIn = !!this.currentUser;
+    });
+  }
+
   showModal() {
     this.isModalVisible = true;
   }
@@ -27,15 +37,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   handleConfirmation(confirmed: boolean) {
     if (confirmed) this.handleLogout();
     this.isModalVisible = false;
-  }
-
-  constructor(private cartService: CartService, private authService: AuthService) {}
-
-  ngOnInit(): void {
-    this.currentUserSubscription = this.authService.currentUser$.subscribe(user => {
-      this.currentUser = user;
-      this.userLoggedIn = !!this.currentUser;
-    });
   }
 
   ngOnDestroy(): void {
@@ -55,5 +56,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.logout();
     this.userLoggedIn = false; 
     this.cartService.clearCart();
+  }
+
+  isLoginPage(): boolean{
+    return this.router.url === '/login'; 
   }
 }
