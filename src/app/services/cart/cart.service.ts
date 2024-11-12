@@ -12,7 +12,7 @@ export class CartService {
   private cartItems: { [productId: string]: number } = {}; 
   private cartItemsSubject: BehaviorSubject<{ [productId: string]: number }> = new BehaviorSubject<{ [productId: string]: number }>(this.cartItems); // To notify listeners when the cart changes
   private cartMerged: boolean = false; 
-  maxQuantity: number = 10;
+  maxQuantity: number = 99;
   private cartLoaded: boolean = false;
 
   constructor(

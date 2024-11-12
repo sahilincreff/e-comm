@@ -1,6 +1,7 @@
 <div class="modal-overlay" (click)="close()">
   <div class="modal-content" (click)="$event.stopPropagation()">
     <span>{{ message }}</span>
+    <hr>
     <div class="confirmationBtns">
       <button class="btn btn-primary" (click)="confirm()">Yes</button>
       <button class="btn btn-secondary" (click)="close()">No</button>
@@ -21,8 +22,8 @@
         <p>Modal body text goes here.</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-sm btn-primary">Save changes</button>
+        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

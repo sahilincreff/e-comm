@@ -19,7 +19,7 @@
               <div class="addToCartContainer">
                 <app-add-to-cart [productId]="product.productId" [productDetailPage]="true"></app-add-to-cart>
               </div>
-              <button *ngIf="productQuantityInCart()>0" class="btn btn-sm btn-secondary d-none d-lg-block rounded-pill px-3" (click)="removeItemFromCart()" placement="bottom" >Remove From Cart</button>
+              <button *ngIf="productQuantityInCart()>0" class="btn btn-sm btn-danger d-none d-lg-block rounded-pill px-3" (click)="removeItemFromCart()" placement="bottom" >Remove From Cart</button>
             </div>
             <hr>
             <div class="mt-3">
@@ -50,7 +50,7 @@
           <img class="noProductCardImage" src="assets/images/6430770.webp" />
           <h3 class="h2 mb-2">Oops! You're lost.</h3>
           <p class="mb-5">There is no product in our inventory with the product Id <span class="fw-bold">{{productId}}</span></p>
-          <a class="btn bsb-btn-5xl btn-dark rounded-pill px-5 fs-6 m-0" routerLink="/" role="button">Back to Home</a>
+          <a class="btn bsb-btn-5xl btn-sm btn-dark rounded-pill px-5 fs-6 m-0" routerLink="/" role="button">Back to Home</a>
         </div>
       </div>
     </div>

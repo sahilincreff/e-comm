@@ -4,7 +4,7 @@
           <div class="p-3" style="max-height: 100vh; overflow-y: auto;">
               <div class="d-flex justify-content-between align-items-start mb-3">
                   <h2>{{totalCartItemsQuantity()}} Items in Cart</h2>
-                  <button class="btn btn-outline-danger" (click)="showModal()">Clear Cart</button>
+                  <button class="btn btn-outline-danger bt-sm" (click)="showModal()">Clear Cart</button>
               </div>
               <div *ngFor="let cartItem of cartItemsList" class="pt-2">
                   <app-cart-item [product]="cartItem"></app-cart-item>
@@ -33,7 +33,7 @@
             <h5>{{calculateTotalCartPrice() + shippingCharges - discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
           </div>
           <div class="w-100 d-flex justify-content-center gap-2 actionBtns">
-            <a (click)="proceedToCheckout()" class="btn btn-primary p-2 w-100">
+            <a (click)="proceedToCheckout()" class="btn bt-sm btn-primary p-2 w-100">
               Checkout
               <span class="mdi mdi-arrow-right"></span>
             </a>
@@ -46,7 +46,7 @@
 <div *ngIf="cartItemsQuantity() == 0" class="w-100 d-flex flex-column align-items-center justify-content-center gap-3 emptyCartContainer">
   <img class="emptyCartImage" src="assets/images/emptyCart.jpg" />
   <h1>Your Cart is Empty!</h1>
-  <button routerLink="/" class="btn btn-primary">Back to Home</button>
+  <button routerLink="/" class="btn btn-sm btn-primary">Back to Home</button>
 </div>
 
 <app-modal

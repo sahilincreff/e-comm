@@ -3,7 +3,7 @@
     <div class="w-25 d-flex">
       <div class="uploadInput">
         <input class="form-control" type="file" id="formFile" accept=".csv" (change)="handleFileChange($event)">
-        <a class="btn btn-link p-0 text-decoration-none" href="assets/csv/template.csv" download="template.csv">Download CSV Template</a>
+        <a class="btn btn-sm btn-link p-0 text-decoration-none" href="assets/csv/template.csv" download="template.csv">Download CSV Template</a>
       </div>
     </div>
     <button type="button" class="btn btn-sm btn-primary" [disabled]="!selectedFile" (click)="handleUploadClick()"

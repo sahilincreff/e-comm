@@ -27,14 +27,12 @@ export class CartPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Subscribe to cart updates
     this.cartService.getCartItemsObservable().subscribe(() => {
       this.loadCartItems();
     });
   }
 
   private loadCartItems(): void {
-    // Get cart items from the cart service
     this.cartItems = this.cartService.getCartItems();
     const productIds = Object.keys(this.cartItems);
 

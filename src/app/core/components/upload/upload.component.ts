@@ -8,12 +8,12 @@ import { cartItem } from 'src/app/shared/models/cartItem';
 import { Product } from 'src/app/shared/models/product';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.css']
 })
+
 export class UploadComponent {
   csvData: any[] = []; 
   productIds: string[] = [];
@@ -51,31 +51,43 @@ export class UploadComponent {
       this.toastService.showToast("Please select a file to upload.", "error");
       return;
     }
-    this.errors=[];
+    this.errors = [];
     Papa.parse(this.selectedFile, {
       complete: (results: any) => {
         const rows = results.data;
-        rows.forEach((rowData: any) => {
-          const productId = rowData.productId;
-          if (this.productService.isValidProduct(productId)) {
+        rows.forEach((rowData: any, index: number) => {
+          const productId = rowData.productId;          
+          if (rowData.quantity <= 0 || !rowData.quantity) {
+            this.errors[index + 1] = "Invalid Product Quantity";
+          }
+          else if (rowData.quantity >this.cartService.maxQuantity) {
+            this.errors[index + 1] = `Item Quantity greater than max Allowed Quantity(Max Quantity Allowed ${this.cartService.maxQuantity}`;
+          }
+          else if (this.productService.isValidProduct(productId)) {
             this.productService.isValidProduct(productId).subscribe(isValid => {
               if (isValid) {
                 this.productService.getProductDetailsFromId([productId]).subscribe(products => {
                   if (products.length > 0) {
-                    const productDetail = products[0];
-                    this.productDetails.push({
-                      ...productDetail, 
-                      quantity: rowData.quantity || 1 
-                    });
-                    this.cdr.detectChanges(); 
+                    const productDetail = products[0];  
+                    const existingProduct = this.productDetails.find(p => p.productId === productId);
+                    if (existingProduct) {
+                      existingProduct.quantity += rowData.quantity || 1;
+                    } else {
+                      this.productDetails.push({
+                        ...productDetail,
+                        quantity: rowData.quantity || 1 
+                      });
+                    }
+  
+                    this.cdr.detectChanges();
                   }
                 });
               } else {
-                this.errors[productId] = 'Invalid product ID';
+                this.errors[index + 1] = 'Invalid product ID';
               }
             });
           } else {
-            this.errors[productId] = 'Product not found';
+            this.errors[index + 1] = 'Product not found';
           }
         });
       },
@@ -83,6 +95,7 @@ export class UploadComponent {
       skipEmptyLines: true,
     });
   }
+  
 
   hasErrors(): boolean {
     return Object.keys(this.errors).length > 0;
