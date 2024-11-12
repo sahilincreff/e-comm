@@ -71,11 +71,11 @@ export class UploadComponent {
                     const productDetail = products[0];  
                     const existingProduct = this.productDetails.find(p => p.productId === productId);
                     if (existingProduct) {
-                      existingProduct.quantity += rowData.quantity || 1;
+                      existingProduct.quantity += parseInt(rowData.quantity)|| 1;
                     } else {
                       this.productDetails.push({
                         ...productDetail,
-                        quantity: rowData.quantity || 1 
+                        quantity: parseInt(rowData.quantity) || 1 
                       });
                     }
   

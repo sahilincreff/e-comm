@@ -1,6 +1,8 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { FiltersService } from 'src/app/services/filters/filters.service';
+import { ProductsService } from 'src/app/services/products/products.service';
 import Filter from 'src/app/shared/models/filter';
+import { FILTERS } from 'src/assets/constants/filters';
 
 @Component({
   selector: 'app-filters',
@@ -13,7 +15,42 @@ export class FiltersComponent implements OnInit {
 
   @Output() filterChange = new EventEmitter<Partial<Filter>>();
 
-  constructor(private filterService: FiltersService) {}
+  constructor(private filterService: FiltersService, private productService: ProductsService) {
+    this.productService.fetchProducts().subscribe(
+      (products) => {
+        const filters: Filter = {
+          brands: [],
+          processor: [],
+          price: [Infinity, -Infinity],
+          connectivity: [],
+          battery: [Infinity, -Infinity], 
+          category: [],
+        };
+
+        products.forEach((product) => {
+          if (!filters.brands.includes(product.brand)) {
+            filters.brands.push(product.brand);
+          }
+          if (!filters.processor.includes(product.processor)) {
+            filters.processor.push(product.processor);
+          }
+
+          if (!filters.connectivity.includes(product.connectivity)) {
+            filters.connectivity.push(product.connectivity);
+          }
+
+          filters.battery[0] = Math.min(filters.battery[0], product.battery);
+          filters.battery[1] = Math.max(filters.battery[1], product.battery); 
+        });
+        this.filters = filters;
+        this.filters.price=FILTERS.price;
+        this.filterChange.emit(this.filters);
+      },
+      (error) => {
+        console.error('Error fetching products:', error);
+      }
+    );
+  }
 
   ngOnInit() {
     this.filters = this.filterService.getFilters();

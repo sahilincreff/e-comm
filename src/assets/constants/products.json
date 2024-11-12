@@ -16,7 +16,7 @@
         },
         "usp": ["camera", "ui", "premium"],
         "rating": 5.0,
-        "processor": "Google Tensor",
+        "processor": "Tensor",
         "connectivity": "5G",
         "battery":5000,
         "category": "premium"
@@ -159,6 +159,7 @@
         },
         "usp": ["performance", "storage"],
         "rating": 5.0,
+        "processor":"Tensor",
         "connectivity": "5G",
         "battery":5000,
         "category": "premium"
@@ -209,6 +210,7 @@
         },
         "usp": ["performance", "storage"],
         "rating": 5.0,
+        "processor":"MediaTek",
         "connectivity": "5G",
         "battery":5000,
         "category": "budget"
@@ -230,6 +232,7 @@
         "usp": ["performance", "storage"],
         "rating": 5.0,
         "connectivity": "5G",
+        "processor":"Tensor",
         "battery":5000,
         "category": "premium"
     }
