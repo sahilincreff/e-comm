@@ -1,10 +1,26 @@
-<div class="toast-container z-10 bg-transparent p-4">
-  <div *ngFor="let toast of toasts; let i=index" class="bg-black p-3 align-items-center text-bg-primary border-0 rounded-pill" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="d-flex">
-      <div class="toast-body">
-        {{toast.message}}
-      </div>
-      <button (click)="removeToast(i)" type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+<!-- Toast Trigger Button (optional, for showing toasts programmatically) -->
+<button #toastTrigger type="button" class="btn btn-primary d-none" data-bs-toggle="toast" data-bs-target="#liveToastBtn">
+  Show Toast
+</button>
+
+<!-- Toast Container positioned at the bottom-right of the screen -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div *ngFor="let toast of toasts; let i = index" 
+       class="toast" 
+       id="liveToast" 
+       role="alert" 
+       aria-live="assertive" 
+       aria-atomic="true"
+       #toastElement>
+    
+    <div class="toast-header">
+      <!-- Optional Image/Icon for the Toast -->
+
+      <button type="button" class="btn-close" aria-label="Close" (click)="removeToast(i)"></button>
+    </div>
+    
+    <div class="toast-body">
+      {{toast.message}}
     </div>
   </div>
 </div>

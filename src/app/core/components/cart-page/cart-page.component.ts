@@ -74,11 +74,6 @@ export class CartPageComponent implements OnInit {
     this.cartItemsList = [];
   }
 
-  cartItemsQuantity(): number{
-    const products=this.cartService.getCartItems();
-    return Object.keys(products).length;
-  }
-
   proceedToCheckout(){
     this.router.navigate(['/checkout'], {
       state: { productDetails: this.cartItems, isFromCart: true}
@@ -86,12 +81,9 @@ export class CartPageComponent implements OnInit {
   }
 
   totalCartItemsQuantity(){
-    const products=this.cartService.getCartItems();
-    let len=0;
-    Object.keys(products).map((curr)=>{
-      len+=(products[curr]);
-    })
-    return len;
+    return this.cartItemsList.reduce((total, item) => {
+      return (total + item.quantity);
+    }, 0);
   }
 
 }

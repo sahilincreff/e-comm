@@ -38,6 +38,7 @@ export class CartService {
 
     this.cartItemsSubject.next(this.cartItems); 
     this.cartLoaded = true;
+    this.updateCart();
   }
 
   private handleUserLogin(user: User): void {
@@ -77,6 +78,7 @@ export class CartService {
     }
 
     this.cartItemsSubject.next(this.cartItems);
+    this.updateCart();
   }
 
   private updateCart(): void {

@@ -3,6 +3,7 @@ import { Cart } from 'src/app/shared/models/cart';
 import { AuthService } from '../auth/auth.service';
 import User from 'src/app/shared/models/user';
 import { ToastService } from '../toast/toast.service';
+import { ProductsService } from '../products/products.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +11,12 @@ import { ToastService } from '../toast/toast.service';
 export class LocalStorageService {
   private cartKey = 'cartItems';  
   private guestCartKey = 'guestCart';
+  maxAllowedQuantity: number=99;
 
   constructor(
     private authService: AuthService, 
-    private toastService: ToastService
+    private toastService: ToastService,
+    private productService: ProductsService
   ) {}
 
   updateCart(cartItems: { [productId: string]: number }): void {
@@ -28,15 +31,28 @@ export class LocalStorageService {
   getCurrentUserCart(): Cart | null {
     const currentUser: User | null = this.authService.getCurrentUser();
     const storedCartString = localStorage.getItem(this.cartKey);
-
     if (!storedCartString) return {};  
-
     try {
       const storedCart = JSON.parse(storedCartString);
       const userId = currentUser ? currentUser.userId : this.guestCartKey;
-      const userCart = storedCart[userId] || {};  
-
-      return userCart; 
+      const userCart = storedCart[userId] || {};
+      const lsObj:{[key:string]:number}={};
+      Object.keys(userCart).map((curr)=>{
+        if(this.productService.isValidProduct(curr)){
+          let quantity=userCart[curr];
+          if(quantity>=0 && quantity<=this.maxAllowedQuantity){
+            if(lsObj[curr]){
+              lsObj[curr]+=parseInt(quantity);
+            }else{
+              lsObj[curr]=parseInt(quantity);
+            }
+          }else{
+            this.toastService.showToast('There were some modifications in the Cart stored in local storage, clearing the local storage cart!', "error");
+            this.clearCart();
+          }
+        }
+      })
+      return lsObj; 
     } catch (error) {
       this.toastService.showToast('There were some modifications in the Cart stored in local storage, clearing the local storage cart!', "error");
       localStorage.removeItem(this.cartKey); 

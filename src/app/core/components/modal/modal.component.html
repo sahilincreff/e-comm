@@ -1,31 +1,17 @@
-<div class="modal-overlay" (click)="close()">
-  <div class="modal-content" (click)="$event.stopPropagation()">
-    <span>{{ message }}</span>
-    <hr>
-    <div class="confirmationBtns">
-      <button class="btn btn-primary" (click)="confirm()">Yes</button>
-      <button class="btn btn-secondary" (click)="close()">No</button>
-    </div>
-  </div>
-</div>
+<button #toastTrigger type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+  Trigger Modal
+</button>
 
-<div class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" #modal>
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
       <div class="modal-body">
-        <p>Modal body text goes here.</p>
+        {{ message }}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-sm btn-primary">Save changes</button>
-        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" (click)="close()">No</button>
+        <button type="button" class="btn btn-primary" (click)="confirm()">Yes</button>
       </div>
     </div>
   </div>
 </div>
-

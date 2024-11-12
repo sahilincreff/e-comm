@@ -1,4 +1,4 @@
-<div *ngIf="cartItemsQuantity()" class="container-fluid px-lg-5">
+<div *ngIf="totalCartItemsQuantity()" class="container-fluid px-lg-5">
   <div class="row">
       <div class="col-12 col-lg-8 border-end">
           <div class="p-3" style="max-height: 100vh; overflow-y: auto;">
@@ -43,7 +43,7 @@
   </div>
 </div>
 
-<div *ngIf="cartItemsQuantity() == 0" class="w-100 d-flex flex-column align-items-center justify-content-center gap-3 emptyCartContainer">
+<div *ngIf="totalCartItemsQuantity() == 0" class="w-100 d-flex flex-column align-items-center justify-content-center gap-3 emptyCartContainer">
   <img class="emptyCartImage" src="assets/images/emptyCart.jpg" />
   <h1>Your Cart is Empty!</h1>
   <button routerLink="/" class="btn btn-sm btn-primary">Back to Home</button>

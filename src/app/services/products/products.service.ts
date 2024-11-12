@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, map, throwError, BehaviorSubject } from 'rxjs';
+import { Observable, catchError, map, throwError, BehaviorSubject,of } from 'rxjs';
 import { Product } from 'src/app/shared/models/product';
 import { FiltersService } from '../filters/filters.service';
 
@@ -49,10 +49,14 @@ export class ProductsService {
 
 
   isValidProduct(productId: string | null): Observable<boolean> {
+    if (this.products) {
+      return of(this.products.some(product => product.productId === productId));
+    }
     return this.fetchProducts().pipe(
       map(() => this.products.some(product => product.productId === productId))
     );
   }
+  
   
 
   getProductDetails(productId: string | null): Observable<Product[]> {
