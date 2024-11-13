@@ -1,16 +1,18 @@
 <div *ngIf="totalCartItemsQuantity()" class="container-fluid px-lg-5">
   <div class="row">
-      <div class="col-12 col-lg-8 border-end">
-          <div class="p-3" style="max-height: 100vh; overflow-y: auto;">
-              <div class="d-flex justify-content-between align-items-start mb-3">
-                  <h2>{{totalCartItemsQuantity()}} Items in Cart</h2>
-                  <button class="btn btn-outline-danger bt-sm" (click)="showModal()">Clear Cart</button>
-              </div>
-              <div *ngFor="let cartItem of cartItemsList" class="pt-2">
-                  <app-cart-item [product]="cartItem"></app-cart-item>
-              </div>
+    <div class="col-12 col-lg-8 border-end">
+      <div class="p-3 py-0" style="position: sticky; top: 0; background-color: white; z-index: 10;">
+          <div class="d-flex justify-content-between align-items-start">
+              <h2>{{totalCartItemsQuantity()}} Items in Cart</h2>
+              <button class="btn btn-outline-danger btn-sm" (click)="showModal()">Clear Cart</button>
           </div>
       </div>
+      <div style="max-height: 74vh; overflow-y: auto;">
+          <div *ngFor="let cartItem of cartItemsList" class="pt-2">
+              <app-cart-item [product]="cartItem"></app-cart-item>
+          </div>
+      </div>
+  </div>
 
       <div class="cartSummaryContainer">
         <h2>Order Summary</h2>

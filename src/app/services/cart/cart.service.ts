@@ -10,7 +10,7 @@ import { cartItem } from 'src/app/shared/models/cartItem';
 })
 export class CartService {
   private cartItems: { [productId: string]: number } = {}; 
-  private cartItemsSubject: BehaviorSubject<{ [productId: string]: number }> = new BehaviorSubject<{ [productId: string]: number }>(this.cartItems); // To notify listeners when the cart changes
+  private cartItemsSubject: BehaviorSubject<{ [productId: string]: number }> = new BehaviorSubject<{ [productId: string]: number }>(this.cartItems);
   private cartMerged: boolean = false; 
   maxQuantity: number = 99;
   private cartLoaded: boolean = false;
@@ -21,7 +21,7 @@ export class CartService {
   ) {
     this.authService.currentUser$.subscribe((user) => {
       if (user) {
-        this.handleUserLogin(user); 
+          this.handleUserLogin(user); 
       } else {
         this.loadCartItems();
       }
@@ -38,19 +38,15 @@ export class CartService {
 
     this.cartItemsSubject.next(this.cartItems); 
     this.cartLoaded = true;
-    this.updateCart();
   }
 
   private handleUserLogin(user: User): void {
-    if (!this.cartMerged) { 
       this.mergeGuestCartWithUserCart(user.userId);
-      this.cartMerged = true; 
-    }
+
   }
 
-  private mergeGuestCartWithUserCart(userId: string): void {
-    console.log("Merging guest cart with user cart...");
-
+  mergeGuestCartWithUserCart(userId: string): void {
+  
     const guestCart = this.localStorageService.getCurrentUserCart();
     if (guestCart) {
       Object.entries(guestCart).forEach(([productId, quantity]) => {
@@ -60,16 +56,16 @@ export class CartService {
           this.cartItems[productId] = quantity;
         }
       });
-
       this.localStorageService.clearGuestCart();
-
+      this.cartMerged = true;
       this.updateCart();
     } else {
       this.loadUserCart(userId);
     }
+    this.loadCartItems();
   }
 
-  private loadUserCart(userId: string): void {
+  loadUserCart(userId: string): void {
     const storedUserCart = this.localStorageService.getCurrentUserCart();
     if (storedUserCart) {
       this.cartItems = { ...this.cartItems, ...storedUserCart };
@@ -78,7 +74,6 @@ export class CartService {
     }
 
     this.cartItemsSubject.next(this.cartItems);
-    this.updateCart();
   }
 
   private updateCart(): void {

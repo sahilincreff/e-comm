@@ -47,6 +47,10 @@ export class UploadComponent {
   }
 
   handleUploadClick() {
+    this.errors={};
+    this.productDetails=[];
+    this.productIds=[];
+    this.csvData=[];
     if (!this.selectedFile) {
       this.toastService.showToast("Please select a file to upload.", "error");
       return;
@@ -54,10 +58,11 @@ export class UploadComponent {
     this.errors = [];
     Papa.parse(this.selectedFile, {
       complete: (results: any) => {
+        console.log(results);
         const rows = results.data;
         rows.forEach((rowData: any, index: number) => {
-          const productId = rowData.productId;          
-          if (rowData.quantity <= 0 || !rowData.quantity) {
+          const productId = rowData.productId;      
+          if(isNaN(rowData.quantity) || (rowData.quantity <= 0 || !rowData.quantity)){
             this.errors[index + 1] = "Invalid Product Quantity";
           }
           else if (rowData.quantity >this.cartService.maxQuantity) {

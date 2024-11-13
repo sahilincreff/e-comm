@@ -14,8 +14,7 @@
 .uploadInput {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  align-items: center;
+  align-items: flex-start;
 }
 
 input[type="file"] {
@@ -52,12 +51,6 @@ h5 {
   max-height: 70vh;
   overflow-y: auto; 
   padding-right: 15px;
-}
-
-.cartPageContainer {
-  display: grid;
-  grid-template-columns: 3fr 1fr; 
-  gap: 20px;
 }
 
 .cartItemContainer {
@@ -159,26 +152,4 @@ h5 {
   min-width: 350px; 
 }
 
-.cartSummaryContainer h2 {
-  margin-bottom: 20px;
-}
-
-@media screen and (max-width: 768px) {
-  .cartPageContainer {
-    grid-template-columns: 1fr; 
-    gap: 15px;
-  }
-
-  .uploadContainer {
-    flex-direction: column;
-  }
-
-  .cartSummaryContainer {
-    position: static; 
-  }
-
-  .cartItemImg {
-    height: 120px;
-  }
-}
 

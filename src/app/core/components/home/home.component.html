@@ -6,7 +6,7 @@
 </nav>
 
 <div [ngClass]="{'active': isOpen}" class="sidebar position-fixed top-0 start-0 w-100 h-100 bg-light shadow-lg transition-all zindex-1050 d-lg-none">
-  <button (click)="toggleSidebar()" class="btn btn-sm btn-link text-dark rounded-0 sticky-top p-3">
+  <button (click)="toggleSidebar()" class="btn btn-sm btn-link text-dark rounded-0 sticky-top p-3 text-decoration-none fs-5">
     <span class="mdi mdi-chevron-left"></span>
     Back to Products
   </button>
@@ -15,7 +15,7 @@
 
 <div class="home-container d-flex flex-column flex-lg-row">
   <app-filters class="filters position-fixed shadow-sm d-none d-lg-block"></app-filters>
-  <app-products-list class="productsContainer" [ngClass]="{'sidebarOpen': isOpen}"></app-products-list>
+  <app-products-list class="productsContainer w-100" [ngClass]="{'sidebarOpen': isOpen}"></app-products-list>
 </div>
 
 <button class="mobile-filters-toggle position-fixed bottom-0 border-0 w-100 bg-white border-top shadow-sm p-3 text-center d-lg-none" (click)="toggleSidebar()">

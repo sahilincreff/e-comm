@@ -33,12 +33,16 @@ export class ProductsService {
     );
   }
 
+  refreshProducts(){
+    this.fetchProducts().subscribe();
+  }
+
   setProducts(products: Product[]): void {
     this.products = products;
     this.applyFilters();
   }
 
-  private applyFilters(): void {
+  applyFilters(): void {
     this.filteredProducts = this.filterService.updateProductsForFilters(this.products);
     this.productsSubject.next(this.filteredProducts); 
   }

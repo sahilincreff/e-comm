@@ -1,6 +1,6 @@
 <div class="uploadPageContainer">
-  <div class="d-flex align-items-baseline justify-content-center gap-2 uploadContainer">
-    <div class="w-25 d-flex">
+  <div class="d-flex align-items-baseline justify-content-center gap-2">
+    <div class="w-lg-25 w-sm-100 d-flex">
       <div class="uploadInput">
         <input class="form-control" type="file" id="formFile" accept=".csv" (change)="handleFileChange($event)">
         <a class="btn btn-sm btn-link p-0 text-decoration-none" href="assets/csv/template.csv" download="template.csv">Download CSV Template</a>
@@ -16,7 +16,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <table class="table">
+          <table class="table table-bordered">
             <thead>
               <tr>
                 <th>Row</th>
@@ -25,7 +25,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let error of errors | keyvalue; let i = index" class="table-danger">
-                <td>{{error.key}}</td>
+                <td class="border-end">{{error.key}}</td>
                 <td>{{error.value}}</td>
               </tr>
             </tbody>
@@ -35,6 +35,7 @@
       <div>Note: Please correct all the errors before proceeding to place order.</div>
     </div>
   </div>
+  
 
   <div *ngIf="!hasErrors() && productDetails.length">
     <div class="cartPageContainer px-lg-5">
@@ -84,7 +85,7 @@
             <h5>{{calculateTotalCartPrice() + shippingCharges - discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
           </div>
           <div class="w-100 d-flex justify-content-center gap-2 actionBtns">
-            <a routerLink="/cart" class="btn btn-secondary p-2 w-100" (click)="mergeWithCartItems()">
+            <a routerLink="/cart" class="btn btn-success p-2 w-100" (click)="mergeWithCartItems()">
               Merge with Cart
             </a>
             <a (click)="proceedToCheckout()" class="btn btn-primary p-2 w-100">

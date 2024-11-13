@@ -14,7 +14,7 @@
             <div class="currentUserInfo">
                 <div *ngIf="userLoggedIn" class="loggedInUserContainer" >
                   <div class="dropdown">
-                    <button class="btn btn-sm btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-sm btn-link" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                       <img *ngIf="currentUser?.imageUrl" [src]="currentUser?.imageUrl" class="currentUserImage rounded-circle" width="24" height="24" />
                       
                       <span *ngIf="!currentUser?.imageUrl && currentUser?.firstName">

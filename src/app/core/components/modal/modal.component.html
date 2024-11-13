@@ -4,13 +4,13 @@
 
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" #modal>
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
+    <div class="modal-content p-0">
+      <div class="modal-body h5 mb-0">
         {{ message }}
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="close()">No</button>
-        <button type="button" class="btn btn-primary" (click)="confirm()">Yes</button>
+      <div class="modal-footer py-2">
+        <button type="button" class="btn btn-sm btn-secondary" (click)="close()">No</button>
+        <button type="button" class="btn btn-sm btn-primary" (click)="confirm()">Yes</button>
       </div>
     </div>
   </div>
