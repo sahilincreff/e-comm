@@ -43,7 +43,6 @@ export class AuthService {
         const user = users.find(u => u.email === email && u.password === password) || null;
         if (user) {
           localStorage.setItem('currentUserId', user.userId);
-          this.setCurrentUser(user);
         }
         return user;
       }),

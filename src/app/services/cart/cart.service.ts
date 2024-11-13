@@ -62,7 +62,6 @@ export class CartService {
     } else {
       this.loadUserCart(userId);
     }
-    this.loadCartItems();
   }
 
   loadUserCart(userId: string): void {
