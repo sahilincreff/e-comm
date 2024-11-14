@@ -1,58 +1,57 @@
 <div *ngIf="totalCartItemsQuantity()" class="container-fluid px-lg-5">
   <div class="row">
     <div class="col-12 col-lg-8 border-end">
-      <div class="p-3 py-0" style="position: sticky; top: 0; background-color: white; z-index: 10;">
-          <div class="d-flex justify-content-between align-items-start">
-              <h2>{{totalCartItemsQuantity()}} Items in Cart</h2>
-              <button class="btn btn-outline-danger btn-sm" (click)="showModal()">Clear Cart</button>
-          </div>
-      </div>
-      <div style="max-height: 74vh; overflow-y: auto;">
-          <div *ngFor="let cartItem of cartItemsList" class="pt-2">
-              <app-cart-item [product]="cartItem"></app-cart-item>
-          </div>
-      </div>
-  </div>
-
-      <div class="cartSummaryContainer">
-        <h2>Order Summary</h2>
-        <div class="bg-light p-3 w-100">
-          <div class="d-flex justify-content-between">
-            <h5 class="text-muted fw-light">Subtotal</h5>
-            <h5 class="fw-normal">{{calculateTotalCartPrice() | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
-          </div>
-          <div class="d-flex justify-content-between">
-            <h5 class="text-muted fw-light">Shipping Charges</h5>
-            <h5 class="fw-normal">{{shippingCharges | currency:'INR':'symbol-narrow':'2.0-2'}}</h5>
-          </div>
-          <div class="d-flex justify-content-between ">
-            <h5 class="text-muted fw-light">Discount</h5>
-            <h5 class="fw-normal"> - {{discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
-          </div>
-          <hr>
-          <div class="d-flex justify-content-between py-3">
-            <h4>Total</h4>
-            <h5>{{calculateTotalCartPrice() + shippingCharges - discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
-          </div>
-          <div class="w-100 d-flex justify-content-center gap-2 actionBtns">
-            <a (click)="proceedToCheckout()" class="btn bt-sm btn-success p-2 w-100">
-              Checkout
-              <span class="mdi mdi-arrow-right"></span>
-            </a>
-          </div>
+      <div class=" py-0" style="position: sticky; top: 0; background-color: white; z-index: 10;">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>{{totalCartItemsQuantity()}} Items in Cart</h2>
+          <button class="btn btn-outline-danger btn-sm" (click)="showModal()">Clear Cart</button>
         </div>
       </div>
+      <div style="max-height: 74vh; overflow-y: auto;">
+        <div *ngFor="let cartItem of cartItemsList" class="pt-2">
+          <app-cart-item [product]="cartItem"></app-cart-item>
+        </div>
+      </div>
+    </div>
+
+    <div class="cartSummaryContainer">
+      <h2 class="mb-4">Order Summary</h2>
+      <div class="bg-light p-3 w-100">
+        <div class="d-flex justify-content-between">
+          <h5 class="text-muted fw-light">Subtotal</h5>
+          <h5 class="fw-normal">{{calculateTotalCartPrice() | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+        </div>
+        <div class="d-flex justify-content-between">
+          <h5 class="text-muted fw-light">Shipping Charges</h5>
+          <h5 class="fw-normal">{{shippingCharges | currency:'INR':'symbol-narrow':'2.0-2'}}</h5>
+        </div>
+        <div class="d-flex justify-content-between ">
+          <h5 class="text-muted fw-light">Discount</h5>
+          <h5 class="fw-normal"> - {{discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-between py-3">
+          <h4>Total</h4>
+          <h5>{{calculateTotalCartPrice() + shippingCharges - discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+        </div>
+        <div class="w-100 d-flex justify-content-center gap-2 actionBtns">
+          <a (click)="proceedToCheckout()" class="btn bt-sm btn-success p-2 w-100">
+            Checkout
+            <span class="mdi mdi-arrow-right"></span>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<div *ngIf="totalCartItemsQuantity() == 0" class="w-100 d-flex flex-column align-items-center justify-content-center gap-3 emptyCartContainer">
+<div *ngIf="totalCartItemsQuantity() == 0"
+  class="w-100 d-flex flex-column align-items-center justify-content-center gap-3 emptyCartContainer">
   <img class="emptyCartImage" src="assets/images/emptyCart.jpg" />
   <h1>Your Cart is Empty!</h1>
   <button routerLink="/" class="btn btn-sm btn-primary">Back to Home</button>
 </div>
 
-<app-modal
-  *ngIf="cartClearConfirmation"
-  [message]="'Are you sure you want to clear the cart?'"
+<app-modal *ngIf="cartClearConfirmation" [message]="'Are you sure you want to clear the cart?'"
   (confirmed)="handleConfirmation($event)">
 </app-modal>
