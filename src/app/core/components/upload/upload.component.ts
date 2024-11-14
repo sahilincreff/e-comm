@@ -19,7 +19,7 @@ export class UploadComponent {
   productIds: string[] = [];
   productDetails: cartItem[] = [];
   errors: {[key: number]: string} = {};
-  selectedFile!: File;
+  selectedFile!: File | null;
   maxAllowedRows = 10;
   shippingCharges: number=50;
   discount:number=100;
@@ -33,6 +33,9 @@ export class UploadComponent {
   ) {}
 
   handleFileChange(event: any) {
+    this.selectedFile = null;
+    this.productDetails = [];
+    this.errors = {}; 
     const file = event.target.files[0];
     if (file) {
       if (file.type !== 'text/csv') {
@@ -47,10 +50,6 @@ export class UploadComponent {
   }
 
   handleUploadClick() {
-    this.errors={};
-    this.productDetails=[];
-    this.productIds=[];
-    this.csvData=[];
     if (!this.selectedFile) {
       this.toastService.showToast("Please select a file to upload.", "error");
       return;
@@ -58,17 +57,24 @@ export class UploadComponent {
     this.errors = [];
     Papa.parse(this.selectedFile, {
       complete: (results: any) => {
-        console.log(results);
         const rows = results.data;
         rows.forEach((rowData: any, index: number) => {
-          const productId = rowData.productId;      
-          if(isNaN(rowData.quantity) || (rowData.quantity <= 0 || !rowData.quantity)){
-            this.errors[index + 1] = "Invalid Product Quantity";
+          const productId = rowData.productid;
+          let rowQuantity=rowData.quantity;
+          if(!rowData.quantity){
+            this.errors[0]='There is no column with the header "quantity" present in the CSV';
           }
-          else if (rowData.quantity >this.cartService.maxQuantity) {
-            this.errors[index + 1] = `Item Quantity greater than max Allowed Quantity(Max Quantity Allowed ${this.cartService.maxQuantity}`;
+          if(isNaN(rowQuantity) || (rowQuantity <= 0 || !rowQuantity)){
+            if(this.errors[index + 1]){
+              this.errors[index + 1] += ", Invalid Product Quantity";
+            }else this.errors[index + 1] = "Invalid Product Quantity";
           }
-          else if (this.productService.isValidProduct(productId)) {
+          if (rowQuantity >this.cartService.maxQuantity) {
+            if(this.errors[index + 1]){
+              this.errors[index + 1] += `, Item Quantity greater than max Allowed Quantity(Max Quantity Allowed ${this.cartService.maxQuantity}`;;
+            }else this.errors[index + 1] = this.errors[index + 1] = `Item Quantity greater than max Allowed Quantity(Max Quantity Allowed ${this.cartService.maxQuantity}`;
+          }
+          if (this.productService.isValidProduct(productId)) {
             this.productService.isValidProduct(productId).subscribe(isValid => {
               if (isValid) {
                 this.productService.getProductDetailsFromId([productId]).subscribe(products => {
@@ -76,11 +82,11 @@ export class UploadComponent {
                     const productDetail = products[0];  
                     const existingProduct = this.productDetails.find(p => p.productId === productId);
                     if (existingProduct) {
-                      existingProduct.quantity += parseInt(rowData.quantity)|| 1;
+                      existingProduct.quantity += parseInt(rowQuantity)|| 1;
                     } else {
                       this.productDetails.push({
                         ...productDetail,
-                        quantity: parseInt(rowData.quantity) || 1 
+                        quantity: parseInt(rowQuantity) || 1 
                       });
                     }
   
@@ -88,16 +94,24 @@ export class UploadComponent {
                   }
                 });
               } else {
-                this.errors[index + 1] = 'Invalid product ID';
+                if(this.errors[index+1]){
+                  this.errors[index + 1] += ', Invalid product ID';
+                }else this.errors[index + 1] = 'Invalid product ID';
               }
             });
           } else {
+            if(this.errors[index+1]){
+              this.errors[index + 1] += ', Product not found';
+            }
             this.errors[index + 1] = 'Product not found';
           }
         });
       },
       header: true,
       skipEmptyLines: true,
+      transformHeader:function(h) {
+        return h.trim().toLowerCase();
+      }
     });
   }
   
@@ -120,5 +134,11 @@ export class UploadComponent {
 
   mergeWithCartItems() {
     this.cartService.mergeItemsWithCurrentCart(this.productDetails);
+  }
+
+  totalUploadedQuantity(){
+    return this.productDetails.reduce((acc, curr) => {
+      return acc + curr.quantity;
+    }, 0);
   }
 }

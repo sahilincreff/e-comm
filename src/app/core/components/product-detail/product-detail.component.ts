@@ -29,6 +29,7 @@ export class ProductDetailComponent implements OnInit {
             if (productDetails.length > 0) {
               this.product = productDetails[0];
               this.invalidProduct=false;
+              console.log(this.product);
             } else {
               console.error('Product not found');
             }
@@ -56,7 +57,7 @@ export class ProductDetailComponent implements OnInit {
   handleRemoveConfirmation($event: boolean){
     if($event){
       this.cartService.removeItemFromCart(this.productId || "");
-      this.toastService.showToast('Item removed from cart', 'warning')
+      this.toastService.showToast('Item removed from cart', 'success')
     }
     this.showRemoveConfirmation=false;
   }

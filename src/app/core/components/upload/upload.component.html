@@ -39,28 +39,31 @@
 
   <div *ngIf="!hasErrors() && productDetails.length">
     <div class="cartPageContainer px-lg-5">
-      <div class="productListContainer">
-        <div class="p-3">
-          <ng-container *ngFor="let product of productDetails">
-            <div *ngIf="product.quantity > 0" class="cartItemContainer" role="button">
-              <img class="cartItemImg" [src]="product.images[0]" />
-              <div class="w-100">
-                <div class="cartItemHeader">
-                  <h3 class="productBrand">{{product.brand}}</h3>
-                </div>
-                <h5 class="productName">{{product.name}}</h5>
-                <h4 class="d-flex align-items-baseline gap-2 pt-3">
-                  {{product.price.sellingPrice | currency:'INR':'symbol-narrow':'4.0-2'}}
-                  <del>
-                    <h5>{{product.price.mrp | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
-                  </del>
-                </h4>
-                <div class="col-12 col-sm-4">
-                  <h5>Quantity : {{product.quantity}}</h5>
+      <div>
+        <h2 class="px-3">{{totalUploadedQuantity()}} Items</h2>
+        <div class="productListContainer">
+          <div class="p-3 border-end">
+            <ng-container *ngFor="let product of productDetails">
+              <div *ngIf="product.quantity > 0" class="cartItemContainer" role="button">
+                <img class="cartItemImg" [src]="product.images[0]" />
+                <div class="w-100">
+                  <div class="cartItemHeader">
+                    <h3 class="productBrand">{{product.brand}}</h3>
+                  </div>
+                  <h5 class="productName">{{product.name}}</h5>
+                  <h4 class="d-flex align-items-baseline gap-2 pt-3">
+                    {{product.price.sellingPrice | currency:'INR':'symbol-narrow':'4.0-2'}}
+                    <del>
+                      <h5>{{product.price.mrp | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+                    </del>
+                  </h4>
+                  <div class="col-12 col-sm-4">
+                    <h5>Quantity : {{product.quantity}}</h5>
+                  </div>
                 </div>
               </div>
-            </div>
-          </ng-container>
+            </ng-container>
+          </div>
         </div>
       </div>
 

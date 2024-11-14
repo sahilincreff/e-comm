@@ -53,9 +53,6 @@ export class ProductsService {
 
 
   isValidProduct(productId: string | null): Observable<boolean> {
-    if (this.products) {
-      return of(this.products.some(product => product.productId === productId));
-    }
     return this.fetchProducts().pipe(
       map(() => this.products.some(product => product.productId === productId))
     );

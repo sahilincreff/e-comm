@@ -81,9 +81,14 @@ export class CartPageComponent implements OnInit {
   }
 
   totalCartItemsQuantity(){
-    return this.cartItemsList.reduce((total, item) => {
-      return (total + item.quantity);
-    }, 0);
+    if(this.cartItems){
+      let cartItemsQuantity=0;
+      Object.keys(this.cartItems).map(currObj =>{
+        cartItemsQuantity+=this.cartItems[currObj]
+      })
+      return cartItemsQuantity;
+    }
+    return 0;    
   }
 
 }
