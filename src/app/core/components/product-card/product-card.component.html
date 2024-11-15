@@ -8,8 +8,8 @@
         <h4 class="productCardTitle" [title]="product.name">{{product.name}}</h4>
         <div class="">
             <div class="d-flex mt-2 align-items-baseline">
-                <h4 class="discountedPrice">{{product.price.sellingPrice | currency:'INR':'symbol-narrow':'4.0-2'}}</h4>
-                <h5 class="originalPrice">{{product.price.mrp | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+                <h4 class="discountedPrice">{{product.price.sellingPrice | indianCurrency}}</h4>
+                <h5 class="originalPrice">{{product.price.mrp | indianCurrency}}</h5>
                 <h5 class="discountPercentage">({{product.price.sellingPrice | discount: product.price.mrp}})</h5>
             </div>
             <app-add-to-cart (click)="handleQuantityClick($event)" class="w-100 h-100" [productId]="product.productId"></app-add-to-cart>

@@ -9,8 +9,8 @@
               <path fill="#4CAF50" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
             </svg> 4.7 | 3163 ratings</div>
             <h3 class="d-flex align-items-baseline gap-2">
-                {{product.price.sellingPrice | currency:'INR':'symbol-narrow':'4.0-2'}}
-                <del><h5>{{product.price.mrp | currency:'INR':'symbol-narrow':'4.0-2'}}</h5></del>
+                {{product.price.sellingPrice | indianCurrency}}
+                <del><h5>{{product.price.mrp | indianCurrency}}</h5></del>
                 <h5 class="discountPercentage">({{product.price.sellingPrice | discount: product.price.mrp}})</h5>
             </h3>
             <h6 class="text-secondary">Inclusive of All Taxes.</h6>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, map, throwError, BehaviorSubject,of } from 'rxjs';
+import { Observable, catchError, map, throwError, BehaviorSubject, of } from 'rxjs';
 import { Product } from 'src/app/shared/models/product';
 import { FiltersService } from '../filters/filters.service';
 
@@ -23,7 +23,7 @@ export class ProductsService {
   fetchProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.productsApiUrl).pipe(
       map((data: Product[]) => {
-        this.setProducts(data); 
+        this.setProducts(data);
         return data;
       }),
       catchError(error => {
@@ -33,7 +33,7 @@ export class ProductsService {
     );
   }
 
-  refreshProducts(){
+  refreshProducts() {
     this.fetchProducts().subscribe();
   }
 
@@ -44,21 +44,18 @@ export class ProductsService {
 
   applyFilters(): void {
     this.filteredProducts = this.filterService.updateProductsForFilters(this.products);
-    this.productsSubject.next(this.filteredProducts); 
+    this.productsSubject.next(this.filteredProducts);
   }
 
   getProducts(): Observable<Product[]> {
     return this.productsSubject.asObservable();
   }
 
-
   isValidProduct(productId: string | null): Observable<boolean> {
     return this.fetchProducts().pipe(
       map(() => this.products.some(product => product.productId === productId))
     );
   }
-  
-  
 
   getProductDetails(productId: string | null): Observable<Product[]> {
     return this.fetchProducts().pipe(

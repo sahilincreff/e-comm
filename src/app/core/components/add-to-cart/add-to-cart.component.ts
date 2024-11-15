@@ -13,7 +13,6 @@ export class AddToCartComponent implements OnInit, OnDestroy {
   quantityInCart: number = 0;
   private cartSubscription!: Subscription;
   showRemoveConfirmation: boolean = false;
-  maxItemsToast: boolean = false;
   @Input() productDetailPage: boolean=false;
 
   constructor(private cartService: CartService, private toastService: ToastService) {}
@@ -61,10 +60,7 @@ export class AddToCartComponent implements OnInit, OnDestroy {
   increaseItemQuantity(): void {
     const currentQuantity = this.cartService.getItemQuantityInCart(this.productId);
     if (currentQuantity >= this.cartService.maxQuantity) {
-      this.maxItemsToast = true;
-      setTimeout(() => {
-        this.maxItemsToast = false;
-      }, 3000);
+      this.toastService.showToast("Oh No! You can't add more than "+`${this.cartService.maxQuantity}`+" quantity of same item", "error")
     } else {
       this.cartService.increaseQuantity(this.productId);
     }

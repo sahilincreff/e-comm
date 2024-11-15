@@ -1,4 +1,4 @@
-.headerNav{
+.headerNav {
     display: flex;
     justify-content: space-between;
     padding: 10px;
@@ -10,37 +10,37 @@
     background: white;
 }
 
-.appLogo{
+.appLogo {
     height: 40px;
 }
 
-.headerRhs{
+.headerRhs {
     display: flex;
     gap: 5px;
     align-items: center;
 }
 
-.currentUserImage{
+.currentUserImage {
     height: 25px;
     width: 25px;
 }
 
 
-.userInfo{
+.userInfo {
     display: flex;
     gap: 10px;
     align-items: center;
     padding: 0px 10px
 }
 
-.cartIconContainer{
+.cartIconContainer {
     display: flex;
     position: relative;
     align-items: center;
     justify-content: center;
 }
 
-.userLogin{
+.userLogin {
     display: flex;
     display: flex;
     align-items: center;
@@ -49,12 +49,12 @@
     cursor: pointer;
 }
 
-.logoutIcon{
+.logoutIcon {
     height: 15px;
     width: 15px;
 }
 
-.currentUserInfo{
+.currentUserInfo {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,21 +62,21 @@
     cursor: pointer;
 }
 
-.userIcon{
+.userIcon {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
 }
 
-.csvUploadContainer{
+.csvUploadContainer {
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
 }
 
-.cartCount{
+.cartCount {
     background: black;
     position: absolute;
     color: white;
@@ -90,12 +90,16 @@
     border-radius: 15px;
 }
 
-.loggedInUserContainer{
+.loggedInUserContainer {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.mdi-account-circle, .mdi-cart, .mdi-file-upload, .mdi-account-circle, .dropdownIcon{
+.mdi-account-circle,
+.mdi-cart,
+.mdi-file-upload,
+.mdi-account-circle,
+.dropdownIcon {
     font-size: 25px;
 }

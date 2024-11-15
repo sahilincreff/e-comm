@@ -27,7 +27,7 @@ button {
 }
 
 button[disabled] {
-  opacity: 0.5; 
+  opacity: 0.5;
 }
 
 .container {
@@ -38,7 +38,8 @@ button[disabled] {
   background-color: #f8d7da;
 }
 
-.table th, .table td {
+.table th,
+.table td {
   padding: 0.75rem;
   vertical-align: middle;
 }
@@ -49,7 +50,7 @@ h5 {
 
 .productListContainer {
   max-height: 70vh;
-  overflow-y: auto; 
+  overflow-y: auto;
   padding-right: 15px;
 }
 
@@ -128,17 +129,17 @@ h5 {
   padding: 20px;
   background: #fff;
   border-radius: 10px;
-  min-width: 350px; 
+  min-width: 350px;
 }
 
 @media screen and (max-width: 768px) {
   .cartPageContainer {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
     gap: 15px;
   }
 
   .uploadContainer {
-    flex-direction: column; 
+    flex-direction: column;
   }
 
   .cartSummaryContainer {
@@ -149,4 +150,3 @@ h5 {
     height: 120px;
   }
 }
-

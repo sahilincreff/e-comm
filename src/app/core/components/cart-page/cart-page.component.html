@@ -19,20 +19,20 @@
       <div class="bg-light p-3 w-100">
         <div class="d-flex justify-content-between">
           <h5 class="text-muted fw-light">Subtotal</h5>
-          <h5 class="fw-normal">{{calculateTotalCartPrice() | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+          <h5 class="fw-normal">{{calculateTotalCartPrice() | indianCurrency}}</h5>
         </div>
         <div class="d-flex justify-content-between">
           <h5 class="text-muted fw-light">Shipping Charges</h5>
-          <h5 class="fw-normal">{{shippingCharges | currency:'INR':'symbol-narrow':'2.0-2'}}</h5>
+          <h5 class="fw-normal">{{shippingCharges | indianCurrency}}</h5>
         </div>
         <div class="d-flex justify-content-between ">
           <h5 class="text-muted fw-light">Discount</h5>
-          <h5 class="fw-normal"> - {{discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+          <h5 class="fw-normal"> - {{discount | indianCurrency}}</h5>
         </div>
         <hr>
         <div class="d-flex justify-content-between py-3">
           <h4>Total</h4>
-          <h5>{{calculateTotalCartPrice() + shippingCharges - discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+          <h5>{{calculateTotalCartPrice() + shippingCharges - discount | indianCurrency}}</h5>
         </div>
         <div class="w-100 d-flex justify-content-center gap-2 actionBtns">
           <a (click)="proceedToCheckout()" class="btn bt-sm btn-success p-2 w-100">

@@ -21,7 +21,6 @@ export class AuthService {
     const userId = localStorage.getItem('currentUserId');
     if (userId) {
       this.getUserById(userId).subscribe(user => {
-        // TODO: remove currentuser from localstorage if user is null
         this.setCurrentUser(user);
       });
     }
@@ -41,9 +40,7 @@ export class AuthService {
     return this.http.get<User[]>(this.usersApiUrl).pipe(
       map(users => {
         const user = users.find(u => u.email === email && u.password === password) || null;
-        if (user) {
-          localStorage.setItem('currentUserId', user.userId);
-        }
+        if (user) localStorage.setItem('currentUserId', user.userId);
         return user;
       }),
       catchError(error => {
@@ -65,8 +62,7 @@ export class AuthService {
     localStorage.removeItem('currentUserId');
     this.setCurrentUser(null);
   }
-  
-  // TODO: to check wheather user exists
+
   isLoggedIn(): boolean {
     return !!localStorage.getItem('currentUserId');
   }

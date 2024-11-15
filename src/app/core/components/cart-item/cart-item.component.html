@@ -9,8 +9,8 @@
             </div>
             <h5 class="productName">{{product.name}}</h5>
             <h4 class="d-flex align-items-baseline gap-2 pt-3">
-                {{product.price.sellingPrice | currency:'INR':'symbol-narrow':'4.0-2'}}
-                <del><h5>{{product.price.mrp | currency:'INR':'symbol-narrow':'4.0-2'}}</h5></del>
+                {{product.price.sellingPrice | indianCurrency}}
+                <del><h5>{{product.price.mrp | indianCurrency}}</h5></del>
                 <!-- <h5 class="discountPercentage">({{product.price.sellingPrice | discount: product.price.mrp}})</h5> -->
             </h4>
             <div class="col-12 col-sm-4">

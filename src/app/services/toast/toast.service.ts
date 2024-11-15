@@ -14,7 +14,7 @@ export class ToastService {
   private toasts: Toast[] = [];
   private toastSubject = new BehaviorSubject<Toast[]>([]);
 
-  constructor() {}
+  constructor() { }
 
   getToasts() {
     return this.toastSubject.asObservable();

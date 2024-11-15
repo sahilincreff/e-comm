@@ -46,9 +46,7 @@ export class FiltersService {
   }
 
   updateProductsForFilters(products: Product[]): Product[] {
-    if (this.isEmptyFilter()) {
-      return products;
-    }
+    if (this.isEmptyFilter()) return products;
     let filteredProducts: Product[] = [];
     for (let product of products) {
       if ((this.selectedFilters['brands']?.includes(product.brand) || (this.selectedFilters['brands']?.length == 0) || (!this.selectedFilters['brands'])) &&
@@ -65,9 +63,7 @@ export class FiltersService {
 
   isEmptyFilter(): boolean {
     for (const singleFilter of Object.keys(this.selectedFilters) as (keyof Filter)[]) {
-      if (this.selectedFilters[singleFilter]?.length !== 0) {
-        return false;
-      }
+      if (this.selectedFilters[singleFilter]?.length !== 0) return false;
     }
     return true;
   }
@@ -77,5 +73,4 @@ export class FiltersService {
     sessionStorage.removeItem('filters');
     this.filterSubject.next(this.selectedFilters);
   }
-
 }

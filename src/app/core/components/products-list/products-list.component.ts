@@ -11,12 +11,12 @@ import { FiltersService } from 'src/app/services/filters/filters.service';
   styleUrls: ['./products-list.component.css']
 })
 export class ProductsListComponent {
-  products: Product[] =[];
-  filteredProducts: Product[]=[];
+  products: Product[] = [];
+  filteredProducts: Product[] = [];
 
-  constructor(private productService: ProductsService, private router: Router, private filterService: FiltersService){}
+  constructor(private productService: ProductsService, private router: Router, private filterService: FiltersService) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.productService.fetchProducts().subscribe(
       (data) => {
         this.productService.setProducts(data);
@@ -31,11 +31,11 @@ export class ProductsListComponent {
     });
   }
 
-  openProductDetails(productId: string){
+  openProductDetails(productId: string) {
     this.router.navigate(['/product', productId]);
   }
 
-  removeSearchFilters(){
+  removeSearchFilters() {
     this.filterService.clearSelectedFilters();
   }
 }

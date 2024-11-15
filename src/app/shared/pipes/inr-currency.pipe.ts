@@ -1,29 +1,19 @@
-import { CurrencyPipe } from '@angular/common';
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'inrCurrency'
+  name: 'indianCurrency'
 })
-export class InrCurrencyPipe implements PipeTransform {
+export class IndianCurrencyPipe implements PipeTransform {
 
-  constructor(private currencyPipe: CurrencyPipe) {}
-
-  transform(value: any, currencyCode: string = 'INR', symbol: string = '₹', digits: string = '1.0-0'): string | null {
-    let formattedCurrency = this.currencyPipe.transform(value, currencyCode, 'symbol-narrow', digits);
-    if (formattedCurrency) {
-      let [currencySymbol, amount] = formattedCurrency.split(' ');
-      let formattedAmount = this.formatIndianNumbering(amount);
-      return `${currencySymbol} ${formattedAmount}`;
-    }
-    return null;
-  }
-
-  private formatIndianNumbering(value: string): string {
-    let integer = value.replace(/[^0-9]/g, '');
+  transform(value: any, currencySymbol: string = '₹'): string {
+    if (value == null || isNaN(value)) return '';
+    let amount = value.toString();
+    let [integer, decimal] = amount.split('.');
     let lastThree = integer.substring(integer.length - 3);
     let otherNumbers = integer.substring(0, integer.length - 3);
-    otherNumbers = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ',');
-    return otherNumbers + ',' + lastThree;
+    if (otherNumbers != '') lastThree = ',' + lastThree;
+    let formattedInteger = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+    let formattedDecimal = decimal ? '.' + decimal.substring(0, 2) : '';
+    return currencySymbol + formattedInteger + formattedDecimal;
   }
-
 }

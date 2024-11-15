@@ -13,10 +13,12 @@ import { LoginGuard } from './services/auth/login.guard';
 import { CheckoutGuard } from './services/auth/checkout.guard';
 
 const routes: Routes = [
-  { path:'',
+  {
+    path: '',
     component: HomeComponent
   },
-  { path: 'cart',
+  {
+    path: 'cart',
     component: CartPageComponent
   },
   {
@@ -30,7 +32,7 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [LoginGuard] 
+    canActivate: [LoginGuard]
   },
   {
     path: 'checkout',

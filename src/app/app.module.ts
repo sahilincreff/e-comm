@@ -23,7 +23,7 @@ import { BackToTopComponent } from './shared/components/back-to-top/back-to-top.
 import { DiscountPipe } from './shared/pipes/discount.pipe';
 import { ToastComponent } from './shared/components/toast/toast.component';
 import { CheckoutComponent } from './core/components/checkout/checkout.component';
-import { InrCurrencyPipe } from './shared/pipes/inr-currency.pipe';
+import { IndianCurrencyPipe } from './shared/pipes/inr-currency.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -48,7 +48,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DiscountPipe,
     ToastComponent,
     CheckoutComponent,
-    InrCurrencyPipe
+    IndianCurrencyPipe
   ],
   imports: [
     BrowserModule,

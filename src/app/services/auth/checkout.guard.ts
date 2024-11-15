@@ -6,14 +6,14 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class CheckoutGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   canActivate(): boolean {
-    if(!this.authService.isLoggedIn()){
-      this.router.navigate(['/login']); 
-      return false; 
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/login']);
+      return false;
     }
     return true;
   }
-  
+
 }

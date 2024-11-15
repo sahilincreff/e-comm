@@ -9,9 +9,9 @@ import { cartItem } from 'src/app/shared/models/cartItem';
   providedIn: 'root'
 })
 export class CartService {
-  private cartItems: { [productId: string]: number } = {}; 
+  private cartItems: { [productId: string]: number } = {};
   private cartItemsSubject: BehaviorSubject<{ [productId: string]: number }> = new BehaviorSubject<{ [productId: string]: number }>(this.cartItems);
-  private cartMerged: boolean = false; 
+  private cartMerged: boolean = false;
   maxQuantity: number = 99;
   private cartLoaded: boolean = false;
 
@@ -20,33 +20,25 @@ export class CartService {
     private authService: AuthService
   ) {
     this.authService.currentUser$.subscribe((user) => {
-      if (user) {
-          this.handleUserLogin(user); 
-      } else {
-        this.loadCartItems();
-      }
+      if (user) this.handleUserLogin(user);
+      else this.loadCartItems();
     });
   }
 
   private loadCartItems(): void {
-    if (this.cartLoaded) return; 
-
+    if (this.cartLoaded) return;
     const userCartItems = this.localStorageService.getCurrentUserCart();
-    if (userCartItems) {
-      this.cartItems = { ...this.cartItems, ...userCartItems }; 
-    }
-
-    this.cartItemsSubject.next(this.cartItems); 
+    if (userCartItems) this.cartItems = { ...this.cartItems, ...userCartItems };
+    this.cartItemsSubject.next(this.cartItems);
     this.cartLoaded = true;
   }
 
   private handleUserLogin(user: User): void {
-      this.mergeGuestCartWithUserCart(user.userId);
+    this.mergeGuestCartWithUserCart(user.userId);
 
   }
 
   mergeGuestCartWithUserCart(userId: string): void {
-  
     const guestCart = this.localStorageService.getCurrentUserCart();
     if (guestCart) {
       Object.entries(guestCart).forEach(([productId, quantity]) => {
@@ -59,19 +51,13 @@ export class CartService {
       this.localStorageService.clearGuestCart();
       this.cartMerged = true;
       this.updateCart();
-    } else {
-      this.loadUserCart(userId);
-    }
+    } else this.loadUserCart(userId);
   }
 
   loadUserCart(userId: string): void {
     const storedUserCart = this.localStorageService.getCurrentUserCart();
-    if (storedUserCart) {
-      this.cartItems = { ...this.cartItems, ...storedUserCart };
-    } else {
-      this.cartItems = {}; 
-    }
-
+    if (storedUserCart) this.cartItems = { ...this.cartItems, ...storedUserCart };
+    else this.cartItems = {};
     this.cartItemsSubject.next(this.cartItems);
   }
 
@@ -81,12 +67,9 @@ export class CartService {
   }
 
   addProductToCart(productId: string): void {
-    if (this.cartItems[productId]) {
-      this.cartItems[productId] += 1;
-    } else {
-      this.cartItems[productId] = 1;
-    }
-    this.updateCart(); 
+    if (this.cartItems[productId]) this.cartItems[productId] += 1;
+    else this.cartItems[productId] = 1;
+    this.updateCart();
   }
 
   removeItemFromCart(productId: string): void {
@@ -103,9 +86,7 @@ export class CartService {
       const newQuantity = Math.min(this.cartItems[productId] + quantity, this.maxQuantity);
       this.cartItems[productId] = newQuantity;
       this.updateCart();
-    } else {
-      console.warn(`Product with ID ${productId} is not in the cart.`);
-    }
+    } else console.warn(`Product with ID ${productId} is not in the cart.`);
   }
 
   decreaseQuantity(productId: string, quantity: number = 1): void {
@@ -132,7 +113,7 @@ export class CartService {
 
   clearCart(): void {
     this.cartItems = {};
-    this.updateCart(); 
+    this.updateCart();
   }
 
   productInCart(productId: string): boolean {
@@ -143,7 +124,7 @@ export class CartService {
     return this.cartItemsSubject.asObservable();
   }
 
-  mergeItemsWithCurrentCart(products : cartItem[]){
+  mergeItemsWithCurrentCart(products: cartItem[]) {
     let currCartItems = this.cartItems;
     products.map((currProd) => {
       const quantity = parseInt(currProd.quantity.toString(), 10);
@@ -156,6 +137,5 @@ export class CartService {
     this.cartItems = currCartItems;
     this.updateCart();
   }
-
 }
 

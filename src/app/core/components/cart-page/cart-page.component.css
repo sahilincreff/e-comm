@@ -22,8 +22,8 @@
   .cartSummaryContainer {
       position: fixed;  
       top: 80px;
-      right: 5vw; 
-      width: 30%; 
+      right: 3vw; 
+      width: 32%; 
       height: 100vh; 
       overflow-y: auto; 
   }

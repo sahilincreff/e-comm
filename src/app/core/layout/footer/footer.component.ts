@@ -10,16 +10,14 @@ export class FooterComponent {
   private timeInterval: any;
 
   ngOnInit(): void {
-    this.updateTime(); 
+    this.updateTime();
     this.timeInterval = setInterval(() => {
       this.updateTime();
     }, 1000);
   }
 
   ngOnDestroy(): void {
-    if (this.timeInterval) {
-      clearInterval(this.timeInterval); 
-    }
+    if (this.timeInterval) clearInterval(this.timeInterval);
   }
 
   private updateTime(): void {

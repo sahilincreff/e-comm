@@ -1,53 +1,55 @@
 <div class="headerNav shadow-sm mb-3 fixed">
-    <a routerLink="/" class="headerLhs">
-        <img class="appLogo" src="assets/images/app_logo.webp" />
-    </a>
-    <div class="headerRhs" *ngIf="isLoginPage()==false">
-        <div  routerLink="/upload" class="csvUploadContainer rounded-pill"  placement="bottom" ngbTooltip="Upload CSV">
-            <span class="mdi mdi-file-upload"></span>
-        </div>
-        <div class="userInfo">
-            <button class="cartIconContainer border-0 bg-transparent" routerLink="/cart" placement="bottom" ngbTooltip="Cart">
-                <span class="mdi mdi-cart"></span>
-                <div class="cartCount">{{getCartItemsCount()}}</div>
-              </button>
-            <div class="currentUserInfo">
-                <div *ngIf="userLoggedIn" class="loggedInUserContainer" >
-                  <div class="dropdown">
-                    <button class="btn btn-sm btn-link" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                      <img *ngIf="currentUser?.imageUrl" [src]="currentUser?.imageUrl" class="currentUserImage rounded-circle" width="24" height="24" />
-                      
-                      <span *ngIf="!currentUser?.imageUrl && currentUser?.firstName">
-                        <span class="rounded-circle userInitial text-white d-inline-flex justify-content-center align-items-center" style="width: 30px; height: 30px; background-color: black; font-size: 16px;">
-                          {{ currentUser?.firstName?.charAt(0)?.toUpperCase() || "U" }}
-                        </span>
-                      </span>
-                      
-                      <span *ngIf="!currentUser?.imageUrl && !currentUser?.firstName">
-                        <span class="mdi mdi-account-circle" style="font-size: 24px;"></span>
-                      </span>
-                      
-                    </button>
-                    
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <li><span class="p-3">Hello, {{ currentUser?.firstName }}!</span></li>
-                      <li><a class="dropdown-item" href="#" (click)="showModal()">Logout
-                          <span class="mdi mdi-logout"></span>
-                      </a></li>
-                    </ul>
-                  </div>
-                </div>
-                
-                <div *ngIf="!userLoggedIn" class="d-flex gap-2 align-items-center px-2" [routerLink]="['/login']"  placement="bottom" ngbTooltip="Login">
-                    <span class="mdi mdi-account-circle" ></span>
-                </div>
-              </div>
-              
-              
-        </div>
+  <a routerLink="/" class="headerLhs">
+    <img class="appLogo" src="assets/images/app_logo.webp" />
+  </a>
+  <div class="headerRhs" *ngIf="isLoginPage()==false">
+    <div routerLink="/upload" class="csvUploadContainer rounded-pill" placement="bottom" ngbTooltip="Upload CSV">
+      <span class="mdi mdi-file-upload"></span>
     </div>
+    <div class="userInfo">
+      <button class="cartIconContainer border-0 bg-transparent" routerLink="/cart" placement="bottom" ngbTooltip="Cart">
+        <span class="mdi mdi-cart"></span>
+        <div class="cartCount">{{getCartItemsCount()}}</div>
+      </button>
+      <div class="currentUserInfo">
+        <div *ngIf="userLoggedIn" class="loggedInUserContainer">
+          <div class="dropdown">
+            <button class="btn btn-sm btn-link" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <img *ngIf="currentUser?.imageUrl" [src]="currentUser?.imageUrl" class="currentUserImage rounded-circle"
+                width="24" height="24" />
+
+              <span *ngIf="!currentUser?.imageUrl && currentUser?.firstName">
+                <span
+                  class="rounded-circle userInitial text-white d-inline-flex justify-content-center align-items-center"
+                  style="width: 30px; height: 30px; background-color: black; font-size: 16px;">
+                  {{ currentUser?.firstName?.charAt(0)?.toUpperCase() || "U" }}
+                </span>
+              </span>
+
+              <span *ngIf="!currentUser?.imageUrl && !currentUser?.firstName">
+                <span class="mdi mdi-account-circle" style="font-size: 24px;"></span>
+              </span>
+
+            </button>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li><span class="p-3">Hello, {{ currentUser?.firstName }}!</span></li>
+              <li><a class="dropdown-item" href="#" (click)="showModal()">Logout
+                  <span class="mdi mdi-logout"></span>
+                </a></li>
+            </ul>
+          </div>
+        </div>
+        <div *ngIf="!userLoggedIn" class="d-flex gap-2 align-items-center px-2" [routerLink]="['/login']"
+          placement="bottom" ngbTooltip="Login">
+          <span class="mdi mdi-account-circle"></span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 
 <app-modal *ngIf="isModalVisible" [message]="'Are you sure you want to Logout?'"
-    (confirmed)="handleConfirmation($event)"></app-modal>
+  (confirmed)="handleConfirmation($event)"></app-modal>

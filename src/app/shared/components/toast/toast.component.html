@@ -1,6 +1,5 @@
 <div class="position-fixed top-3 end-0 toastsContainer">
-  <div *ngFor="let toast of toasts" class="toast show align-items-center border-0 mt-2" role="alert"
-    [ngClass]="{
+  <div *ngFor="let toast of toasts" class="toast show align-items-center border-0 mt-2" role="alert" [ngClass]="{
       'text-bg-success': toast.type === 'success',
       'text-bg-danger': toast.type === 'error',
       'text-bg-warning text-white': toast.type === 'warning'

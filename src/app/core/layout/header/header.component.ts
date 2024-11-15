@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   dropdownVisible: boolean = false;
   isModalVisible = false;
 
-  constructor(private cartService: CartService, private authService: AuthService, private router: Router) {}
+  constructor(private cartService: CartService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.currentUserSubscription = this.authService.currentUser$.subscribe(user => {
@@ -45,20 +45,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   getCartItemsCount(): number {
     const cartItems = this.cartService.getCartItems();
-    let cartItemsCount=0;
-    Object.keys(cartItems).map((currItem)=>{
-      cartItemsCount+=cartItems[currItem]
+    let cartItemsCount = 0;
+    Object.keys(cartItems).map((currItem) => {
+      cartItemsCount += cartItems[currItem]
     })
     return cartItemsCount;
   }
 
-  handleLogout(): void { 
+  handleLogout(): void {
     this.authService.logout();
-    this.userLoggedIn = false; 
+    this.userLoggedIn = false;
     this.cartService.clearCart();
   }
 
-  isLoginPage(): boolean{
-    return this.router.url === '/login'; 
+  isLoginPage(): boolean {
+    return this.router.url === '/login';
   }
 }

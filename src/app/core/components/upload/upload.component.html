@@ -52,9 +52,9 @@
                   </div>
                   <h5 class="productName">{{product.name}}</h5>
                   <h4 class="d-flex align-items-baseline gap-2 pt-3">
-                    {{product.price.sellingPrice | currency:'INR':'symbol-narrow':'4.0-2'}}
+                    {{product.price.sellingPrice | indianCurrency}}
                     <del>
-                      <h5>{{product.price.mrp | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+                      <h5>{{product.price.mrp | indianCurrency}}</h5>
                     </del>
                   </h4>
                   <div class="col-12 col-sm-4">
@@ -72,20 +72,20 @@
         <div class="bg-light p-3 w-100">
           <div class="d-flex justify-content-between">
             <h5 class="text-muted fw-light">Subtotal</h5>
-            <h5 class="fw-normal">{{calculateTotalCartPrice() | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+            <h5 class="fw-normal">{{calculateTotalCartPrice() | indianCurrency}}</h5>
           </div>
           <div class="d-flex justify-content-between">
             <h5 class="text-muted fw-light">Shipping Charges</h5>
-            <h5 class="fw-normal">{{shippingCharges | currency:'INR':'symbol-narrow':'2.0-2'}}</h5>
+            <h5 class="fw-normal">{{shippingCharges | indianCurrency}}</h5>
           </div>
           <div class="d-flex justify-content-between ">
             <h5 class="text-muted fw-light">Discount</h5>
-            <h5 class="fw-normal"> - {{discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+            <h5 class="fw-normal"> - {{discount | indianCurrency}}</h5>
           </div>
           <hr>
           <div class="d-flex justify-content-between py-3">
             <h4>Total</h4>
-            <h5>{{calculateTotalCartPrice() + shippingCharges - discount | currency:'INR':'symbol-narrow':'4.0-2'}}</h5>
+            <h5>{{calculateTotalCartPrice() + shippingCharges - discount | indianCurrency}}</h5>
           </div>
           <div class="w-100 d-flex justify-content-center gap-2 actionBtns">
             <a routerLink="/cart" class="btn btn-success p-2 w-100" (click)="mergeWithCartItems()">

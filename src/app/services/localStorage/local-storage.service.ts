@@ -9,19 +9,19 @@ import { ProductsService } from '../products/products.service';
   providedIn: 'root'
 })
 export class LocalStorageService {
-  private cartKey = 'cartItems';  
+  private cartKey = 'cartItems';
   private guestCartKey = 'guestCart';
-  maxAllowedQuantity: number=99;
+  maxAllowedQuantity: number = 99;
 
   constructor(
-    private authService: AuthService, 
+    private authService: AuthService,
     private toastService: ToastService,
     private productService: ProductsService
-  ) {}
+  ) { }
 
   updateCart(cartItems: { [productId: string]: number }): void {
     const currentUser: User | null = this.authService.getCurrentUser();
-    const userID = currentUser?.userId ?? this.guestCartKey; 
+    const userID = currentUser?.userId ?? this.guestCartKey;
     const storedCartString = localStorage.getItem(this.cartKey);
     const storedCart = storedCartString ? JSON.parse(storedCartString) : {};
     storedCart[userID] = cartItems;
@@ -31,32 +31,32 @@ export class LocalStorageService {
   getCurrentUserCart(): Cart | null {
     const currentUser: User | null = this.authService.getCurrentUser();
     const storedCartString = localStorage.getItem(this.cartKey);
-    if (!storedCartString) return {};  
+    if (!storedCartString) return {};
     try {
       const storedCart = JSON.parse(storedCartString);
       const userId = currentUser ? currentUser.userId : this.guestCartKey;
       const userCart = storedCart[userId] || {};
-      const lsObj:{[key:string]:number}={};
-      Object.keys(userCart).map((curr)=>{
-        if(this.productService.isValidProduct(curr) && curr.length===6){
-          let quantity=userCart[curr];
-          if(quantity>=0 && quantity<=this.maxAllowedQuantity){
-            if(lsObj[curr]){
-              lsObj[curr]+=parseInt(quantity);
-            }else{
-              lsObj[curr]=parseInt(quantity);
+      const lsObj: { [key: string]: number } = {};
+      Object.keys(userCart).map((curr) => {
+        if (this.productService.isValidProduct(curr) && curr.length === 6) {
+          let quantity = userCart[curr];
+          if (quantity >= 0 && quantity <= this.maxAllowedQuantity) {
+            if (lsObj[curr]) {
+              lsObj[curr] += parseInt(quantity);
+            } else {
+              lsObj[curr] = parseInt(quantity);
             }
-          }else{
+          } else {
             this.toastService.showToast('There were some modifications in the Cart stored in local storage, clearing the local storage cart!', "error");
             this.clearCart();
           }
         }
       })
-      return lsObj; 
+      return lsObj;
     } catch (error) {
       this.toastService.showToast('There were some modifications in the Cart stored in local storage, clearing the local storage cart!', "error");
-      localStorage.removeItem(this.cartKey); 
-      return {}; 
+      localStorage.removeItem(this.cartKey);
+      return {};
     }
   }
 
@@ -71,7 +71,7 @@ export class LocalStorageService {
         const storedCart = JSON.parse(storedCartString);
         if (storedCart[this.guestCartKey]) {
           delete storedCart[this.guestCartKey];
-          localStorage.setItem(this.cartKey, JSON.stringify(storedCart)); 
+          localStorage.setItem(this.cartKey, JSON.stringify(storedCart));
         }
       } catch (error) {
         localStorage.removeItem(this.cartKey);
