@@ -1,23 +1,23 @@
-.productCard{
+.productCard {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: none;   
+    border: none;
     border-radius: 20px;
 }
 
-.productCardTopPanel{
+.productCardTopPanel {
     position: relative;
     background: #E5E8F1;
     border-radius: 15px 15px 0px 0px;
 }
 
-.productImage{
+.productImage {
     height: 100%;
     width: 100%;
 }
 
-.produtCardDiscount{
+.produtCardDiscount {
     position: absolute;
     top: 5px;
     right: 5px;
@@ -28,7 +28,7 @@
     font-size: 15px;
 }
 
-.brand{
+.brand {
     font-size: 16px;
     font-weight: 700;
     color: #282c3f;
@@ -38,26 +38,26 @@
     white-space: nowrap;
 }
 
-.productCardTitle{
+.productCardTitle {
     color: #535766;
     font-size: 14px;
     margin-bottom: 0;
     margin-top: 0;
     font-weight: 400;
-    display: -webkit-box; 
+    display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
-    overflow: hidden; 
-    text-overflow: ellipsis; 
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.discountedPrice{
+.discountedPrice {
     font-size: 16px;
     font-weight: 700;
     color: #282c3f;
 }
 
-.originalPrice{
+.originalPrice {
     text-decoration: line-through;
     color: #7e818c;
     font-weight: 400;
@@ -65,15 +65,15 @@
     font-size: 14px;
 }
 
-.discountPercentage{
+.discountPercentage {
     color: #ff905a;
     font-weight: 400;
     font-size: 12px;
     margin-left: 5px;
 }
 
-@media screen and (min-width: 768px){
-    .card:hover{
+@media screen and (min-width: 768px) {
+    .card:hover {
         box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
         padding: 3px;
     }

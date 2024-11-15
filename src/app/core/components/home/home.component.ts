@@ -8,8 +8,8 @@ import { Component } from '@angular/core';
 export class HomeComponent {
   isOpen = false;
 
-  toggleSidebar(){
-    this.isOpen=!this.isOpen;
+  toggleSidebar() {
+    this.isOpen = !this.isOpen;
   }
 }
 

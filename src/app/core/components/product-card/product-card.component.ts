@@ -10,23 +10,19 @@ import { CartService } from 'src/app/services/cart/cart.service';
 export class ProductCardComponent {
   @Input() product!: Product;
 
-  constructor(private cartService: CartService){
-    
+  constructor(private cartService: CartService) {
+
   }
 
-  handleProductCardHover(){
-    
+  handleProductCardHover() {
+
   }
 
-  isProductInCart(productId: string){
+  isProductInCart(productId: string) {
     return this.cartService.productInCart(productId);
   }
 
-  openProductDetailsPage(){
-    
-  }
-
-  handleQuantityClick($event: Event){
+  handleQuantityClick($event: Event) {
     $event.stopPropagation();
   }
 }

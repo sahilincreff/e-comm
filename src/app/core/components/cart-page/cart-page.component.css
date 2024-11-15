@@ -1,13 +1,12 @@
-
 .cartSummaryContainer {
   padding-left: 20px;
-  position: relative; 
+  position: relative;
 }
 
 
 .emptyCartImage {
   max-width: 100%;
-  width: 400px; 
+  width: 400px;
 }
 
 
@@ -20,24 +19,24 @@
 
 @media (min-width: 992px) {
   .cartSummaryContainer {
-      position: fixed;  
-      top: 80px;
-      right: 3vw; 
-      width: 32%; 
-      height: 100vh; 
-      overflow-y: auto; 
+    position: fixed;
+    top: 80px;
+    right: 3vw;
+    width: 32%;
+    height: 100vh;
+    overflow-y: auto;
   }
 
   .col-lg-8 {
-      max-height: 100vh; 
-      overflow-y: auto; 
+    max-height: 100vh;
+    overflow-y: auto;
   }
 }
 
 @media (max-width: 991px) {
   .cartSummaryContainer {
-      position: relative; 
-      width: 100%; 
-      margin-top: 20px;
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
   }
 }

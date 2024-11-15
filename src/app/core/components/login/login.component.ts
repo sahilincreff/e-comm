@@ -14,7 +14,7 @@ import { ProductsService } from 'src/app/services/products/products.service';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private toastService: ToastService, private cartService: CartService, private productService:ProductsService) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private toastService: ToastService, private cartService: CartService, private productService: ProductsService) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(15)]]

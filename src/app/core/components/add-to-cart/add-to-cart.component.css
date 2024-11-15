@@ -1,29 +1,28 @@
-.addToCartContainer{
+.addToCartContainer {
     border-radius: 0px 50px;
 }
 
-.addToCartBtn{
+.addToCartBtn {
     border: none;
     display: flex;
     width: 100%;
     justify-content: center;
     padding: 10px;
     font-size: 15px;
-    /* border-radius: 25px */
 }
 
-.quantityInCart{
+.quantityInCart {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.cartIcon{
+.cartIcon {
     height: 25px;
     width: 25px;
 }
 
-.incrementDecrementBtn{
+.incrementDecrementBtn {
     border: none;
     width: 35%;
     padding: 10px;
@@ -31,4 +30,3 @@
     background-color: #E5E8F1;
     border-radius: 50px;
 }
-

@@ -1,24 +1,19 @@
 <div class="carouselContainer">
-    <div class="navigation-buttons">
-      <button (click)="onPrev()" class="btn btn-sm  prev-button bg-transparent border-0">
-        <span class="mdi mdi-chevron-left chevron-icon"></span>
-      </button>
-      <button (click)="onNext()" class="btn btn-sm next-button bg-transparent border-0">
-        <span class="mdi mdi-chevron-right chevron-icon"></span>
-      </button>
-    </div>
-    <div class="imageContainer">
-      <img class="currentSelectedImage" 
-           [src]="currImage" 
-           (mouseout)="startImageChange()" 
-           (mouseover)="stopImageChange()" />
-    </div>
-    <div *ngIf="showMoreImages" class="listImages overflow-auto">
-      <div *ngFor="let image of slideImages; let i = index" 
-           (click)="selectSlide(i)" 
-           class="smallImageCard">
-        <img [src]="image" class="smallImage" />
-      </div>
+  <div class="navigation-buttons">
+    <button (click)="onPrev()" class="btn btn-sm  prev-button bg-transparent border-0">
+      <span class="mdi mdi-chevron-left chevron-icon"></span>
+    </button>
+    <button (click)="onNext()" class="btn btn-sm next-button bg-transparent border-0">
+      <span class="mdi mdi-chevron-right chevron-icon"></span>
+    </button>
+  </div>
+  <div class="imageContainer">
+    <img class="currentSelectedImage" [src]="currImage" (mouseout)="startImageChange()"
+      (mouseover)="stopImageChange()" />
+  </div>
+  <div *ngIf="showMoreImages" class="listImages overflow-auto">
+    <div *ngFor="let image of slideImages; let i = index" (click)="selectSlide(i)" class="smallImageCard">
+      <img [src]="image" class="smallImage" />
     </div>
   </div>
-  
+</div>

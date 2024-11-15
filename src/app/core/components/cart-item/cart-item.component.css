@@ -1,4 +1,4 @@
-.cartItemContainer{
+.cartItemContainer {
     display: flex;
     gap: 10px;
     border: 1px solid #eaeaec;
@@ -7,62 +7,62 @@
     margin-top: 10px;
 }
 
-.cartItemImg{
-   height: 160px;
-   background: #E5E8F1;
-   border-radius: 15px 0px 0px 15px;
+.cartItemImg {
+    height: 160px;
+    background: #E5E8F1;
+    border-radius: 15px 0px 0px 15px;
 }
 
-.cartItemHeader{
+.cartItemHeader {
     display: flex;
     justify-content: space-between;
     padding-right: 10px;
     align-items: flex-start;
 }
 
-.removeItemBtn{
+.removeItemBtn {
     border: none;
     background: none;
     color: red;
 }
 
-.productBrand{
+.productBrand {
     color: #282c3f;
     font-size: 20px;
     font-weight: 700;
 }
 
-.productName{
+.productName {
     opacity: .8;
     font-weight: 400;
     color: #535766;
     font-size: 18px;
     margin-bottom: 0;
     margin-top: 0;
-    display: -webkit-box; 
+    display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
-    overflow: hidden; 
-    text-overflow: ellipsis; 
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.discountPercentage{
+.discountPercentage {
     color: #ff905a;
     font-weight: 400;
     font-size: 1.25rem;
     margin-left: 5px;
 }
 
-.cartItemContainer:hover{
+.cartItemContainer:hover {
     padding: 7px;
 }
 
-.mdi-delete{
+.mdi-delete {
     display: none;
 }
 
-.cartItemContainer:hover{
-    .mdi-delete{
+.cartItemContainer:hover {
+    .mdi-delete {
         display: block;
     }
 }

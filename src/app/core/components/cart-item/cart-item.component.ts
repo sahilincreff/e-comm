@@ -10,46 +10,42 @@ import { cartItem } from 'src/app/shared/models/cartItem';
   styleUrls: ['./cart-item.component.css']
 })
 export class CartItemComponent {
-  @Input() product!:cartItem;
+  @Input() product!: cartItem;
   removeItemConfirmation: boolean = false;
-  deleteIconVisible: boolean=false;
+  deleteIconVisible: boolean = false;
 
-  constructor(private cartService: CartService, private router: Router, private toastService : ToastService){}
+  constructor(private cartService: CartService, private router: Router, private toastService: ToastService) { }
 
-  showDeleteIcon(){
-    this.deleteIconVisible=true;
+  showDeleteIcon() {
+    this.deleteIconVisible = true;
   }
 
-  hideDeleteIcon(){
-    this.deleteIconVisible=false;
+  hideDeleteIcon() {
+    this.deleteIconVisible = false;
   }
 
-  toggleItemConfirmation($event: any){
-    this.removeItemConfirmation=!this.removeItemConfirmation;
+  toggleItemConfirmation($event: any) {
+    this.removeItemConfirmation = !this.removeItemConfirmation;
     $event.stopPropagation();
   }
 
-  handleConfirmation(deleteItem: boolean){
-    if(deleteItem){
+  handleConfirmation(deleteItem: boolean) {
+    if (deleteItem) {
       this.handleItemRemove();
       this.toastService.showToast('Item Removed From Cart', 'warning')
     }
-    this.removeItemConfirmation=false;
+    this.removeItemConfirmation = false;
   }
 
-  productPresentInCart(){
+  productPresentInCart() {
     return this.cartService.productInCart(this.product.productId);
   }
 
-  private handleItemRemove(){
+  private handleItemRemove() {
     this.cartService.removeItemFromCart(this.product.productId);
   }
 
-  openProductDetails(){
-    this.router.navigate(['/product', this.product.productId]);
-  }
-
-  handleEvent($event: Event){
+  handleEvent($event: Event) {
     $event.stopPropagation();
   }
 

@@ -1,45 +1,50 @@
 <div *ngIf="!invalidProduct" class="productDetailsContainer">
-    <div class="productDetails">
-        <app-carousel class="productCarouselContainer" [slideImages]="product.images"></app-carousel>
-        <div class="productInfo">
-            <h3 class="brand">{{product.brand}}</h3>
-            <h4 class="productName">{{product.name}}</h4>
-            <div class="pb-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-              <path fill="none" d="M0 0h24v24H0z"/>
-              <path fill="#4CAF50" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-            </svg> 4.7 | 3163 ratings</div>
-            <h3 class="d-flex align-items-baseline gap-2">
-                {{product.price.sellingPrice | indianCurrency}}
-                <del><h5>{{product.price.mrp | indianCurrency}}</h5></del>
-                <h5 class="discountPercentage">({{product.price.sellingPrice | discount: product.price.mrp}})</h5>
-            </h3>
-            <h6 class="text-secondary">Inclusive of All Taxes.</h6>
-            <p [innerHTML]="product.description"></p>
-            <div class="d-flex">
-              <div class="addToCartContainer">
-                <app-add-to-cart [productId]="product.productId" [productDetailPage]="true"></app-add-to-cart>
-              </div>
-              <button *ngIf="productQuantityInCart()>0" class="btn btn-sm btn-outline-danger d-none d-lg-block rounded-pill px-3" (click)="removeItemFromCart()" placement="bottom" >Remove</button>
-            </div>
-            <hr>
-            <div class="mt-3">
-                <ul class="list-unstyled">
-                  <li class="d-flex align-items-center mb-2">
-                    <i class="bi bi-check2-circle text-primary me-2"></i>
-                    <span class="small">100% Original Products</span>
-                  </li>
-                  <li class="d-flex align-items-center mb-2">
-                    <i class="bi bi-truck text-primary me-2"></i>
-                    <span class="small">Pay on delivery might be available</span>
-                  </li>
-                  <li class="d-flex align-items-center">
-                    <i class="bi bi-arrow-repeat text-primary me-2"></i>
-                    <span class="small">Easy 14 days returns and exchanges</span>
-                  </li>
-                </ul>
-              </div>
+  <div class="productDetails">
+    <app-carousel class="productCarouselContainer" [slideImages]="product.images"></app-carousel>
+    <div class="productInfo">
+      <h3 class="brand">{{product.brand}}</h3>
+      <h4 class="productName">{{product.name}}</h4>
+      <div class="pb-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+          <path fill="none" d="M0 0h24v24H0z" />
+          <path fill="#4CAF50"
+            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+        </svg> 4.7 | 3163 ratings</div>
+      <h3 class="d-flex align-items-baseline gap-2">
+        {{product.price.sellingPrice | indianCurrency}}
+        <del>
+          <h5>{{product.price.mrp | indianCurrency}}</h5>
+        </del>
+        <h5 class="discountPercentage">({{product.price.sellingPrice | discount: product.price.mrp}})</h5>
+      </h3>
+      <h6 class="text-secondary">Inclusive of All Taxes.</h6>
+      <p [innerHTML]="product.description"></p>
+      <div class="d-flex">
+        <div class="addToCartContainer">
+          <app-add-to-cart [productId]="product.productId" [productDetailPage]="true"></app-add-to-cart>
         </div>
+        <button *ngIf="productQuantityInCart()>0"
+          class="btn btn-sm btn-outline-danger d-none d-lg-block rounded-pill px-3" (click)="removeItemFromCart()"
+          placement="bottom">Remove</button>
+      </div>
+      <hr>
+      <div class="mt-3">
+        <ul class="list-unstyled">
+          <li class="d-flex align-items-center mb-2">
+            <i class="bi bi-check2-circle text-primary me-2"></i>
+            <span class="small">100% Original Products</span>
+          </li>
+          <li class="d-flex align-items-center mb-2">
+            <i class="bi bi-truck text-primary me-2"></i>
+            <span class="small">Pay on delivery might be available</span>
+          </li>
+          <li class="d-flex align-items-center">
+            <i class="bi bi-arrow-repeat text-primary me-2"></i>
+            <span class="small">Easy 14 days returns and exchanges</span>
+          </li>
+        </ul>
+      </div>
     </div>
+  </div>
 </div>
 
 <section *ngIf="invalidProduct" class="py-3 py-md-5 min-vh-90 d-flex justify-content-center align-items-center">
@@ -49,8 +54,10 @@
         <div class="text-center">
           <img class="noProductCardImage" src="assets/images/6430770.webp" />
           <h3 class="h2 mb-2">Oops! You're lost.</h3>
-          <p class="mb-5">There is no product in our inventory with the product Id <span class="fw-bold">{{productId}}</span></p>
-          <a class="btn bsb-btn-5xl btn-sm btn-dark rounded-pill px-5 fs-6 m-0" routerLink="/" role="button">Back to Home</a>
+          <p class="mb-5">There is no product in our inventory with the product Id <span
+              class="fw-bold">{{productId}}</span></p>
+          <a class="btn bsb-btn-5xl btn-sm btn-dark rounded-pill px-5 fs-6 m-0" routerLink="/" role="button">Back to
+            Home</a>
         </div>
       </div>
     </div>
@@ -58,4 +65,4 @@
 </section>
 
 <app-modal *ngIf="showRemoveConfirmation" [message]="'Are you sure you remove this item from Cart?'"
-    (confirmed)="handleRemoveConfirmation($event)"></app-modal>
+  (confirmed)="handleRemoveConfirmation($event)"></app-modal>

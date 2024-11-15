@@ -23,7 +23,7 @@ export class FiltersComponent implements OnInit {
           processor: [],
           price: [Infinity, -Infinity],
           connectivity: [],
-          battery: [Infinity, -Infinity], 
+          battery: [Infinity, -Infinity],
           category: [],
         };
 
@@ -40,10 +40,10 @@ export class FiltersComponent implements OnInit {
           }
 
           filters.battery[0] = Math.min(filters.battery[0], product.battery);
-          filters.battery[1] = Math.max(filters.battery[1], product.battery); 
+          filters.battery[1] = Math.max(filters.battery[1], product.battery);
         });
         this.filters = filters;
-        this.filters.price=FILTERS.price;
+        this.filters.price = FILTERS.price;
         this.filterChange.emit(this.filters);
       },
       (error) => {
@@ -84,10 +84,10 @@ export class FiltersComponent implements OnInit {
 
   handleClearFilter() {
     this.filterService.clearSelectedFilters();
-    this.selectedFilters = {}; 
+    this.selectedFilters = {};
   }
 
-  nofilterApplied(){
+  nofilterApplied() {
     return this.filterService.isEmptyFilter();
   }
 }

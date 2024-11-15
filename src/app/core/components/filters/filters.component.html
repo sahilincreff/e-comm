@@ -3,7 +3,8 @@
     <h3>
       Filters
     </h3>
-    <button *ngIf="nofilterApplied()===false" class="border-0 btn-sm bg-transparent text-danger" (click)="handleClearFilter()">Clear All
+    <button *ngIf="nofilterApplied()===false" class="border-0 btn-sm bg-transparent text-danger"
+      (click)="handleClearFilter()">Clear All
     </button>
   </div>
   <div>
@@ -36,7 +37,7 @@
         <div *ngFor="let price of filters.price">
           <label class="filterItemsLabel">
             <input type="checkbox" [checked]="isChecked('price', price)" (change)="onCheckboxChange('price', price)" />
-            {{ price | currency:'INR':'symbol-narrow':'4.0-2' }}
+            {{ price | indianCurrency }}
           </label>
         </div>
       </div>
@@ -51,7 +52,7 @@
           </label>
         </div>
       </div>
-<!-- 
+      <!-- 
       <label for="customRange1" class="form-label">Example range</label>
       <input type="range" class="form-range" id="customRange1"> -->
 

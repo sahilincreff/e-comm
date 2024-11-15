@@ -6,7 +6,7 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.7);
   z-index: 1000;
-  display: flex; 
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -17,12 +17,12 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   max-width: 500px;
-  width: 90%; 
+  width: 90%;
   margin: auto;
 }
 
 
-.confirmationBtns{
+.confirmationBtns {
   display: flex;
   align-items: center;
   justify-content: flex-end;

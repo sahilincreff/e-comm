@@ -10,28 +10,32 @@
                 <div class="row gy-3 overflow-hidden">
                   <div class="col-12">
                     <div class="form-floating mb-3">
-                      <input type="email" class="form-control border-0 border-bottom rounded-0" 
-                             formControlName="email" placeholder="name@example.com" required>
+                      <input type="email" class="form-control border-0 border-bottom rounded-0" formControlName="email"
+                        placeholder="name@example.com" required>
                       <label for="email" class="form-label">Email</label>
                       <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
-                        <small *ngIf="loginForm.get('email')?.errors?.['required']" class="text-danger">Email is required.</small>
-                        <small *ngIf="loginForm.get('email')?.errors?.['email']" class="text-danger">Invalid email format.</small>
+                        <small *ngIf="loginForm.get('email')?.errors?.['required']" class="text-danger">Email is
+                          required.</small>
+                        <small *ngIf="loginForm.get('email')?.errors?.['email']" class="text-danger">Invalid email
+                          format.</small>
                       </div>
                     </div>
                   </div>
                   <div class="col-12">
                     <div class="form-floating mb-3">
-                      <input type="password" class="form-control border-0 border-bottom rounded-0" 
-                             formControlName="password" placeholder="Password" required>
+                      <input type="password" class="form-control border-0 border-bottom rounded-0"
+                        formControlName="password" placeholder="Password" required>
                       <label for="password" class="form-label">Password</label>
                       <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-                        <small *ngIf="loginForm.get('password')?.errors?.['required']" class="text-danger">Password is required.</small>
+                        <small *ngIf="loginForm.get('password')?.errors?.['required']" class="text-danger">Password is
+                          required.</small>
                       </div>
                     </div>
                   </div>
                   <div class="col-12">
                     <div class="d-grid">
-                      <button class="btn btn-sm btn-primary rounded-0 fs-6" type="submit" [disabled]="loginForm.invalid">Sign in</button>
+                      <button class="btn btn-sm btn-primary rounded-0 fs-6" type="submit"
+                        [disabled]="loginForm.invalid">Sign in</button>
                     </div>
                   </div>
                 </div>

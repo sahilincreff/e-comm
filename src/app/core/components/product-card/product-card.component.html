@@ -1,6 +1,6 @@
-<div (mouseover)="handleProductCardHover()" class="productCard card " role="button" >
+<div (mouseover)="handleProductCardHover()" class="productCard card " role="button">
     <div class="productCardTopPanel">
-        <img [src]="product.images[0]" class="productImage"/>
+        <img [src]="product.images[0]" class="productImage" />
         <!-- <div class="produtCardDiscount">50% OFF</div> -->
     </div>
     <div class="pt-2">
@@ -12,7 +12,8 @@
                 <h5 class="originalPrice">{{product.price.mrp | indianCurrency}}</h5>
                 <h5 class="discountPercentage">({{product.price.sellingPrice | discount: product.price.mrp}})</h5>
             </div>
-            <app-add-to-cart (click)="handleQuantityClick($event)" class="w-100 h-100" [productId]="product.productId"></app-add-to-cart>
+            <app-add-to-cart (click)="handleQuantityClick($event)" class="w-100 h-100"
+                [productId]="product.productId"></app-add-to-cart>
         </div>
     </div>
 </div>

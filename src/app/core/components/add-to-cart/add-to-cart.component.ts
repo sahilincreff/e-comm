@@ -13,15 +13,15 @@ export class AddToCartComponent implements OnInit, OnDestroy {
   quantityInCart: number = 0;
   private cartSubscription!: Subscription;
   showRemoveConfirmation: boolean = false;
-  @Input() productDetailPage: boolean=false;
+  @Input() productDetailPage: boolean = false;
 
-  constructor(private cartService: CartService, private toastService: ToastService) {}
+  constructor(private cartService: CartService, private toastService: ToastService) { }
 
   ngOnInit() {
     this.cartSubscription = this.cartService.getCartItemsObservable().subscribe(() => {
       this.updateQuantity();
     });
-  
+
     this.updateQuantity();
   }
 
@@ -60,7 +60,7 @@ export class AddToCartComponent implements OnInit, OnDestroy {
   increaseItemQuantity(): void {
     const currentQuantity = this.cartService.getItemQuantityInCart(this.productId);
     if (currentQuantity >= this.cartService.maxQuantity) {
-      this.toastService.showToast("Oh No! You can't add more than "+`${this.cartService.maxQuantity}`+" quantity of same item", "error")
+      this.toastService.showToast("Oh No! You can't add more than " + `${this.cartService.maxQuantity}` + " quantity of same item", "error")
     } else {
       this.cartService.increaseQuantity(this.productId);
     }
@@ -78,7 +78,7 @@ export class AddToCartComponent implements OnInit, OnDestroy {
     this.quantityInCart = this.cartService.getItemQuantityInCart(this.productId);
   }
 
-  removeItemFromCart(){
-    this.showRemoveConfirmation=true;
+  removeItemFromCart() {
+    this.showRemoveConfirmation = true;
   }
 }

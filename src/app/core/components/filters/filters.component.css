@@ -1,41 +1,41 @@
-.filtersContainer{
+.filtersContainer {
     padding: 5px 10px;
 }
 
-.filtersHeader{
+.filtersHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.clearFiltersBtn{
+.clearFiltersBtn {
     border: none;
     background: transparent;
     color: red;
 }
 
-.filterOptionsContainer{
+.filterOptionsContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0px 20px;
 }
 
-.filterHeading{
+.filterHeading {
     background: #E5E8F1;
     padding: 5px 10px;
 }
 
-.filterItemsLabel{
+.filterItemsLabel {
     font-size: 14px;
     cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {
-    .filterItemsLabel{
+    .filterItemsLabel {
         font-size: 18px
     }
 
-    .filterOptionsContainer{
+    .filterOptionsContainer {
         padding: 10px;
     }
 }

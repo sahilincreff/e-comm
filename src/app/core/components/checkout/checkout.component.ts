@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as Papa from 'papaparse'; 
 import { CartService } from 'src/app/services/cart/cart.service';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
 @Component({
   selector: 'app-checkout',
@@ -12,7 +13,7 @@ export class CheckoutComponent implements OnInit {
   productDetails: any[] = [];
   isFromCart: boolean=false;
 
-  constructor(private router: Router, private cartService:CartService) {}
+  constructor(private router: Router, private cartService:CartService, private toastService: ToastService) {}
 
   ngOnInit() {
     const navigationState = history.state;
@@ -28,7 +29,7 @@ export class CheckoutComponent implements OnInit {
 
   downloadCSV() {
     if (this.productDetails.length === 0) {
-      console.log('No product details to download');
+      this.toastService.showToast('No product details to download', 'error')
       return;
     }
 

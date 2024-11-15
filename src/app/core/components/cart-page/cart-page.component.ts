@@ -23,8 +23,8 @@ export class CartPageComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private productService: ProductsService,
-    private router:Router
-  ) {}
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.cartService.getCartItemsObservable().subscribe(() => {
@@ -74,21 +74,21 @@ export class CartPageComponent implements OnInit {
     this.cartItemsList = [];
   }
 
-  proceedToCheckout(){
+  proceedToCheckout() {
     this.router.navigate(['/checkout'], {
-      state: { productDetails: this.cartItems, isFromCart: true}
+      state: { productDetails: this.cartItems, isFromCart: true }
     });
   }
 
-  totalCartItemsQuantity(){
-    if(this.cartItems){
-      let cartItemsQuantity=0;
-      Object.keys(this.cartItems).map(currObj =>{
-        cartItemsQuantity+=this.cartItems[currObj]
+  totalCartItemsQuantity() {
+    if (this.cartItems) {
+      let cartItemsQuantity = 0;
+      Object.keys(this.cartItems).map(currObj => {
+        cartItemsQuantity += this.cartItems[currObj]
       })
       return cartItemsQuantity;
     }
-    return 0;    
+    return 0;
   }
 
 }
