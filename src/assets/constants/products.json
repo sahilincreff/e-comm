@@ -235,5 +235,129 @@
         "processor":"Tensor",
         "battery":5000,
         "category": "premium"
+    },
+    {
+        "productId": "305280",
+        "brand": "Realme",
+        "name": "realme 12+ 5G (8GB RAM, 256GB, Navigator Beige)",
+        "description": "<ul class='px-3'><li>Display: 6.67 inches (16.94 cm), FHD+, 120 Hz Refresh Rate</li><li>Memory: 8GB RAM, 256GB ROM, Memory Card (Hybrid) upto 2TB</li><li>Processor: MediaTek Dimensity 7050, Octa Core, 2.6 GHz</li><li>Camera: 50 MP + 8 MP + 2 MP Triple Rear & 16 MP Front Camera</li><li>Battery: 5000 mAh with 67W SUPERVOOC Fast Charging </li><li>USP: Vapour Chamber Cooling System, Luxury Watch Design, Rainwater Smart Touch</li></ul>",
+        "images": ["https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1709823596/Croma%20Assets/Communication/Mobiles/Images/305280_0_meorzg.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1710488956/Croma%20Assets/Communication/Mobiles/Images/305280_2_ttx7uq.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1709823581/Croma%20Assets/Communication/Mobiles/Images/305280_9_fhnkxo.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1709823584/Croma%20Assets/Communication/Mobiles/Images/305280_10_dzvuif.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1709823590/Croma%20Assets/Communication/Mobiles/Images/305280_14_t9zara.png?tr=w-640"],
+        "price": {
+            "mrp": 23999.0,
+            "sellingPrice": 18499.0
+        },
+        "usp": ["performance", "storage", "camera"],
+        "rating": 5.0,
+        "connectivity": "5G",
+        "processor":"MediaTek",
+        "battery":5000,
+        "category": "budget"
+    },
+    {
+        "productId": "303651",
+        "brand": "Vivo",
+        "name": "vivo Y28 5G (4GB RAM, 128GB, Glitter Aqua)",
+        "description": "<ul class='px-3'><li>Display: 6.56 inches (16.66 cm), LCD, 90 Hz Refresh Rate</li><li>Memory: 4GB RAM, 128GB ROM, Memory Card upto 1TB</li><li>Processor: MediaTek Dimensity 6020, Octa Core, 2.2 GHz</li><li>Camera: 50 MP + 2 MP Dual Rear and 8 MP Front Camera</li><li>Battery: 5000 mAh</li><li>USP: Side-mounted Fingerprint Sensor, Capacitive Multi-touch Display</li></ul>",
+        "images": ["https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1704436624/Croma%20Assets/Communication/Mobiles/Images/303531_he2utv.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1705412802/Croma%20Assets/Communication/Mobiles/Images/303531_2_r5yxx9.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1704436620/Croma%20Assets/Communication/Mobiles/Images/303531_6_ull5am.png?tr=w-640"],
+        "price": {
+            "mrp": 14999.0,
+            "sellingPrice": 13494.0
+        },
+        "usp": ["storage"],
+        "rating": 5.0,
+        "connectivity": "5G",
+        "processor":"MediaTek",
+        "battery":5000,
+        "category": "budget"
+    },
+    {
+        "productId": "304697",
+        "brand": "OnePlus",
+        "name": "OnePlus 12R 5G (8GB, 128GB, Cool Blue)",
+        "description": "<ul class='px-3'><li>Display: 6.78 inches (17.22 cm), AMOLED, 120 Hz Refresh Rate</li><li>Memory: 8GB RAM, 128GB ROM</li><li>Processor: Qualcomm Snapdragon 8 Gen 2</li><li>Camera : 50 MP + 8 MP + 2 MP Triple Rear & 16 MP Front Camera</li><li>Battery: 5500 mAh with 100W SUPERVOOC Fast Charging</li><li>USP: Aqua Touch Technology, Dual Cryo-Velocity VC Cooling System, 360 Degree Gaming Antenna</li></ul>",
+        "images": ["https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1706791128/Croma%20Assets/Communication/Mobiles/Images/304697_zp8rwp.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1707378061/Croma%20Assets/Communication/Mobiles/Images/304697_2_lheiul.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1706791113/Croma%20Assets/Communication/Mobiles/Images/304697_6_vb8mx6.png?tr=w-640"],
+        "price": {
+            "mrp": 39999.0,
+            "sellingPrice": 34999.0
+        },
+        "usp": ["premium", "storage", "camera"],
+        "rating": 5.0,
+        "connectivity": "5G",
+        "processor":"Snapdragon",
+        "battery":5000,
+        "category": "premium"
+    },
+    {
+        "productId": "305272",
+        "brand": "Realme",
+        "name": "realme 12 5G (8GB RAM, 128GB, Twilight Purple)",
+        "description": "<ul class='px-3'><li>Display: 6.72 inches (17.07 cm), FHD+, 120 Hz Refresh Rate</li><li>Memory: 8GB RAM, 128GB ROM, Memory Card (Hybrid) upto 2TB</li><li>Processor: MediaTek Dimensity 6100+, Octa Core, 2.2 GHz</li><li>Camera: 108 MP + 2 MP Dual Rear & 8 MP Front Camera</li><li>Battery: 5000 mAh with 45W SUPERVOOC Fast Charging </li><li>USP: IPX4 Waterproof & Dustproof, Trendy Watch Design, Dynamic Button</li></ul>",
+        "images": ["https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1709823518/Croma%20Assets/Communication/Mobiles/Images/305272_0_pwh52w.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1710488956/Croma%20Assets/Communication/Mobiles/Images/305272_2_sotbuk.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1709823532/Croma%20Assets/Communication/Mobiles/Images/305272_10_vpbrlu.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1709823539/Croma%20Assets/Communication/Mobiles/Images/305272_13_i6aayw.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1709823541/Croma%20Assets/Communication/Mobiles/Images/305272_14_wmkxs6.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1709823545/Croma%20Assets/Communication/Mobiles/Images/305272_15_npqyzq.png?tr=w-640"
+                ],
+        "price": {
+            "mrp": 20999.0,
+            "sellingPrice": 14999.0
+        },
+        "usp": ["storage", "display"],
+        "rating": 5.0,
+        "connectivity": "5G",
+        "processor":"MediaTek",
+        "battery":5000,
+        "category": "budget"
+    },
+    {
+        "productId": "308786",
+        "brand": "Vivo",
+        "name": "vivo V40 5G (8GB RAM, 128GB, Lotus Purple)",
+        "description": "<ul class='px-3'><li>Display: 6.78 inches (17.22 cm), AMOLED, 120 Hz Refresh Rate</li><li>Memory: 8GB RAM, 128GB ROM</li><li>Processor: Qualcomm Snapdragon 7 Gen 3, Octa Core, 2.63 GHz</li><li>Camera: 50 MP + 50 MP Dual Rear & 50 MP Front Camera</li><li>Battery: 5500 mAh with 80W Fast Charge</li><li>USP: In-display Fingerprint Sensor, IP68 Dust & Water Resistant</li></ul>",
+        "images": ["https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1722953624/Croma%20Assets/Communication/Mobiles/Images/308786_0_bwxcdi.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1724999584/Croma%20Assets/Communication/Mobiles/Images/308786_2_orlajd.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1722953630/Croma%20Assets/Communication/Mobiles/Images/308786_7_w6rf2r.png?tr=w-640"
+                ],
+        "price": {
+            "mrp": 39999.0,
+            "sellingPrice": 34999.0
+        },
+        "usp": ["camera", "display"],
+        "rating": 5.0,
+        "connectivity": "5G",
+        "processor":"Snapdragon",
+        "battery":6000,
+        "category": "premium"
+    },
+    {
+        "productId": "308336",
+        "brand": "Nothing",
+        "name": "Nothing CMF Phone 1 5G (6GB RAM, 128GB, Blue)",
+        "description": "<ul class='px-3'><li>Display: 6.67 inches (16.94 cm), AMOLED, 120 Hz Refresh Rate</li><li>Memory: 6GB RAM, 128GB ROM, Memory Card (Hybrid) upto 2TB​</li><li>Processor: MediaTek Dimensity 7300 5G, Octa Core, 2.5 GHz</li><li>Camera: 50 MP Rear & 16 MP Front Camera</li><li>Battery: 5000 mAh with 33W Fast Charge</li><li>USP: IP52 Dust & Water Resistant, Voice Control, Chatgpt Integration</li></ul>",
+        "images": ["https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1720678989/Croma%20Assets/Communication/Mobiles/Images/308336_0_evfsit.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1721387848/Croma%20Assets/Communication/Mobiles/Images/308336_2_erskgm.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1720593743/Croma%20Assets/Communication/Mobiles/Images/308336_9_creft9.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1720593751/Croma%20Assets/Communication/Mobiles/Images/308336_13_l8tcoc.png?tr=w-640",
+                   "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1720593753/Croma%20Assets/Communication/Mobiles/Images/308336_14_ntz3hf.png?tr=w-640"
+                ],
+        "price": {
+            "mrp": 27999.0,
+            "sellingPrice": 14999.0
+        },
+        "usp": ["camera", "display"],
+        "rating": 5.0,
+        "connectivity": "5G",
+        "processor":"Dimensity",
+        "battery":5000,
+        "category": "budget"
     }
 ]
