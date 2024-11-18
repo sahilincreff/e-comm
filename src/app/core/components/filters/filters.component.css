@@ -1,5 +1,7 @@
 .filtersContainer {
     padding: 5px 10px;
+    height: 90vh;
+    overflow: scroll;
 }
 
 .filtersHeader {

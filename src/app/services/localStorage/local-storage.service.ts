@@ -47,14 +47,14 @@ export class LocalStorageService {
               lsObj[curr] = parseInt(quantity);
             }
           } else {
-            this.toastService.showToast('There were some modifications in the Cart stored in local storage, clearing the local storage cart!', "error");
-            this.clearCart();
+            this.toastService.showToast('There were some modifications in the Cart stored in local storage', "error");
           }
+          this.updateCart(lsObj);
         }
       })
       return lsObj;
     } catch (error) {
-      this.toastService.showToast('There were some modifications in the Cart stored in local storage, clearing the local storage cart!', "error");
+      this.toastService.showToast('There were some modifications in the Cart stored in local storage!', "error");
       localStorage.removeItem(this.cartKey);
       return {};
     }

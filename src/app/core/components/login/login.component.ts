@@ -28,6 +28,7 @@ export class LoginComponent {
         if (user) {
           this.authService.setCurrentUser(user);
           this.router.navigate(['/']);
+          this.toastService.showToast('Successfully Signed In', 'success')
         } else {
           this.toastService.showToast("Wrong Email or Password", 'error', 3000)
         }

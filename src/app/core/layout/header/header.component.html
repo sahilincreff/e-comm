@@ -3,7 +3,7 @@
     <img class="appLogo" src="assets/images/app_logo.webp" />
   </a>
   <div class="headerRhs" *ngIf="isLoginPage()==false">
-    <div routerLink="/upload" class="csvUploadContainer rounded-pill" placement="bottom" ngbTooltip="Upload CSV">
+    <div *ngIf="userLoggedIn" routerLink="/upload" class="csvUploadContainer rounded-pill" placement="bottom" ngbTooltip="Upload CSV">
       <span class="mdi mdi-file-upload"></span>
     </div>
     <div class="userInfo">

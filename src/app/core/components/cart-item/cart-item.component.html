@@ -1,12 +1,14 @@
-<div [routerLink]="['/product', product.productId]" (mouseover)="showDeleteIcon()" (mouseout)="hideDeleteIcon()"
-    class="cartItemContainer pb-2 button" *ngIf="productPresentInCart() && product.quantity>0" role="button">
+<div [routerLink]="['/product', product.productId]" class="cartItemContainer pb-2 button"
+    *ngIf="productPresentInCart() && product.quantity > 0" role="button">
+
     <img class="cartItemImg" [src]="product.images[0]" />
+
     <div class="w-100">
         <div class="cartItemHeader">
             <h3 class="productBrand">{{product.brand}}</h3>
-            <button class="btn btn-sm removeItemBtn {{deleteIconVisible ? '' : 'd-none'}}"
-                (click)="toggleItemConfirmation($event)" placement="bottom" ngbTooltip="Remove Item From Cart">
-                <span class="mdi mdi-delete-outline"></span>
+            <button class="btn btn-sm removeItemBtn" (click)="toggleItemConfirmation($event)" placement="bottom"
+                ngbTooltip="Remove Item From Cart">
+                <span class="mdi mdi-close-thick"></span>
             </button>
         </div>
         <h5 class="productName">{{product.name}}</h5>
@@ -15,7 +17,6 @@
             <del>
                 <h5>{{product.price.mrp | indianCurrency}}</h5>
             </del>
-            <!-- <h5 class="discountPercentage">({{product.price.sellingPrice | discount: product.price.mrp}})</h5> -->
         </h4>
         <div class="col-12 col-sm-4">
             <app-add-to-cart [productId]="product.productId"></app-add-to-cart>

@@ -24,6 +24,17 @@
     border: none;
     background: none;
     color: red;
+    display: none; 
+}
+
+@media (max-width: 768px) {
+    .removeItemBtn {
+        display: block; 
+    }
+}
+
+.cartItemContainer:hover .removeItemBtn {
+    display: block;
 }
 
 .productBrand {
@@ -57,12 +68,8 @@
     padding: 7px;
 }
 
-.mdi-delete {
-    display: none;
-}
-
-.cartItemContainer:hover {
-    .mdi-delete {
-        display: block;
-    }
+.mdi-close-thick {
+    height: 35px;
+    width: 35px;
+    cursor: pointer;
 }
