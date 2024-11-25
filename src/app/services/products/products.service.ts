@@ -12,6 +12,7 @@ export class ProductsService {
   private products: Product[] = [];
   private filteredProducts: Product[] = [];
   private productsSubject = new BehaviorSubject<Product[]>([]);
+  private loadingSubject = new BehaviorSubject<boolean>(false); 
 
   constructor(private http: HttpClient, private filterService: FiltersService) {
     this.fetchProducts().subscribe();
@@ -21,12 +22,24 @@ export class ProductsService {
   }
 
   fetchProducts(): Observable<Product[]> {
+    if (this.products.length) {
+      return of(this.products);
+    }
+
+    if (this.loadingSubject.getValue()) {
+      return this.productsSubject.asObservable();
+    }
+
+    this.loadingSubject.next(true);
+
     return this.http.get<Product[]>(this.productsApiUrl).pipe(
       map((data: Product[]) => {
-        this.setProducts(data);
+        this.setProducts(data);  
+        this.loadingSubject.next(false);  
         return data;
       }),
       catchError(error => {
+        this.loadingSubject.next(false); 
         console.error('Error fetching products', error);
         return throwError(error);
       })
@@ -34,6 +47,7 @@ export class ProductsService {
   }
 
   refreshProducts() {
+    this.products = []; 
     this.fetchProducts().subscribe();
   }
 
