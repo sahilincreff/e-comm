@@ -1,8 +1,8 @@
 import Filter from "../../app/shared/models/filter";
 
 export const FILTERS: Filter = {
-    brands: ['Nothing', 'Samsung', 'Redmi', 'Realme', 'Apple', 'Google'],
-    processor: ['Snapdragon', 'MediaTek', 'Exynos', 'Google Tensor'],
+    brands: ['Google', 'Apple', 'Samsung', 'Redmi', 'Nothing', 'Realme', 'Vivo', 'OnePlus'],
+    processor: ['Tensor', 'Bionic', 'Snapdragon', 'MediaTek', 'Dimensity'],
     price: [5000, 10000, 15000, 20000, 30000, 50000, 100000],
     connectivity: ["4G", "5G"],
     battery: [5000, 6000],
