@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products/products.service';
 import { Product } from 'src/app/shared/models/product';
-import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { FiltersService } from 'src/app/services/filters/filters.service';
 
@@ -10,25 +9,33 @@ import { FiltersService } from 'src/app/services/filters/filters.service';
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.css']
 })
-export class ProductsListComponent {
-  products: Product[] = [];
+export class ProductsListComponent implements OnInit {
   filteredProducts: Product[] = [];
 
-  constructor(private productService: ProductsService, private router: Router, private filterService: FiltersService) { }
+  constructor(
+    private productService: ProductsService,
+    private router: Router,
+    private filterService: FiltersService
+  ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.productService.getFilteredProducts().subscribe(
+      (filteredProducts) => {
+        this.filteredProducts = filteredProducts;
+      },
+      (error) => {
+        console.error('Error fetching filtered products:', error);
+      }
+    );
+    
     this.productService.fetchProducts().subscribe(
       (data) => {
-        this.productService.setProducts(data);
+        this.productService.setProducts(data); 
       },
       (error) => {
         console.error('Error fetching products:', error);
       }
     );
-
-    this.productService.getProducts().subscribe(filteredProducts => {
-      this.filteredProducts = filteredProducts;
-    });
   }
 
   openProductDetails(productId: string) {
@@ -36,6 +43,6 @@ export class ProductsListComponent {
   }
 
   removeSearchFilters() {
-    this.filterService.clearSelectedFilters();
+    this.filterService.clearSelectedFilters(); 
   }
 }
