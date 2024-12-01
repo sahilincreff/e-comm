@@ -38,7 +38,7 @@ export class LocalStorageService {
       const userCart = storedCart[userId] || {};
       const lsObj: { [key: string]: number } = {};
       Object.keys(userCart).map((curr) => {
-        if (this.productService.isValidProduct(curr) && curr.length === 6) {
+        if (this.productService.isValidProduct(curr)) {
           let quantity = userCart[curr];
           if (quantity >= 0 && quantity <= this.maxAllowedQuantity) {
             if (lsObj[curr]) {
