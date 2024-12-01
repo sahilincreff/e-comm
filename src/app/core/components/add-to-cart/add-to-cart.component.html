@@ -4,7 +4,7 @@
         Add To Cart
     </button>
     <div *ngIf="productPresentInCart() && itemQuantityInCart() > 0" class="d-flex gap-1">
-        <div [ngClass]="{'quantityInCart': true, 'w-75': productDetailPage, 'w-100': !productDetailPage}">
+        <div [ngClass]="{'flex items-center justify-between': true, 'w-75': productDetailPage, 'w-100': !productDetailPage}">
             <button class="btn btn-sm incrementDecrementBtn rounded-pill" (click)="decreaseItemQuantity()"
                 placement="bottom" ngbTooltip="Decrease Item Quantity">-</button>
             <h5>{{itemQuantityInCart()}}</h5>
