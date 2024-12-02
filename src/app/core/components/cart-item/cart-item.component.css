@@ -13,13 +13,6 @@
     border-radius: 15px 0px 0px 15px;
 }
 
-.cartItemHeader {
-    display: flex;
-    justify-content: space-between;
-    padding-right: 10px;
-    align-items: flex-start;
-}
-
 .removeItemBtn {
     border: none;
     background: none;

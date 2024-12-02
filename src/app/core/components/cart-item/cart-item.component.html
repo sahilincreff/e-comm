@@ -1,10 +1,8 @@
 <div [routerLink]="['/product', product.productId]" class="cartItemContainer pb-2 button"
     *ngIf="productPresentInCart() && product.quantity > 0" role="button">
-
     <img class="cartItemImg" [src]="product.images[0]" />
-
     <div class="w-100">
-        <div class="cartItemHeader">
+        <div class="d-flex justify-content-between align-items-start pe-2">
             <h3 class="productBrand">{{product.brand}}</h3>
             <button class="btn btn-sm removeItemBtn" (click)="toggleItemConfirmation($event)" placement="bottom"
                 ngbTooltip="Remove Item From Cart">

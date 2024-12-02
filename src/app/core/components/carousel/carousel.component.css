@@ -1,16 +1,12 @@
 .carouselContainer {
-  position: relative;
   width: 100%;
   max-width: 600px;
   margin: auto;
 }
 
 .navigation-buttons {
-  position: absolute;
   top: 40%;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
   transform: translateY(-50%);
 }
 
@@ -25,12 +21,6 @@
 .currentSelectedImage {
   max-width: 75%;
   height: auto;
-}
-
-.listImages {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
 }
 
 .smallImageCard {

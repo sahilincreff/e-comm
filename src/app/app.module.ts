@@ -25,6 +25,7 @@ import { ToastComponent } from './shared/components/toast/toast.component';
 import { CheckoutComponent } from './core/components/checkout/checkout.component';
 import { IndianCurrencyPipe } from './shared/pipes/inr-currency.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

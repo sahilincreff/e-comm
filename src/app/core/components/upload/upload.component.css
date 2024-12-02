@@ -3,20 +3,6 @@
   padding: 20px;
 }
 
-.uploadContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.uploadInput {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
 input[type="file"] {
   display: block;
   margin-bottom: 10px;
@@ -109,14 +95,6 @@ h5 {
   max-width: 400px;
 }
 
-.emtpyCartContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-
 .cartPageContainer {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -136,10 +114,6 @@ h5 {
   .cartPageContainer {
     grid-template-columns: 1fr;
     gap: 15px;
-  }
-
-  .uploadContainer {
-    flex-direction: column;
   }
 
   .cartSummaryContainer {

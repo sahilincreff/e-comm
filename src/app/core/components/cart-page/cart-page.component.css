@@ -3,18 +3,9 @@
   position: relative;
 }
 
-
 .emptyCartImage {
   max-width: 100%;
   width: 400px;
-}
-
-
-.emptyCartContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
 }
 
 @media (min-width: 992px) {

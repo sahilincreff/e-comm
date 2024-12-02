@@ -4,18 +4,6 @@
     overflow: scroll;
 }
 
-.filtersHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.clearFiltersBtn {
-    border: none;
-    background: transparent;
-    color: red;
-}
-
 .filterOptionsContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;

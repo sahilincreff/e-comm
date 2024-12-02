@@ -1,18 +1,18 @@
-<div class="headerNav shadow-sm mb-3 fixed">
+<div class="headerNav d-flex justify-content-between position-fixed bg-white shadow-sm mb-3 fixed">
   <a routerLink="/" class="headerLhs">
     <img class="appLogo" src="assets/images/app_logo.webp" />
   </a>
-  <div class="headerRhs" *ngIf="isLoginPage()==false">
-    <div *ngIf="userLoggedIn" routerLink="/upload" class="csvUploadContainer rounded-pill" placement="bottom" ngbTooltip="Upload CSV">
+  <div class="d-flex align-items-center gap-2" *ngIf="isLoginPage()==false">
+    <div *ngIf="userLoggedIn" routerLink="/upload" role="button" class="d-flex align-items-center justify-content-center rounded-pill" placement="bottom" ngbTooltip="Upload CSV">
       <span class="mdi mdi-file-upload"></span>
     </div>
-    <div class="userInfo">
-      <button class="cartIconContainer border-0 bg-transparent" routerLink="/cart" placement="bottom" ngbTooltip="Cart">
+    <div class="d-flex align-items-center gap-3 px-3">
+      <button class="d-flex position-relative align-items-center justify-content-center border-0 bg-transparent" routerLink="/cart" placement="bottom" ngbTooltip="Cart">
         <span class="mdi mdi-cart"></span>
-        <div class="cartCount">{{getCartItemsCount()}}</div>
+        <div class="d-flex align-items-center justify-content-center position-absolute cartCount">{{getCartItemsCount()}}</div>
       </button>
-      <div class="currentUserInfo">
-        <div *ngIf="userLoggedIn" class="loggedInUserContainer">
+      <div class="d-flex align-items-center justify-content-center gap-3" role="button">
+        <div *ngIf="userLoggedIn" class="d-flex align-items-center gap-3">
           <div class="dropdown">
             <button class="btn btn-sm btn-link" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
               aria-expanded="false">
