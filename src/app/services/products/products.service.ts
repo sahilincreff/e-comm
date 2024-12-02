@@ -23,16 +23,9 @@ export class ProductsService {
   }
 
   fetchProducts(): Observable<Product[]> {
-    if (this.products.length) {
-      return of(this.products); 
-    }
-
-    if (this.loadingSubject.getValue()) {
-      return this.productsSubject.asObservable();  
-    }
-
+    if (this.products.length) return of(this.products); 
+    if (this.loadingSubject.getValue()) return this.productsSubject.asObservable();  
     this.loadingSubject.next(true);
-
     return this.http.get<Product[]>(this.productsApiUrl).pipe(
       map((data: Product[]) => {
         this.setProducts(data); 

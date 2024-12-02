@@ -10,13 +10,7 @@ import { CartService } from 'src/app/services/cart/cart.service';
 export class ProductCardComponent {
   @Input() product!: Product;
 
-  constructor(private cartService: CartService) {
-
-  }
-
-  handleProductCardHover() {
-
-  }
+  constructor(private cartService: CartService) {}
 
   isProductInCart(productId: string) {
     return this.cartService.productInCart(productId);

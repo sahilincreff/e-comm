@@ -16,9 +16,7 @@ export class ProductDetailComponent implements OnInit {
   invalidProduct!: boolean;
   showRemoveConfirmation: boolean = false;
 
-  constructor(private router: ActivatedRoute, private cartService: CartService, private productService: ProductsService, private toastService: ToastService) {
-
-  }
+  constructor(private router: ActivatedRoute, private cartService: CartService, private productService: ProductsService, private toastService: ToastService) {}
 
   ngOnInit(): void {
     this.router.paramMap.subscribe(params => {
@@ -37,7 +35,6 @@ export class ProductDetailComponent implements OnInit {
         } else {
           this.invalidProduct = true;
         }
-
       })
     });
   }
@@ -48,10 +45,6 @@ export class ProductDetailComponent implements OnInit {
 
   productQuantityInCart() {
     return this.cartService.getItemQuantityInCart(this.productId || "");
-  }
-
-  confirmation() {
-
   }
 
   handleRemoveConfirmation($event: boolean) {

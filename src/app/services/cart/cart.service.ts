@@ -35,18 +35,14 @@ export class CartService {
 
   private handleUserLogin(user: User): void {
     this.mergeGuestCartWithUserCart(user.userId);
-
   }
 
   mergeGuestCartWithUserCart(userId: string): void {
     const guestCart = this.localStorageService.getCurrentUserCart();
     if (guestCart) {
       Object.entries(guestCart).forEach(([productId, quantity]) => {
-        if (this.cartItems[productId]) {
-          this.cartItems[productId] += quantity;
-        } else {
-          this.cartItems[productId] = quantity;
-        }
+        if (this.cartItems[productId]) this.cartItems[productId] += quantity;
+        else this.cartItems[productId] = quantity;
       });
       this.localStorageService.clearGuestCart();
       this.cartMerged = true;
@@ -76,9 +72,7 @@ export class CartService {
     if (this.cartItems[productId]) {
       delete this.cartItems[productId];
       this.updateCart();
-    } else {
-      console.warn(`Product with ID ${productId} is not in the cart.`);
-    }
+    } else console.warn(`Product with ID ${productId} is not in the cart.`);
   }
 
   increaseQuantity(productId: string, quantity: number = 1): void {
@@ -92,15 +86,12 @@ export class CartService {
   decreaseQuantity(productId: string, quantity: number = 1): void {
     if (this.cartItems[productId]) {
       const newQuantity = this.cartItems[productId] - quantity;
-      if (newQuantity <= 0) {
-        this.removeItemFromCart(productId);
-      } else {
+      if (newQuantity <= 0) this.removeItemFromCart(productId);
+      else {
         this.cartItems[productId] = newQuantity;
         this.updateCart();
       }
-    } else {
-      console.warn(`Product with ID ${productId} is not in the cart.`);
-    }
+    } else console.warn(`Product with ID ${productId} is not in the cart.`);
   }
 
   getCartItems(): { [productId: string]: number } {
@@ -128,11 +119,8 @@ export class CartService {
     let currCartItems = this.cartItems;
     products.map((currProd) => {
       const quantity = parseInt(currProd.quantity.toString(), 10);
-      if (currCartItems[currProd.productId]) {
-        currCartItems[currProd.productId] += quantity;
-      } else {
-        currCartItems[currProd.productId] = quantity;
-      }
+      if (currCartItems[currProd.productId]) currCartItems[currProd.productId] += quantity;
+      else currCartItems[currProd.productId] = quantity;
     });
     this.cartItems = currCartItems;
     this.updateCart();
