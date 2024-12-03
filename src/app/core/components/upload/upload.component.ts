@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ProductsService } from 'src/app/services/products/products.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { cartItem } from 'src/app/shared/models/cartItem';
-import { Product } from 'src/app/shared/models/product';
+import { cartItem } from 'src/app/shared/types/cartItem';
+import { Product } from 'src/app/shared/types/product';
 import { Router } from '@angular/router';
 
 @Component({

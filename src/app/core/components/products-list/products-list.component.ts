@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products/products.service';
-import { Product } from 'src/app/shared/models/product';
+import { Product } from 'src/app/shared/types/product';
 import { Router } from '@angular/router';
 import { FiltersService } from 'src/app/services/filters/filters.service';
 

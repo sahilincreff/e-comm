@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { LocalStorageService } from '../localStorage/local-storage.service';
 import { AuthService } from '../auth/auth.service';
 import { BehaviorSubject } from 'rxjs';
-import User from 'src/app/shared/models/user';
-import { cartItem } from 'src/app/shared/models/cartItem';
+import User from 'src/app/shared/types/user';
+import { cartItem } from 'src/app/shared/types/cartItem';
 
 @Injectable({
   providedIn: 'root'

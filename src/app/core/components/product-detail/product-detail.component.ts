@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ProductsService } from 'src/app/services/products/products.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { Product } from 'src/app/shared/models/product';
+import { Product } from 'src/app/shared/types/product';
 
 @Component({
   selector: 'app-product-detail',

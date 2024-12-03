@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { FiltersService } from 'src/app/services/filters/filters.service';
 import { ProductsService } from 'src/app/services/products/products.service';
-import Filter from 'src/app/shared/models/filter';
+import Filter from 'src/app/shared/types/filter';
 import { FILTERS } from 'src/assets/constants/filters';
 
 @Component({

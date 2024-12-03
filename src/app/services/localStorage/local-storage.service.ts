@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Cart } from 'src/app/shared/models/cart';
+import { Cart } from 'src/app/shared/types/cart';
 import { AuthService } from '../auth/auth.service';
-import User from 'src/app/shared/models/user';
+import User from 'src/app/shared/types/user';
 import { ToastService } from '../toast/toast.service';
 import { ProductsService } from '../products/products.service';
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CartService } from 'src/app/services/cart/cart.service';
-import User from '../../../shared/models/user';
+import User from '../../../shared/types/user';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';

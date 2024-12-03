@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from '../localStorage/local-storage.service';
-import Filter from 'src/app/shared/models/filter';
+import Filter from 'src/app/shared/types/filter';
 import { ProductsService } from '../products/products.service';
 import { FILTERS } from 'src/assets/constants/filters';
-import { Product } from 'src/app/shared/models/product';
+import { Product } from 'src/app/shared/types/product';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({

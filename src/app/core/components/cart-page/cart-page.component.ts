@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ProductsService } from 'src/app/services/products/products.service';
-import { Cart } from 'src/app/shared/models/cart';
-import { Product } from 'src/app/shared/models/product';
-import { cartItem } from 'src/app/shared/models/cartItem';
+import { Cart } from 'src/app/shared/types/cart';
+import { Product } from 'src/app/shared/types/product';
+import { cartItem } from 'src/app/shared/types/cartItem';
 import * as Papa from 'papaparse';
 import { Router } from '@angular/router';
 

@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
-import { cartItem } from 'src/app/shared/models/cartItem';
+import { cartItem } from 'src/app/shared/types/cartItem';
 
 @Component({
   selector: 'app-cart-item',

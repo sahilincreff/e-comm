@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import User from 'src/app/shared/models/user';
+import User from 'src/app/shared/types/user';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { CartService } from '../cart/cart.service';

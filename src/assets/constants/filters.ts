@@ -1,4 +1,4 @@
-import Filter from "../../app/shared/models/filter";
+import Filter from "../../app/shared/types/filter";
 
 export const FILTERS: Filter = {
     brands: ['Google', 'Apple', 'Samsung', 'Redmi', 'Nothing', 'Realme', 'Vivo', 'OnePlus'],

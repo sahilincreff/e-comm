@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, map, throwError, BehaviorSubject, of } from 'rxjs';
-import { Product } from 'src/app/shared/models/product';
+import { Product } from 'src/app/shared/types/product';
 import { FiltersService } from '../filters/filters.service';
 
 @Injectable({
